@@ -1,0 +1,44 @@
+
+
+Nach der Erstellung der Familieneinträge als Grundlage der Personenzahl,
+erfolgt die Erstellung 
+eines 
+	- Wochenplan mit Nummerierung und Kalenderwoche, dieser enthält 5-7 Rezepte.
+	- Bestellzettel für die Kalenderwoche. 
+			Dieser enthält Bestellzetteleinträge, die sich aus der Menge der eingesetzten Speisenkomponenten, sowie 
+			der Anzahl der Familienmitglieder ergeben.
+			Es ist darauf zu achten, dass die Ingredenzien nicht doppelt auftauchen, d.h. auch wenn es an 2 Tagen Kartoffeln gibt, so wird die Menge des ersten Eintrags erhöht. ws
+			
+			
+			
+
+select distinct i.bezeichnung, m.bezeichnung, m.einheit from menge m, ingredienz i, rezeptteil rt, speisekomponente sk where rt.rezept_id=1 and sk.ingredienz_id=i.ingredienz_id and sk.speisekomponente_id=rt.rezeptteil_id and sk.menge_id=m.menge_id
+
+
+
+
+
+Ergebnis nicht korrekt
+
+aber so:
+select distinct i.bezeichnung, m.bezeichnung, m.einheit from menge m, ingredienz i, rezeptteil rt, speisekomponente sk where rt.rezept_id=1 and sk.ingredienz_id=i.ingredienz_id and sk.speisekomponente_id=rt.speisekomponente_id and sk.menge_id=m.menge_id and rt.aktiv=1
+
+
+
+sk.speisekomponente_id
+		in (select max(sk.speisekomponente_id) From speisekomponente group by initial_id )
+
+
+
+
+es muss die Versionierung mit berücksichtigt werden:
+
+
+$query = 'select * from todo where id
+		in (select max(id) From todo group by initial_id ) 
+		and geloescht = 0 and sichtbar = 1 
+		and status != "erledigt"
+		order by id ::I1 Limit ::I2 ,::I3';
+
+$sql = "Select cn.n_id, cn.n_id_sha1 ,cn.n_vorname, cn.n_name, cms.mitglied_status, cms.* from club_nutzer AS cn, club_mitgliedschaft AS cms where cn.n_id=cms.nutzer_id And cms.m_parent_id = (select Max(m_parent_id) from club_mitgliedschaft AS cms2 where cn.n_id=cms2.nutzer_id order by cms2.m_parent_id DESC Limit 1)";
+		
