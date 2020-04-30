@@ -7,7 +7,7 @@ session_start();
 
 
 require_once './inc/global_config.inc.php';
-$_SESSION['title'] = 'Rezepte - Verwaltung von INgredenzien';
+$_SESSION['title'] = 'Rezepte - Bestellzentteln';
 $_SESSION['start'] = isset($_SESSION['start'])?$_SESSION['start']:false;
 
 
@@ -50,7 +50,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 
 	}
 
-    else if ( $action == 'zeigeAlleSpeisekomponenten') {
+    else if ( $action == 'zeigeAlleBestellzettel') {
       
 	 	include 'inc/header.php';
 	
@@ -199,23 +199,21 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 
     /****************************************
   
-    kleines Formular zum hinzufügen der Speisekomponenten
+    kleines Formular zum hinzufügen der Bestellzetteln
   
 	*****************************************/
   	
     else if ( $action == 'anlegen') {
-  	
-		
-         include 'inc/header.php';
 
+	
+       include 'inc/header.php';
+
+  	
 		 echo '<h1 style="background: green; color: orange;
 	             padding-left:120px;">Speisekomponente</h1>';
 
 
-		 echo '<div class="eyecatch block">Das Anlegen einer Speisekomponente ist etwas abstrakt. Es geht um das Herstellen einer 
-			 Komponente oder eines Speiseteils, welches sp&auml;ter entweder zu einem Bestandteil einer Speise oder eine	
-			 Speise insgesamt werden kann.<br>Es kann also sowohl eine Suppe aus Erbsen hergestellt werden, wie auch 
-			 Zuckererbsen als Gem&uuml;sebeilage oder Erbsp&uuml;ree als S&auml;ttigungsbeilage.</div>'; 
+		 echo '<div class="eyecatch block">Hier soll ein Bestellzettel aus dem Wochenplan erstellt werden.</div>'; 
 
          
    

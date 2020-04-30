@@ -101,26 +101,26 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
       echo "<br>";
       echo '<a href="rezept/anlegen">Rezept anlegen</a>';  
       echo "<br>";
-	  echo '<a href="rezeptbestandteil/zeigeAlleRezepte">zeige alle Rezeptbestanteile</a>';
+	  /* echo '<a href="rezeptbestandteil/zeigeAlleRezepte">zeige alle Rezeptbestanteile</a>';
       echo "<br>";
       echo '<a href="rezeptbestandteil/anlegen">Rezeptbestanteil anlegen</a>';
-      echo "<br>";
+      echo "<br>"; */
       echo "<br>";   
      
       echo "<br><h3>Speiseplan</h3>";
       
       echo '<a href="speiseplan/anlegen" title="Die installierte Software auf dem PC des Nutzers">Speiseplan anlegen</a>';
       echo "<br>";
-     /*  echo '<a href="lizenzen/server">Erfassung der Serverlizenzen</a>';
+       echo '<a href="speiseplan/anzeigen">Speiseplan anzeigen</a>';
+      echo "<br>";
+     /* */ 
+      echo "<br><h3>Bestellzettel</h3>";
+      
+      echo '<a href="bestellzettel/erstellen">Bestellzettel erstellen</a>';
+      echo "<br>";
+      echo '<a href="bestellzettel/anzeigen">Bestellzettel anzeigen</a>';
       echo "<br>";
       
-      echo "<br><h3>Auswertung</h3>";
-      
-      echo '<a href="auswertung/insgesamt">Auswertung gesamt</a>';
-      echo "<br>";
-      echo '<a href="auswertung/durchschnitt">Auswertung durchschnitt</a>';
-      echo "<br>";
-     */ 
       echo '</div>';
       echo '<div class="clear"></div>';
       echo '</div>';  

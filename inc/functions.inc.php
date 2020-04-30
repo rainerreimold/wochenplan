@@ -589,6 +589,102 @@ function getAlleWochenplaene( ) {
 
 
 
+function isRecipeExist( $rezept ) {
+
+	try {
+		$sql= "SELECT rezept_id FROM `rezept` WHERE bezeichnung=\"".$rezept."\";";
+
+     	$db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+        $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $rueckgabe = $db->query($sql);
+        
+        $ergebnis = $rueckgabe->fetchAll(PDO::FETCH_ASSOC);
+        $db=null;
+        
+        if ($ergebnis==null) return null;
+        	return $ergebnis[0]['rezept_id'];
+    }
+
+    catch(PDOException $e){
+        print $e->getMessage();
+    }
+    return null;
+
+}
+
+function getLastRezeptId(  ) {
+
+	try {
+		$sql= "SELECT rezept_id  FROM `rezept` order by rezept_id desc limit 1;";
+
+     	$db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+        $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $rueckgabe = $db->query($sql);
+        
+        $ergebnis = $rueckgabe->fetchAll(PDO::FETCH_ASSOC);
+        $db=null;
+        
+        if ($ergebnis==null) return null;
+        	return $ergebnis[0]['rezept_id'];
+    }
+
+    catch(PDOException $e){
+        print $e->getMessage();
+    }
+    return null;
+
+}
+
+
+
+function setRezeptInitialId($rezeptId) {
+        
+        try {
+            
+            $sql = "update rezept set initial_id=".$rezeptId." where rezept_id=".$rezeptId.";";
+        
+           // echo "<br>".$sql."<br>";
+            $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+            
+            $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $db->query($sql);
+        }
+        
+        catch(PDOException $e){
+            print $e->getMessage();
+            //die();
+        }
+        return -1;
+        
+    }
+
+
+
+function getBezeichnungSpeisekomponente ($sk_id) {
+
+	try {
+		$sql= "SELECT bezeichnung  FROM `speisekomponente` where speisekomponente_id=".$sk_id;
+
+     	$db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+        $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $rueckgabe = $db->query($sql);
+        
+        $ergebnis = $rueckgabe->fetchAll(PDO::FETCH_ASSOC);
+        $db=null;
+        
+        if ($ergebnis==null) return null;
+        	return $ergebnis[0]['bezeichnung'];
+    }
+
+    catch(PDOException $e){
+        print $e->getMessage();
+    }
+    return null;
+
+}
 
 
 
@@ -597,8 +693,7 @@ function getAlleWochenplaene( ) {
 
 
 
-
-
+/********************************************************************************************************************************************** */
 
 
 function getAuspraegung( $id, $eigenschaft_id) {

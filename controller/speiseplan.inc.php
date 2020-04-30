@@ -38,7 +38,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 	//Aber die Übersicht ist doch nicht die action sondern der
 	//controller.....
     
-    include 'inc/header.php';
+    // include 'inc/header.php';
 	
     if ( $action == '') {
 	
@@ -62,7 +62,9 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 
 
     else if ( $action == 'zeigeAlleSpeiseplaene') {
-        
+   include 'inc/header.php';
+	        
+
        try {
 		echo "HIER";
                //    SELECT domain_id, domain_name FROM `domain` WHERE 1
@@ -124,7 +126,8 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 	}
 	
     else if ( $action == 'zeigeDomains') {
-        
+           include 'inc/header.php';
+	
        try {
 		echo "HIER";
                //    SELECT domain_id, domain_name FROM `domain` WHERE 1
@@ -193,7 +196,8 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
   	
     else if ( $action == 'anlegen') {
   	
-
+       include 'inc/header.php';
+	
 	// Im Schritt 0 sollten wohl zunächst alle bereits exitierenden Wochenpläne angezeigt werden?
 	
 	 $Wochenplaene=getAlleWochenplaene();
@@ -221,22 +225,81 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 
 	// Im Schritt 1 müssen alle Rezepte angezeigt werden.
 
+	// Ich glaube, dass die Auswahl über ein multiple Formular ungünstig ist.
+	// Das Auslesen wäre lösbar, aber die Zuordnung zu den Wochentagen wäre schwierig.
+	// Das ist zwar im ersten Moment für das Projekt und die Bestellzettel unwichtig, dennoch 
+	// stellt die App Vorschläge, aber keine Vorschrift für die möglichen Speisenpläne der Woche dar.
 	
 		 echo '<h1 style="background: orange; color:black;
 	             padding-left:120px;">Rezepte</h1>';
-         echo '<div class="form" style="width:750px; text-align:right; padding:10px; margin:10px auto auto auto;">
+         echo '<div class="form" style="width:1150px; text-align:right; padding:10px; margin:10px auto auto auto;">
 
-         <form method="post" action="eintragen" style="width:700px; padding:10px; margin:10px;" class="artikelform">
-           <fieldset style="background:#cfcfcf; width:500px; text-align:right; padding:10px; margin-right:10px;">
+         <form method="post" action="eintragen" style="width:1100px; padding:10px; margin:10px;" class="artikelform">
+           <fieldset style="background:#cfcfcf; width:1050px; text-align:center; padding:10px; margin-right:10px;">
            <legend>5 Rezepte ausw&auml;hlen</legend>';       
    
+		     echo '<label>Wocehenplan: </label><input class="textform eyecatch" type="text" name="bezeichnung"  required /><br>';
 
-	         $Rezepte="\n<select class=\"auswahl eyecatch\" name=\"rezepte\" size=\"10\" multiple>\n";
-             $Rezepte.=getAlleRezepte()."\n";
-             $Rezepte.="</select>\n";
+			 echo "<br>Montag<br>";
+	         $RezepteMo="\n<select class=\"auswahl eyecatch\" name=\"rezeptMo\" size=\"5\" >\n";
+             $RezepteMo.=getAlleRezepte()."\n";
+             $RezepteMo.="</select>\n";
 			
-  			 echo $Rezepte;
+  			 echo $RezepteMo;
+						
+			 echo "<br>Dienstag<br><br>";	
+			 $RezepteDi="\n<select class=\"auswahl eyecatch\" name=\"rezeptDi\" size=\"5\" >\n";
+             $RezepteDi.=getAlleRezepte()."\n";
+             $RezepteDi.="</select>\n";
+			
+  			 echo $RezepteDi;
 		
+			 echo "<br>Mittwoch<br><br>";	
+			 $RezepteMi="\n<select class=\"auswahl eyecatch\" name=\"rezeptMi\" size=\"5\" >\n";
+             $RezepteMi.=getAlleRezepte()."\n";
+             $RezepteMi.="</select>\n";
+			
+  			 echo $RezepteMi;
+		
+		     echo "<br>Donnerstag<br><br>";	
+			 $RezepteDo="\n<select class=\"auswahl eyecatch\" name=\"rezeptDo\" size=\"5\" >\n";
+             $RezepteDo.=getAlleRezepte()."\n";
+             $RezepteDo.="</select>\n";
+			
+  			 echo $RezepteDo;
+		
+			 echo "<br>Freitag<br><br>";	
+			 $RezepteFr="\n<select class=\"auswahl eyecatch\" name=\"rezeptFr\" size=\"5\" >\n";
+             $RezepteFr.=getAlleRezepte()."\n";
+             $RezepteFr.="</select>\n";
+			
+  			 echo $RezepteFr;
+		
+			 echo '<br><br>';
+				// Wochenende
+	
+	/*		echo "<br>Dienstag<br>";	
+			 $RezepteDi="\n<select class=\"auswahl eyecatch\" name=\"rezeptDi\" size=\"5\" >\n";
+             $RezepteDi.=getAlleRezepte()."\n";
+             $RezepteDi.="</select>\n";
+			
+  			 echo $RezepteDi;
+		
+
+			echo "<br>Dienstag<br>";	
+			 $RezepteDi="\n<select class=\"auswahl eyecatch\" name=\"rezeptDi\" size=\"5\" >\n";
+             $RezepteDi.=getAlleRezepte()."\n";
+             $RezepteDi.="</select>\n";
+			
+  			 echo $RezepteDi;
+		
+*/
+
+      echo "<br>Beschreibung:<br>";
+	  echo "<textarea id='editor' name='editor'></textarea>";
+
+	   echo ' </fieldset>';
+	
        echo ' <fieldset style="background:#cfcfcf; text-align:right; padding:10px; margin-right:10px;">
               <button type="reset">Eingaben l&ouml;schen</button>
               <button type="submit">Absenden</button>
@@ -247,6 +310,9 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
        <br>
        <br>
        <br>';
+	    echo '<script type="text/javascript">';
+        echo "	CKEDITOR.replace('editor');";
+        echo "</script>";
 
      include 'inc/footer.php';
 
@@ -262,44 +328,63 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 
 	else if ( $action == 'eintragen') {
 
-     $headline      = $_POST['headline'];
+     $bezeichnung      = $_POST['bezeichnung'];
      $editor        = $_POST['editor'];
+
+	 $rezeptMo        = $_POST['rezeptMo'];
+	 $rezeptDi        = $_POST['rezeptDi'];
+ 	 $rezeptMi        = $_POST['rezeptMi'];
+	 $rezeptDo        = $_POST['rezeptDo'];
+	 $rezeptFr        = $_POST['rezeptFr'];
+	 /*
+	 $rezeptSa        = $_POST['rezeptSa'];
+	 $rezeptSo        = $_POST['rezeptSo'];
+     */
+
+
+
     
-	/*    echo '<pre>';
+	/*   echo '<pre>';
 		var_dump($_POST);
         print_r($_POST);
         echo  '</pre>';
-*/
+ */ 
 	 //echo $editor."<br><br>";
 	 
-
           try {
 
                     
-              
-        //    $sql = "Replace INTO `liz_anzahl_lizenz` SET `anzahl_lizenz_gesamt` = '".$anzahl."', `anzahl_lizenz_produkt_id` = '".$produkt."', `anzahl_lizenz_verfuegbar` =  '".$anzahl."', `anzahl_lizenz_innutzung` =  0, `lizenz_id` =  '".$lizenz_id."',
-        //     `eingetragen` = NOW(), `anzahl_lizenz_datum` = NOW();";
+	      
 
-		  //UPDATE `artikel_entwurf` SET `initial_id` = '1', `parent_id` = '0', `headline` = 'Mein Kind ist das Hübscheste', `eingetragen` = NOW() WHERE `artikel_entwurf`.`artikel_entwurf_id` = 1;
-		
-		  $sql = "replace into artikel_entwurf set headline='".$headline."', artikel_reintext = '".$editor."'";
+          $sql = "replace into wochenplan set rezept_id_mo= '".$rezeptMo."',rezept_id_di= '".$rezeptDi."',rezept_id_mi= '".$rezeptMi."',
+					rezept_id_do= '".$rezeptDo."',rezept_id_fr= '".$rezeptFr."',  bezeichnung='".$bezeichnung."', beschreibung = '".$editor."'";
 
 
-          print $sql."<br>";
+          //print $sql."<br>";
 	      $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
           $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-          $db->query($sql);
+          $db->beginTransaction();
+		  $db->query($sql);
+
+		  $sql = "update wochenplan  set initial_id=wochenplan_id order by wochenplan_id desc Limit 1;";
+
+		   $db->query($sql);
+
+
+		  $db->commit();
+  	
           $db=null;
 
           }
           catch(PDOException $e){
+			  $dbh->rollBack();
               print "<br>".$e->getMessage();
           }
 
 
  		  // getArtikelInitialId	
            
-          //die();
+          die();
           
 
           header('location:../uebersicht');

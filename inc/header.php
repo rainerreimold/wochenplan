@@ -85,8 +85,14 @@ echo '<link rel="stylesheet" type="text/css" href="'.PFAD.'/'.APPNAME.'/lib/css/
 	
 <title>Rezept - Verwaltung von Rezepten, Speiseplänen und Bestellzetteln</title>';
 
+//echo '<script src="https://cdn.ckeditor.com/ckeditor5/18.0.0/inline/ckeditor.js"></script>';
+echo '<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>';
+/*  function zurueck() {
+    			window.history.back(-2)
+  			 }
+*/
    echo '<script language="JavaScript" type="text/javascript">
-          <!--
+         <!-- 
           function start() {
               textLayer1 = document.getElementById(\'visib1\').style;
               textLayer2 = document.getElementById(\'visib2\').style;
@@ -174,6 +180,7 @@ echo '<link rel="stylesheet" type="text/css" href="'.PFAD.'/'.APPNAME.'/lib/css/
           }
           </script>';
 
+
 echo '<style>
 /* Tab mit radio-Buttons */
 .tabbed figure { display: block; margin-left: 0; width:100%; margin-bottom: 1em; border-bottom: 1px solid silver;  }
@@ -213,7 +220,7 @@ echo '<style>
 
 .tabbed {
   width: 100%;
-  max-width: 600px;
+  /* max-width: 600px; */
   margin: 0 auto;
 }
 
@@ -281,7 +288,7 @@ echo '<style>
   bottom: -1px;
 }
 
-</style>
+</style> 
 ';
 
 

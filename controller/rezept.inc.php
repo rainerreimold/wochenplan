@@ -30,8 +30,12 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 	//Aber die Übersicht ist doch nicht die action sondern der
 	//controller.....
     
-    include 'inc/header.php';
-	
+    /* Den Header können wir leider nicht mehr zentral einbinden,
+       da sonst die header location nicht mehr funktioniert. 
+      
+         include 'inc/header.php';
+	 */
+    
     if ( $action == '') {
 	
 
@@ -49,6 +53,10 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 		}
 
     else if ( $action == 'zeigeAlleRezepte') {
+      
+       include 'inc/header.php';
+	
+      
         
        try {
 		
@@ -119,6 +127,9 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 	
     else if ( $action == 'details') {
         
+	      include 'inc/header.php';
+	
+
        try {
 		echo "HIER";
                //    SELECT domain_id, domain_name FROM `domain` WHERE 1
@@ -187,24 +198,26 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
   	
     else if ( $action == 'anlegen') {
   	
+		   include 'inc/header.php';
+	
 
 		// neue Tabnavigation 
 			echo '<section data-title="Radio und Label">';
 
 
     	 echo '<h1 style="background: orange;
-	             padding-left:120px;">Rezept</h1>';
+	             padding-left:320px;">Rezept</h1>';
         
 
     
-     echo '<div class="tabbed">
+     echo '<div class="tabbed" >
 		<input checked="checked" id="tab1" type="radio" name="tabs" />
 		<input id="tab2" type="radio" name="tabs" />
 		<input id="tab3" type="radio" name="tabs" />
 		<input id="tab4" type="radio" name="tabs" />
 		<input id="tab5" type="radio" name="tabs" />
 		
-		<div class="nav">
+		<div class="nav nav-w" style="width: 1000px;">
 			<label for="tab1">Hauptspeise</label>
 			<label for="tab2">Suppe</label>
 			<label for="tab3">Vorspeise</label>
@@ -212,7 +225,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 			<label for="tab5">kl.Speise</label>
 		</div>
 	
-		<figure>
+		<figure style="width: 1000px;">
 			<div class="tab1">
 				<div class="lines">
 					<h5>Hauptspeise</h5>
@@ -220,36 +233,42 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 					<p>';
 					
 		      // Formular Hauptspeise	
-			  echo '<div class="form" style="width:600px; text-align:right; padding:10px; margin:10px auto auto auto;">';
+			  echo '<div class="form" style="width:1000px; text-align:right; padding:10px; margin:10px auto auto auto;">';
  			
 			  echo '<form method="post" action="hauptspeiseEintragen" style="width:60px; padding:10px; margin:10px;">
-                <fieldset style="background:#cfcfcf; width:550px; text-align:right; padding:10px; margin-right:10px;">
+
+                <fieldset style="background:#cfcfcf; width:950px; text-align:right; padding:10px; margin-right:10px;">
                 <legend>Rezept anlegen</legend>';       
-             echo '<label>Rezept: </label><input class="textform eyecatch" type="text" name="rezept" placeholder="xxx.xx" required /><br>';
-             echo '</fieldset>';
+             echo '<label>Rezept: </label><input class="textformsuppe" type="text" name="rezept" placeholder="xxx.xx" required /><br>';
+             
              echo "<br>\n";
 			// echo "Was soll es f&uuml;r ein Rezept werden?<br>\n";
 		
 
-			 $HauptbeilageSelect="\n<select class=\"auswahl eyecatch\" name=\"hauptbeilage\" size=\"5\" multiple>\n";
+			 $HauptbeilageSelect="\n<select class=\"auswahl2\" name=\"hauptbeilage\" size=\"5\" multiple>\n";
              $HauptbeilageSelect.=getHauptBeilage()."\n";
              $HauptbeilageSelect.="</select>\n";
 			
 			 echo $HauptbeilageSelect;
 
-			 $SaettigungsbeilageSelect="\n<select class=\"auswahl eyecatch\" name=\"saettigungsbeilage\" size=\"5\" multiple>\n";
+			 $SaettigungsbeilageSelect="\n<select class=\"auswahl2\" name=\"saettigungsbeilage\" size=\"5\" multiple>\n";
              $SaettigungsbeilageSelect.=getSaettigungsBeilage()."\n";
              $SaettigungsbeilageSelect.="</select>\n";
 			
 			 echo $SaettigungsbeilageSelect;
 
-			 $GemuesebeilageSelect="\n<select class=\"auswahl eyecatch\" name=\"gemuesebeilage\" size=\"5\" multiple>\n";
+			 $GemuesebeilageSelect="\n<select class=\"auswahl2\" name=\"gemuesebeilage\" size=\"5\" multiple>\n";
              $GemuesebeilageSelect.=getGemueseBeilage()."\n";
              $GemuesebeilageSelect.="</select>\n";
 			
 			 echo $GemuesebeilageSelect;
 
-             echo ' <fieldset style="background:#cfcfcf; text-align:right; padding:10px; margin-right:10px;">
+			 echo "<br/><br/>";
+			 echo "<textarea id='editor' name='editor'></textarea>";
+
+
+             echo '</fieldset>';
+			  echo ' <fieldset style="background:#cfcfcf; text-align:right; padding:10px; margin-right:10px;">
               <button type="reset">Eingaben l&ouml;schen</button>
               <button type="submit">Absenden</button>
             </fieldset>
@@ -267,15 +286,19 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 					<h5>Suppe</h5>
 					<p>';
 					  
-			  echo '<div class="form" style="width:650px; text-align:right; padding:10px; margin:10px auto auto auto;">';
+			  echo '<div class="form" style="width:940px; text-align:right; padding:10px; margin:10px auto auto auto;">';
 		 			
-			  echo '<form method="post" action="suppeEintragen" style="width:600px; padding:10px; margin:10px;">
+			  echo '<form method="post" action="suppeEintragen" style="width:900px; padding:10px; margin:10px;">
 
-              <fieldset style="background:#cfcfcf; width:900px; text-align:right; padding:10px; margin-right:10px;">
+              <fieldset style="background:#cfcfcf; width:800px; text-align:right; padding:10px; margin-right:10px;">
               <legend>Rezept anlegen</legend>';       
-             echo '<label>Rezept: </label><input class="textform eyecatch" type="text" name="rezept" placeholder="Suppe" required /><br>';
+             echo '<label>Rezept: </label>
+			  <input class="textformsuppe" type="text" name="rezept" placeholder="Suppe" required style="width:750px;/><br>';
              echo '</fieldset>';
              echo "<br>\n";
+			 
+			 echo '<fieldset style="background:#cfcfcf; width:800px; text-align:right; padding:10px; margin-right:10px;">';
+              
 			 echo "Was soll es f&uuml;r ein Rezept werden?<br>\n";
 		
 
@@ -285,7 +308,13 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 			
 			 echo $SuppeSelect;
 
+			 echo "<br><br>\n";
+			 				
 
+			  echo "<textarea id='editorSuppe' name='editorSuppe'></textarea>";
+  	
+
+			 echo '</fieldset>';
 
              echo ' <fieldset style="background:#cfcfcf; text-align:right; padding:10px; margin-right:10px;">
               <button type="reset">Eingaben l&ouml;schen</button>
@@ -307,21 +336,28 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 					  
 			  echo '<div class="form" style="width:750px; text-align:right; padding:10px; margin:10px auto auto auto;">';
  		
-			  echo '<form method="post" action="eintragen" style="width:700px; padding:10px; margin:10px;">
+			  echo '<form method="post" action="vorspeiseEintragen" style="width:700px; padding:10px; margin:10px;">
            <fieldset style="background:#cfcfcf; width:500px; text-align:right; padding:10px; margin-right:10px;">
            <legend>Rezept anlegen</legend>';       
-             echo '<label>Rezept: </label><input class="textform eyecatch" type="text" name="rezept" placeholder="xxx.xx" required /><br>';
+             echo '<label>Rezept: </label><input class="textform eyecatch" type="text" name="rezept"  required /><br>';
              echo '</fieldset>';
              echo "<br>\n";
-			 echo "Was soll es f&uuml;r ein Rezept werden?<br>\n";
+			 
+			 echo '<fieldset style="background:#cfcfcf; width:800px; text-align:right; padding:10px; margin-right:10px;">';
+             
+			 echo "Was soll es f&uuml;r eine Vorspeise werden?<br>\n";
 		
 	
-			 $VorspeiseSelect="\n<select class=\"auswahl eyecatch\" name=\"suppe\" size=\"5\" multiple>\n";
+			 $VorspeiseSelect="\n<select class=\"auswahl eyecatch\" name=\"vorspeise\" size=\"5\" multiple>\n";
              $VorspeiseSelect.=getVorspeisen()."\n";
              $VorspeiseSelect.="</select>\n";
 			
 			 echo $VorspeiseSelect;
-
+			 echo "<br><br>\n";
+			 
+			 echo "<textarea id='editor' name='editor'></textarea>";
+  	
+   		     echo '</fieldset>';
 
 
              echo ' <fieldset style="background:#cfcfcf; text-align:right; padding:10px; margin-right:10px;">
@@ -371,6 +407,11 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 		</figure>
 	</div>
 </section>';
+	
+   echo '<script type="text/javascript">';
+   echo "	CKEDITOR.replace('editor');";
+   echo "	CKEDITOR.replace('editorSuppe');
+       </script>";
 			
 
      include 'inc/footer.php';
@@ -385,23 +426,24 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 
 	****************************************/
 
-	else if ( $action == 'eintragen') {
+	else if ( $action == 'hauptspeiseEintragen') {
 
      
-     $domain        = $_REQUEST['domain'];
-
-
-          try {
-
-                    
-              
-        //    $sql = "Replace INTO `liz_anzahl_lizenz` SET `anzahl_lizenz_gesamt` = '".$anzahl."', `anzahl_lizenz_produkt_id` = '".$produkt."', `anzahl_lizenz_verfuegbar` =  '".$anzahl."', `anzahl_lizenz_innutzung` =  0, `lizenz_id` =  '".$lizenz_id."',
-        //     `eingetragen` = NOW(), `anzahl_lizenz_datum` = NOW();";
+    
+		 $rezept        	 = $_REQUEST['rezept'];
+		 $beschreibung 		 = $_REQUEST['editor'];
 		
-		  $sql = "replace into domain set domain_name = '".$domain."'";
+ 		 // exisitert dieses Rezept schon?
 
+		 if (!isRecipeExist($rezept)) {
 
-          print $sql."<br>";
+		
+		 // wenn nicht, dann eintragen und die ID ermitteln
+		try {
+	
+		  $sql = "replace into rezept set bezeichnung = '".$rezept."', beschreibung = '".$beschreibung."'";
+
+          //print $sql."<br>";
 
           $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
           $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -413,8 +455,200 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
               print "<br>".$e->getMessage();
           }
 
+		  $rezept_id = getLastRezeptId();
+		  setRezeptInitialId( $rezept_id);	
 
 
+     	/***
+
+			der darf aber auch nur ausgeführt werden, wenn das Rezept nicht existiert.		
+
+		Teil 2  
+
+			// lies die restlichen Daten und trage sie mit der rezeptId in Rezeptbestandteile
+
+
+		BSP für Transaktionen
+
+		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+ 		$dbh->beginTransaction();
+  		$dbh->exec("insert into staff (id, first, last) values (23, 'Joe', 'Bloggs')");
+  		$dbh->exec("insert into salarychange (id, amount, changedate) 
+      		values (23, 50000, NOW())");
+  		$dbh->commit();
+  
+		} catch (Exception $e) {
+  			$dbh->rollBack();
+  			echo "Failed: " . $e->getMessage();
+		}
+
+
+
+
+		*****/
+
+		 
+		 $hauptbeilage		 = $_REQUEST['hauptbeilage'];			
+		 $bez_hauptbeilage = getBezeichnungSpeisekomponente($hauptbeilage);		   
+		 $saettigungsbeilage = $_REQUEST['saettigungsbeilage'];
+		 $bez_saettigungsbeilage = getBezeichnungSpeisekomponente($saettigungsbeilage);	
+		 $gemuesebeilage 	 = $_REQUEST['gemuesebeilage'];
+		 $bez_gemuesebeilage = getBezeichnungSpeisekomponente($gemuesebeilage);			
+  
+        /* Da es sich um 3 identische Routinen handelt, lagere ich das in eine externe Funktion aus */	   
+   
+	    try {
+
+       
+		  $sql = "replace into rezeptteil set speisekomponente_id = '".$hauptbeilage."', rezept_id = '".$rezept_id."', bezeichnung = '". $bez_hauptbeilage."'  ";
+		  
+
+          //print $sql."<br>";
+
+          $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+          $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		  
+ 		  $db->beginTransaction();
+  		        
+
+		  $db->query($sql);
+		  $sql = "update rezeptteil set initial_id=rezeptteil_id order by rezeptteil_id desc Limit 1;";          
+          $db->query($sql);		  
+
+		  $sql = "replace into rezeptteil set speisekomponente_id = '".$saettigungsbeilage."', rezept_id = '".$rezept_id."', bezeichnung = '". $bez_saettigungsbeilage."' ";
+		  $db->query($sql);
+		  $sql = "update rezeptteil  set initial_id=rezeptteil_id order by rezeptteil_id desc Limit 1;";          
+          $db->query($sql);		  
+          
+
+		  $sql = "replace into rezeptteil set speisekomponente_id = '".$gemuesebeilage."', rezept_id = '".$rezept_id."' , bezeichnung = '". $bez_gemuesebeilage."'";
+		  $db->query($sql);
+		  $sql = "update rezeptteil  set initial_id=rezeptteil_id order by rezeptteil_id desc Limit 1;";          
+          $db->query($sql);		  
+          
+		  $db->commit();
+  
+		  $db=null;
+
+          }
+          catch(PDOException $e){
+			  $dbh->rollBack();
+              print "<br>".$e->getMessage();
+          }
+
+		// das Rezept existiert nicht (if)
+         }
+		else {
+ 			echo "Das Rezept existiert schon!";
+		}
+        
+          //die();
+          
+
+			echo '<script src="window.history.back(-2);"></script>';
+			 
+ 			/* function zurueck() {
+    		     window.history.back(-2)
+  			 }
+  */
+          //header('location:../uebersicht');
+
+
+
+    }
+
+	/*** 
+  
+		Suppe eintragen
+   
+	***/
+
+	/// noch zu überarbeiten
+
+	else if ( $action == 'suppeEintragen') {
+
+     
+    
+		 $rezept        	 = $_REQUEST['rezept'];
+		 $beschreibung 		 = $_REQUEST['editorSuppe'];
+		
+ 		 // exisitert dieses Rezept schon?
+
+		 if (!isRecipeExist($rezept)) {
+
+		
+		 // wenn nicht, dann eintragen und die ID ermitteln
+		try {
+	
+		  $sql = "replace into rezept set bezeichnung = '".$rezept."', beschreibung = '".$beschreibung."'";
+
+          //print $sql."<br>";
+
+          $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+          $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $db->query($sql);
+          $db=null;
+
+          }
+          catch(PDOException $e){
+              print "<br>".$e->getMessage();
+          }
+
+		  $rezept_id = getLastRezeptId();
+		  setRezeptInitialId( $rezept_id);	
+
+
+     	/***
+
+			der darf aber auch nur ausgeführt werden, wenn das Rezept nicht existiert.		
+
+		Teil 2  
+
+			// lies die restlichen Daten und trage sie mit der rezeptId in Rezeptbestandteile
+
+
+
+		*****/
+
+		 
+		 $suppe		 = $_REQUEST['suppe'];			
+		 $bez_suppe = getBezeichnungSpeisekomponente($suppe);		   
+	
+      
+	    try {
+
+       
+		  $sql = "replace into rezeptteil set speisekomponente_id = '".$suppe."', rezept_id = '".$rezept_id."', bezeichnung = '". $bez_suppe."'  ";
+		  
+
+          //print $sql."<br>";
+
+          $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+          $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		  
+ 		  $db->beginTransaction();
+  		        
+
+		  $db->query($sql);
+		  $sql = "update rezeptteil set initial_id=rezeptteil_id order by rezeptteil_id desc Limit 1;";          
+          $db->query($sql);		  	  
+          
+		  $db->commit();
+  
+		  $db=null;
+
+          }
+          catch(PDOException $e){
+			  $dbh->rollBack();
+              print "<br>".$e->getMessage();
+          }
+
+		// das Rezept existiert nicht (if)
+         }
+		else {
+ 			echo "Das Rezept existiert schon!";
+		}
         
           //die();
           
@@ -424,6 +658,8 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 
 
     }
+
+
 
 
 
