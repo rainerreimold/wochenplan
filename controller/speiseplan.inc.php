@@ -112,7 +112,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 	    $db=null;
 	    
       
-      
+        echo "<br><a href=\"anlegen\">neuen Speiseplan anlegen</a><br>";
 
 		if (DEBUG) {
 			echo "<br /><br />action= $action<br /><br />";
@@ -377,16 +377,16 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 
           }
           catch(PDOException $e){
-			  $dbh->rollBack();
+			  $db->rollBack();
               print "<br>".$e->getMessage();
           }
 
 
  		  // getArtikelInitialId	
            
-          die();
+          //die();
           
-
+		   $_SESSION['Eintrag']	= $bezeichnung.' erfolgreich eingetragen';
           header('location:../uebersicht');
 
 

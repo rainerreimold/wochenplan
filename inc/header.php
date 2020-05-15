@@ -91,94 +91,6 @@ echo '<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></scrip
     			window.history.back(-2)
   			 }
 */
-   echo '<script language="JavaScript" type="text/javascript">
-         <!-- 
-          function start() {
-              textLayer1 = document.getElementById(\'visib1\').style;
-              textLayer2 = document.getElementById(\'visib2\').style;
-			  textLayer3 = document.getElementById(\'visib3\').style;
-			  textLayer4 = document.getElementById(\'visib4\').style;
-			  textLayer5 = document.getElementById(\'visib5\').style;
-          }
-          
-
-		 
-		  // komplette Speise 3 Elemente
-          function ea_check(radiocheckbox) {
-              if(radiocheckbox.value=="1"){
-                  textLayer1.zIndex = 6;
-				  textLayer2.zIndex = 2;
-				  textLayer3.zIndex = 3;
-				  textLayer4.zIndex = 4;
-				  textLayer5.zIndex = 5;
-                  textLayer1.visibility = "visible";
-                  textLayer2.visibility = "hidden";
-				  textLayer3.visibility = "hidden";
-				  textLayer4.visibility = "hidden";
-				  textLayer5.visibility = "hidden";
-                 
-				}
-			  // Suppe
-              else if(radiocheckbox.value=="4") {
-                  textLayer1.zIndex = 2;
-				  textLayer2.zIndex = 6;
-				  textLayer3.zIndex = 3;
-				  textLayer4.zIndex = 4;
-				  textLayer5.zIndex = 5;
-                  textLayer1.visibility = "hidden";
-                  textLayer2.visibility = "visible";
-                  textLayer3.visibility = "hidden";
-				  textLayer4.visibility = "hidden";
-				  textLayer5.visibility = "hidden";
-                 
-              }
-
-			 // Vorspeise
-              else if(radiocheckbox.value=="5") {
-                  textLayer1.zIndex = 2;
-				  textLayer2.zIndex = 3;
-				  textLayer3.zIndex = 6;
-				  textLayer4.zIndex = 4;
-				  textLayer5.zIndex = 5;
-                  textLayer1.visibility = "hidden";
-                  textLayer2.visibility = "hidden";
-                  textLayer3.visibility = "visible";
-				  textLayer4.visibility = "hidden";
-				  textLayer5.visibility = "hidden";
-                 
-              }
-			 // Dessert
-              else if(radiocheckbox.value=="6") {
-                  textLayer1.zIndex = 2;
-				  textLayer2.zIndex = 4;
-				  textLayer3.zIndex = 3;
-				  textLayer4.zIndex = 6;
-				  textLayer5.zIndex = 5;
-                  textLayer1.visibility = "hidden";
-                  textLayer2.visibility = "hidden";
-                  textLayer3.visibility = "hidden";
-				  textLayer4.visibility = "visible";
-				  textLayer5.visibility = "hidden";
-                 
-              }
-
-			 // kleine Speise
-              else if(radiocheckbox.value=="7") {
-                  textLayer1.zIndex = 2;
-				  textLayer2.zIndex = 5;
-				  textLayer3.zIndex = 3;
-				  textLayer4.zIndex = 4;
-				  textLayer5.zIndex = 6;
-                  textLayer1.visibility = "hidden";
-                  textLayer2.visibility = "hidden";
-                  textLayer3.visibility = "hidden";
-				  textLayer4.visibility = "hidden";
-				  textLayer5.visibility = "visible";
-                 
-              }
-
-          }
-          </script>';
 
 
 echo '<style>
@@ -201,13 +113,17 @@ echo '<style>
 
 #tab1:checked ~ figure .tab1,
 #tab2:checked ~ figure .tab2,
-#tab3:checked ~ figure .tab3 {
+#tab3:checked ~ figure .tab3,
+#tab4:checked ~ figure .tab4,
+#tab5:checked ~ figure .tab5 {
   display: flex; justify-content: space-between; padding-bottom: 2em; 
 }
 
 #tab1:checked ~ div.nav label[for="tab1"],
 #tab2:checked ~ div.nav label[for="tab2"],
-#tab3:checked ~ div.nav label[for="tab3"] {
+#tab3:checked ~ div.nav label[for="tab3"],
+#tab4:checked ~ div.nav label[for="tab4"],
+#tab5:checked ~ div.nav label[for="tab5"] {
   color: red;
 }
 
@@ -269,7 +185,9 @@ echo '<style>
 
 #tab1:checked ~ div.nav label[for="tab1"],
 #tab2:checked ~ div.nav label[for="tab2"],
-#tab3:checked ~ div.nav label[for="tab3"] {
+#tab3:checked ~ div.nav label[for="tab3"],
+#tab4:checked ~ div.nav label[for="tab4"],
+#tab5:checked ~ div.nav label[for="tab5"] {
   background: white;
   color: #111;
   position: relative;
@@ -277,7 +195,9 @@ echo '<style>
 }
 #tab1:checked ~ div.nav label[for="tab1"]:after,
 #tab2:checked ~ div.nav label[for="tab2"]:after,
-#tab3:checked ~ div.nav label[for="tab3"]:after {
+#tab3:checked ~ div.nav label[for="tab3"]:after,
+#tab4:checked ~ div.nav label[for="tab4"]:after,
+#tab5:checked ~ div.nav label[for="tab5"]:after {
   content: "";
   display: block;
   position: absolute;

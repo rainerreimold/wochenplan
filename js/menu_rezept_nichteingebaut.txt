@@ -1,0 +1,88 @@
+   echo '<script language="JavaScript" type="text/javascript">
+         <!-- 
+          function start() {
+              textLayer1 = document.getElementById(\'visib1\').style;
+              textLayer2 = document.getElementById(\'visib2\').style;
+			  textLayer3 = document.getElementById(\'visib3\').style;
+			  textLayer4 = document.getElementById(\'visib4\').style;
+			  textLayer5 = document.getElementById(\'visib5\').style;
+          }
+          
+
+		 
+		  // komplette Speise 3 Elemente
+          function ea_check(radiocheckbox) {
+              if(radiocheckbox.value=="1"){
+                  textLayer1.zIndex = 6;
+				  textLayer2.zIndex = 2;
+				  textLayer3.zIndex = 3;
+				  textLayer4.zIndex = 4;
+				  textLayer5.zIndex = 5;
+                  textLayer1.visibility = "visible";
+                  textLayer2.visibility = "hidden";
+				  textLayer3.visibility = "hidden";
+				  textLayer4.visibility = "hidden";
+				  textLayer5.visibility = "hidden";
+                 
+				}
+			  // Suppe
+              else if(radiocheckbox.value=="4") {
+                  textLayer1.zIndex = 2;
+				  textLayer2.zIndex = 6;
+				  textLayer3.zIndex = 3;
+				  textLayer4.zIndex = 4;
+				  textLayer5.zIndex = 5;
+                  textLayer1.visibility = "hidden";
+                  textLayer2.visibility = "visible";
+                  textLayer3.visibility = "hidden";
+				  textLayer4.visibility = "hidden";
+				  textLayer5.visibility = "hidden";
+                 
+              }
+
+			 // Vorspeise
+              else if(radiocheckbox.value=="5") {
+                  textLayer1.zIndex = 2;
+				  textLayer2.zIndex = 3;
+				  textLayer3.zIndex = 6;
+				  textLayer4.zIndex = 4;
+				  textLayer5.zIndex = 5;
+                  textLayer1.visibility = "hidden";
+                  textLayer2.visibility = "hidden";
+                  textLayer3.visibility = "visible";
+				  textLayer4.visibility = "hidden";
+				  textLayer5.visibility = "hidden";
+                 
+              }
+			 // Dessert
+              else if(radiocheckbox.value=="6") {
+                  textLayer1.zIndex = 2;
+				  textLayer2.zIndex = 4;
+				  textLayer3.zIndex = 3;
+				  textLayer4.zIndex = 6;
+				  textLayer5.zIndex = 5;
+                  textLayer1.visibility = "hidden";
+                  textLayer2.visibility = "hidden";
+                  textLayer3.visibility = "hidden";
+				  textLayer4.visibility = "visible";
+				  textLayer5.visibility = "hidden";
+                 
+              }
+
+			 // kleine Speise
+              else if(radiocheckbox.value=="7") {
+                  textLayer1.zIndex = 2;
+				  textLayer2.zIndex = 5;
+				  textLayer3.zIndex = 3;
+				  textLayer4.zIndex = 4;
+				  textLayer5.zIndex = 6;
+                  textLayer1.visibility = "hidden";
+                  textLayer2.visibility = "hidden";
+                  textLayer3.visibility = "hidden";
+				  textLayer4.visibility = "hidden";
+				  textLayer5.visibility = "visible";
+                 
+              }
+
+          }
+          </script>';

@@ -53,13 +53,15 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 
 	*/
 
-    else if ( $action == 'zeigeAlleIngredienzien') {
+    else if ( $action == 'zeigeAlleGarmethoden') {
         
         include 'inc/header.php';
 	    try {
 		
-               //   
-		$sql = "SELECT Distinct `ingredienz_id`,`bezeichnung`,`beschreibung`, `aktiv`, `loeschbar` FROM `ingredienz` where 1 order By `bezeichnung` asc";
+    
+
+  
+		$sql = "SELECT Distinct `garmethode_id`,`garmethode_bezeichnung`,`beschreibung`, garverfahrens_art FROM `garmethode` where 1 order By `garmethode_bezeichnung` asc";
 
 		if (DEBUG) echo "<br>".$sql."<br>";
        
@@ -74,27 +76,27 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 	        
 	        
 	        echo "<table  style=\"background:#777;padding:4px;border:1px;\"   cellpadding=\"6\" cellspacing=\"1\">";
-	        echo '<tr style="padding:8px;"><th style="font-family: Fira ;color:#ddd">Ingredienzen f&uuml;r Rezepte</th>';
-			echo '<th>A</th><th>L</th>';
+	        echo '<tr style="padding:8px;"><th style="font-family: Fira ;color:#ddd">Garmethoden f&uuml;r Lebensmittel</th>';
+			//echo '<th>A</th><th>L</th>';
 			echo '</tr>';
 	        echo "<tr style=\"padding:8px;\"><td style=\"background:darkgrey;a color:orange;width:350px;\" class=\"odd\">
             Bezeichnung
-            </td>
-            <td style=\"background:darkgrey;a color:orange;width:350px;\" class=\"odd\">Beschreibung</td>";
+            </td>";
+            //<td style=\"background:darkgrey;a color:orange;width:350px;\" class=\"odd\">Beschreibung</td>";
 		    //<td style=\"background:darkgrey;a color:orange;width:80px;\" class=\"odd\">Rezepte</td>
           echo "</tr>";
 	        foreach ($ergebnis as  $inhalt)
 	        {
-	            $ingredienz_id=$inhalt['ingredienz_id'];
+	            $garmethode_id=$inhalt['garmethode_id'];
 	            
 	            echo "<tr style=\"border:1px dotted black;\">";
 				echo "<td style=\"background:lightgrey;a color:orange;width:350px;padding:6px;\" class=\"odd\">";
 	            
-	            echo "<a href=\"/wochenplan/ingredienzien/details/$ingredienz_id\">".$inhalt['bezeichnung']."</a>";
+	            echo "<a href=\"/wochenplan/garmethode/details/$garmethode_id\">".$inhalt['garmethode_bezeichnung']."</a>";
 	            
 	                      //&nbsp;&nbsp;&nbsp;<small><small><em style=\"color:red;\">(<a href=\"details/".$domain_id."\">bearbeiten</a>)</em></small></small>";
 	            echo "</td>";
-			    echo "<td style=\"background:lightgrey;a color:orange;width:50px;padding:6px;\" class=\"odd\"> ";
+		/*	    echo "<td style=\"background:lightgrey;a color:orange;width:50px;padding:6px;\" class=\"odd\"> ";
 				echo "<a href=\"/wochenplan/ingredienzien/details/$ingredienz_id\">".$inhalt['beschreibung']."</a>";
 	            echo "<br></td>";
 
@@ -107,7 +109,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
              	echo "<td style=\"background:".$color.";a::link,a::hover { text-decoration: none; color: white; };width:50px;\" class=\"tdhersteller\">";
              	echo "<small><a href=\"loeschbar/".$ingredienz_id."\">L&Ouml;</a></small>";
              	echo "</td>";
-
+*/
 				//echo "<td>A</td>";
 			    //echo "<td>L</td>";	
 				echo "</tr>";
@@ -120,7 +122,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 	    echo "</table>";
 	    $db=null;
 	    
-        echo "<br><a href=\"anlegen\">neue Ingredienz anlegen</a><br>";
+        //echo "<br><a href=\"anlegen\">neue Ingredienz anlegen</a><br>";
       
 
 		if (DEBUG) {
@@ -140,7 +142,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 
        try {
 		 
-		$sql = "Select bezeichnung, beschreibung from ingredienz where ingredienz_id = ".$id;
+		$sql = "Select garmethode_bezeichnung, beschreibung from garmethode where garmethode_id = ".$id;
 
 
 		if (DEBUG) echo "<br>".$sql."<br>";
@@ -153,20 +155,20 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
           
 		  $ergebnis = $rueckgabe->fetchAll(PDO::FETCH_ASSOC);
 	        
-		  $bezeichnung = $ergebnis[0]['bezeichnung'];
+		  $bezeichnung = $ergebnis[0]['garmethode_bezeichnung'];
 		  $beschreibung = $ergebnis[0]['beschreibung'];
  
 		 echo '<h1 style="background: orange;
-	             padding-left:120px;">Ingredienz</h1>';
+	             padding-left:120px;">Garmethode</h1>';
          echo '<div class="form" style="width:750px; text-align:right; padding:10px; margin:10px auto auto auto;">
 
          <form method="post" action="../eintragen" style="width:700px; padding:10px; margin:10px;">
            <fieldset style="background:#cfcfcf; width:500px; text-align:right; padding:10px; margin-right:10px;">
-           <legend>Ingredienz anlegen</legend>';  
+           <legend>'.$bezeichnung.'</legend>';  
 
-		 echo "<input type=\"hidden\" name=\"ingredienz_id\" value=\"".$id."\">";     
+		 echo "<input type=\"hidden\" name=\"garmethode_id\" value=\"".$id."\">";     
 
-         echo "<label>Ingredienz: </label><input class=\"textform eyecatch\" type=\"text\" name=\"ingredienz\"  value=\"".$bezeichnung."\" required /><br>";
+         echo "<label>Garmethode: </label><input class=\"textform eyecatch\" type=\"text\" name=\"ingredienz\"  value=\"".$bezeichnung."\" required /><br>";
          echo '</fieldset>';
          echo "<br>\n";
 

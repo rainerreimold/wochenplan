@@ -12,6 +12,12 @@ $_SESSION['title'] = 'Rezept - Verwaltung von Rezepten, Speiseplänen und Bestell
 $_SESSION['start'] = isset($_SESSION['start'])?$_SESSION['start']:false;
 
 
+$Ergebnis= isset($_SESSION['Eintrag'])?$_SESSION['Eintrag']:null;
+
+if ($Ergebnis){
+	echo "<div class=\"block eyecatch\">".$Ergebnis."</div>";
+	$_SESSION['Eintrag']=null;
+}
 
 
 
@@ -63,22 +69,26 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 
 	  echo '<div class="table">';
       echo '<div class="spalte">';
-      echo '<h3>Ingredenzien</h3><a href="ingredienzien/zeigeAlleIngredienzien">zeigeAlleIngredienzien</a>';
+      echo '<h3>Ingredenzien</h3><a href="ingredienzien/zeigeAlleIngredienzien">zeige alle Ingredienzien</a>';
       echo "<br>";
-      echo '<a href="domain/anlegen"></a>';
+      echo '<a href="ingredienzien/anlegen">Ingredienz anlegen</a>';
       echo "<br>";
       echo '<a href="hersteller/anlegen"></a>';
-      echo "<br>";
+      //echo "<br>";
      
       echo "<br><h3>Speisekomponente</h3>";
-	  echo "Damit eine Ingredienz Teil eines Rezeptes werden kann,<br>";
-	  echo "muss sie zuerst eine Speisekomponente werden.<br><br>";
+	  //echo "Damit eine Ingredienz Teil eines Rezeptes werden kann,<br>";
+	 // echo "muss sie zuerst eine Speisekomponente werden.<br><br>";
 
 
       echo '<a href="speisekomponente/zeigeAlleSpeisekomponenten">zeigeAlleSpeisekomponenten</a>';
       echo "<br>";
 	  echo '<a href="speisekomponente/anlegen">Speisekomponente anlegen</a>';
-     
+      echo "<br>";
+	  echo "<br><h3>Garmethode</h3>";
+	  echo '<a href="garmethode/zeigeAlleGarmethoden">Zeige Garmethoden</a>';
+      echo "<br>";
+
 	  /*  echo '<a href="produkte/anlegen">Neues Produkt anlegen</a>';
       echo "<br>";
       echo "<br><h3>Nutzer</h3>";
@@ -104,8 +114,8 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 	  /* echo '<a href="rezeptbestandteil/zeigeAlleRezepte">zeige alle Rezeptbestanteile</a>';
       echo "<br>";
       echo '<a href="rezeptbestandteil/anlegen">Rezeptbestanteil anlegen</a>';
-      echo "<br>"; */
-      echo "<br>";   
+      echo "<br>"; 
+      echo "<br>"; */  
      
       echo "<br><h3>Speiseplan</h3>";
       
@@ -118,10 +128,35 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
       
       echo '<a href="bestellzettel/erstellen">Bestellzettel erstellen</a>';
       echo "<br>";
-      echo '<a href="bestellzettel/anzeigen">Bestellzettel anzeigen</a>';
+      echo '<a href="bestellzettel/zeigeAlleBestellzettel">Bestellzettel anzeigen</a>';
       echo "<br>";
       
       echo '</div>';
+      
+	  echo '<div class="spalte">';
+      
+      echo "<h3>Zubereitungsarten</h3>";
+      
+      echo '<a href="zubereitungsart/zeigeAlleZubereitungsart">zeige alle Zubereitungsarten</a>';
+      echo "<br>";
+	
+	  echo "<br>";
+	  echo "<h3>Speisekategorie</h3>";
+      
+      echo '<a href="speisekategorie/zeigeAlleZubereitungsart">zeige alle Speisekategorie</a>';
+      echo "<br>";
+
+	  echo "<br>";
+	  echo "<h3>Garnituren</h3>";
+      echo '<a href="garnitur/zeigeAlleGarnituren">zeige alle Garnituren</a>';
+      echo "<br>";
+
+	  echo "<br>";
+	  echo "<h3>Schnittformen</h3>";
+      
+      echo '<a href="schnittform/zeigeAlleSchnittform">zeige alle Schnittformen</a>';
+      echo "<br>";
+
       echo '<div class="clear"></div>';
       echo '</div>';  
       echo '</div>'; 

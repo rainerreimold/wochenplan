@@ -391,7 +391,7 @@ function getMengen() {
 		if ($ergebnis) {
 		  foreach ( $ergebnis as $inhalt) {
 				
-			$ret=$ret."<option value=\"".$inhalt['ingredienz_id']."\"><strong>".$inhalt['bezeichnung'] ."</strong> - <small>". $inhalt['beschreibung'] ."</small></option>\n";
+			$ret=$ret."<option value=\"".$inhalt['ingredienz_id']."\" title=\"".$inhalt['beschreibung'] ."\">".$inhalt['bezeichnung'] ."</option>\n";
 
 
 		  }
@@ -687,8 +687,31 @@ function getBezeichnungSpeisekomponente ($sk_id) {
 }
 
 
+		
+function bestellzettelEintragExist($bestellzettel_id, $ingredienz_id) {
+
+	try {
+		$sql= "select bestellzetteleintrag_id from bestellzetteleintrag where bestellzettel_id=".$bestellzettel_id." and ingredienz_id =".$ingredienz_id;
 
 
+     	$db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+        $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $rueckgabe = $db->query($sql);
+        
+        $ergebnis = $rueckgabe->fetchAll(PDO::FETCH_ASSOC);
+        $db=null;
+        
+        if ($ergebnis==null) return null;
+        	return $ergebnis[0]['bestellzetteleintrag_id'];
+    }
+
+    catch(PDOException $e){
+        print $e->getMessage();
+    }
+    return null;
+
+}
 
 
 
@@ -726,7 +749,7 @@ function getAuspraegung( $id, $eigenschaft_id) {
 
 
 /***
-�ltere Funktionen
+?ltere Funktionen
 **/
 
 
@@ -737,9 +760,9 @@ function getAktuellGenutzteLizenzen($id){
         
         /* an dieser Stelle wird nur die Anzahl an Lizenzarten eines Produktes bestimmt */
         
-        /* Das gefällt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gezählt wird.
-         * Was wir benötigen ist eine Übersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
-         * Es wird daher auf eine solche Funktion zurückgegriffen werden.
+        /* Das gef�llt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gez�hlt wird.
+         * Was wir ben�tigen ist eine �bersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
+         * Es wird daher auf eine solche Funktion zur�ckgegriffen werden.
          *
          */
         
@@ -776,9 +799,9 @@ try {
     
     /* an dieser Stelle wird nur die Anzahl an Lizenzarten eines Produktes bestimmt */
     
-    /* Das gefällt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gezählt wird.
-     * Was wir benötigen ist eine Übersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
-     * Es wird daher auf eine solche Funktion zurückgegriffen werden.
+    /* Das gef�llt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gez�hlt wird.
+     * Was wir ben�tigen ist eine �bersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
+     * Es wird daher auf eine solche Funktion zur�ckgegriffen werden.
      *
      */
     
@@ -816,9 +839,9 @@ function getTagesAktuelleLizenzAuswertungParentId($id){
         
         /* an dieser Stelle wird nur die Anzahl an Lizenzarten eines Produktes bestimmt */
         
-        /* Das gefällt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gezählt wird.
-         * Was wir benötigen ist eine Übersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
-         * Es wird daher auf eine solche Funktion zurückgegriffen werden.
+        /* Das gef�llt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gez�hlt wird.
+         * Was wir ben�tigen ist eine �bersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
+         * Es wird daher auf eine solche Funktion zur�ckgegriffen werden.
          *
          */
         
@@ -855,9 +878,9 @@ function getTagesAktuelleLizenzAuswertungInitialId($id){
         
         /* an dieser Stelle wird nur die Anzahl an Lizenzarten eines Produktes bestimmt */
         
-        /* Das gefällt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gezählt wird.
-         * Was wir benötigen ist eine Übersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
-         * Es wird daher auf eine solche Funktion zurückgegriffen werden.
+        /* Das gef�llt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gez�hlt wird.
+         * Was wir ben�tigen ist eine �bersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
+         * Es wird daher auf eine solche Funktion zur�ckgegriffen werden.
          *
          */
         
@@ -901,9 +924,9 @@ function getTagesAktuelleLizenzAuswertungLastId() {
             
             /* an dieser Stelle wird nur die Anzahl an Lizenzarten eines Produktes bestimmt */
             
-            /* Das gefï¿½llt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gezï¿½hlt wird.
-             * Was wir benï¿½tigen ist eine ï¿½bersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
-             * Es wird daher auf eine solche Funktion zurï¿½ckgegriffen werden.
+            /* Das gef�llt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gez�hlt wird.
+             * Was wir ben�tigen ist eine �bersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
+             * Es wird daher auf eine solche Funktion zur�ckgegriffen werden.
              *
              */
             
@@ -951,9 +974,9 @@ function getTagesAktuelleLizenzAuswertungLastId() {
             
             /* an dieser Stelle wird nur die Anzahl an Lizenzarten eines Produktes bestimmt */
             
-            /* Das gefï¿½llt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gezï¿½hlt wird.
-             * Was wir benï¿½tigen ist eine ï¿½bersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
-             * Es wird daher auf eine solche Funktion zurï¿½ckgegriffen werden.
+            /* Das gef�llt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gez�hlt wird.
+             * Was wir ben�tigen ist eine �bersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
+             * Es wird daher auf eine solche Funktion zur�ckgegriffen werden.
              *
              */
             
@@ -992,9 +1015,9 @@ function getNutzerName($id){
         
         /* an dieser Stelle wird nur die Anzahl an Lizenzarten eines Produktes bestimmt */
         
-        /* Das gefällt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gezählt wird.
-         * Was wir benötigen ist eine Übersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
-         * Es wird daher auf eine solche Funktion zurückgegriffen werden.
+        /* Das gef�llt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gez�hlt wird.
+         * Was wir ben�tigen ist eine �bersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
+         * Es wird daher auf eine solche Funktion zur�ckgegriffen werden.
          *
          */
         
@@ -1033,9 +1056,9 @@ function getCountProduktLizenz($id) {
 
          /* an dieser Stelle wird nur die Anzahl an Lizenzarten eines Produktes bestimmt */
 
-         /* Das gefällt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gezählt wird.
-          * Was wir benötigen ist eine Übersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
-          * Es wird daher auf eine solche Funktion zurückgegriffen werden.
+         /* Das gef�llt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gez�hlt wird.
+          * Was wir ben�tigen ist eine �bersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
+          * Es wird daher auf eine solche Funktion zur�ckgegriffen werden.
           *
           */
 
@@ -1276,9 +1299,9 @@ function getLastLizenzId() {
 
          /* an dieser Stelle wird nur die Anzahl an Lizenzarten eines Produktes bestimmt */
 
-         /* Das gefällt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gezählt wird.
-          * Was wir benötigen ist eine Übersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
-          * Es wird daher auf eine solche Funktion zurückgegriffen werden.
+         /* Das gef�llt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gez�hlt wird.
+          * Was wir ben�tigen ist eine �bersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
+          * Es wird daher auf eine solche Funktion zur�ckgegriffen werden.
           *
           */
 
@@ -1318,9 +1341,9 @@ function getLastLizenzId() {
 
          /* an dieser Stelle wird nur die Anzahl an Lizenzarten eines Produktes bestimmt */
 
-         /* Das gefällt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gezählt wird.
-          * Was wir benötigen ist eine Übersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
-          * Es wird daher auf eine solche Funktion zurückgegriffen werden.
+         /* Das gef�llt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gez�hlt wird.
+          * Was wir ben�tigen ist eine �bersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
+          * Es wird daher auf eine solche Funktion zur�ckgegriffen werden.
           *
           */
 
@@ -1361,9 +1384,9 @@ function getLastLizenzId() {
 
          /* an dieser Stelle wird nur die Anzahl an Lizenzarten eines Produktes bestimmt */
 
-         /* Das gefällt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gezählt wird.
-          * Was wir benötigen ist eine Übersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
-          * Es wird daher auf eine solche Funktion zurückgegriffen werden.
+         /* Das gef�llt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gez�hlt wird.
+          * Was wir ben�tigen ist eine �bersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
+          * Es wird daher auf eine solche Funktion zur�ckgegriffen werden.
           *
           */
 
@@ -1401,11 +1424,11 @@ function getLastLizenzId() {
  
  function getUmlauteArray() { 
  
-    return array( 'Ã¼'=>'ü', 'Ã¤'=>'ä', 'Ã¶'=>'ö', 'Ã–'=>'Ö', 'ÃŸ'=>'ß', 'Ã '=>'à', 'Ã¡'=>'á', 'Ã¢'=>'â', 'Ã£'=>'ã', 'Ã¹'=>'ù', 'Ãº'=>'ú', 'Ã»'=>'û', 
-                  'Ã™'=>'Ù', 'Ãš'=>'Ú', 'Ã›'=>'Û', 'Ãœ'=>'Ü', 'Ã²'=>'ò', 'Ã³'=>'ó', 'Ã´'=>'ô', 'Ã¨'=>'è', 'Ã©'=>'é', 'Ãª'=>'ê', 'Ã«'=>'ë', 'Ã€'=>'À',
-                  'Ã�'=>'�?', 'Ã‚'=>'Â', 'Ãƒ'=>'Ã', 'Ã„'=>'Ä', 'Ã…'=>'Å', 'Ã‡'=>'Ç', 'Ãˆ'=>'È', 'Ã‰'=>'É', 'ÃŠ'=>'Ê', 'Ã‹'=>'Ë', 'ÃŒ'=>'Ì', 'Ã�'=>'�?', 
-                  'ÃŽ'=>'Î', 'Ã�'=>'�?', 'Ã‘'=>'Ñ', 'Ã’'=>'Ò', 'Ã“'=>'Ó', 'Ã�?'=>'Ô', 'Ã•'=>'Õ', 'Ã˜'=>'Ø', 'Ã¥'=>'å', 'Ã¦'=>'æ', 'Ã§'=>'ç', 'Ã¬'=>'ì', 
-                  'Ã­'=>'í', 'Ã®'=>'î', 'Ã¯'=>'ï', 'Ã°'=>'ð', 'Ã±'=>'ñ', 'Ãµ'=>'õ', 'Ã¸'=>'ø', 'Ã½'=>'ý', 'Ã¿'=>'ÿ', 'â‚¬'=>'€' );
+    return array( 'ü'=>'�', 'ä'=>'�', 'ö'=>'�', 'Ö'=>'�', 'ß'=>'�', '� '=>'�', 'á'=>'�', 'â'=>'�', 'ã'=>'�', 'ù'=>'�', 'ú'=>'�', 'û'=>'�', 
+                  'Ù'=>'�', 'Ú'=>'�', 'Û'=>'�', 'Ü'=>'�', 'ò'=>'�', 'ó'=>'�', 'ô'=>'�', 'è'=>'�', 'é'=>'�', 'ê'=>'�', 'ë'=>'�', 'À'=>'�',
+                  '�?'=>'??', 'Â'=>'�', 'Ã'=>'�', 'Ä'=>'�', 'Å'=>'�', 'Ç'=>'�', 'È'=>'�', 'É'=>'�', 'Ê'=>'�', 'Ë'=>'�', 'Ì'=>'�', '�?'=>'??', 
+                  'Î'=>'�', '�?'=>'??', 'Ñ'=>'�', 'Ò'=>'�', 'Ó'=>'�', '�??'=>'�', 'Õ'=>'�', 'Ø'=>'�', 'å'=>'�', 'æ'=>'�', 'ç'=>'�', 'ì'=>'�', 
+                  'í'=>'�', 'î'=>'�', 'ï'=>'�', 'ð'=>'�', 'ñ'=>'�', 'õ'=>'�', 'ø'=>'�', 'ý'=>'�', 'ÿ'=>'�', '€'=>'�' );
  
  }
     

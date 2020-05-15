@@ -60,7 +60,14 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
                //   SELECT speisekomponente_id, sk.bezeichnung as skb,m.bezeichnung, m.einheit FROM `speisekomponente` sk, `menge` m WHERE m.menge_id=sk.menge_id order By sk.bezeichnung asc
 		//$sql = "SELECT speisekomponente_id, sk.bezeichnung as skb, m.bezeichnung as mb, m.einheit as me FROM `speisekomponente` sk, `menge` m WHERE m.menge_id=sk.menge_id order By sk.bezeichnung asc";
 		
-        $sql = "SELECT speisekomponente_id, sk.bezeichnung as skb, m.bezeichnung as mb, m.einheit as me, z.zubereitungsart_bezeichnung as zb FROM `speisekomponente` sk, `menge` m, zubereitungsart z WHERE m.menge_id=sk.menge_id and z.zubereitungsart_id= sk.zubereitungsart_id order By sk.bezeichnung asc";
+        $sql = "SELECT speisekomponente_id, 
+						sk.bezeichnung as skb, 
+						m.bezeichnung as mb, 
+						m.einheit as me, 
+						z.zubereitungsart_bezeichnung as zb,
+						sk.aktiv as aktiv,
+						sk.loeschbar as loeschbar 
+			FROM `speisekomponente` sk, `menge` m, zubereitungsart z WHERE m.menge_id=sk.menge_id and z.zubereitungsart_id= sk.zubereitungsart_id order By sk.bezeichnung asc";
 
 		if (DEBUG) echo "<br>".$sql."<br>";
        
@@ -81,6 +88,8 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
             </td>
             <td style=\"background:darkgrey;a color:orange;width:350px;\" class=\"odd\">Beschreibung</td>
 		    <td style=\"background:darkgrey;a color:orange;width:80px;\" class=\"odd\">Zubereitungsart</td>
+			<td style=\"background:darkgrey;a color:orange;width:20px;\" class=\"odd\">A</td>
+			<td style=\"background:darkgrey;a color:orange;width:20px;\" class=\"odd\">L</td>
           </tr>";
 	        foreach ($ergebnis as  $inhalt)
 	        {
@@ -99,6 +108,18 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 				echo "<td style=\"background:lightgrey;a color:orange;width:50px;padding:6px;\" class=\"odd\"> ";
 			    echo  $inhalt['zb'];
 				echo "</td>";
+
+				$color = $inhalt['aktiv'] == 1?'green':'red';
+             	echo "<td style=\"background:".$color.";a::link,a::hover { text-decoration: none; color: white; };width:50px;\" class=\"tdhersteller\">";
+             	echo "<small><a href=\"aktiv/".$speisekomponente_id."\">AK</a></small>";
+             	echo "</td>";
+             
+            	 $color = $inhalt['loeschbar'] == 0?'green':'red';
+             	echo "<td style=\"background:".$color.";a::link,a::hover { text-decoration: none; color: white; };width:50px;\" class=\"tdhersteller\">";
+             	echo "<small><a href=\"loeschbar/".$speisekomponente_id."\">L&Ouml;</a></small>";
+             	echo "</td>";
+
+
 				echo "</tr>";
 	        }
 	        
@@ -109,7 +130,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 	    echo "</table>";
 	    $db=null;
 	    
-      
+        echo "<br><a href=\"anlegen\">neue Komponente anlegen</a><br>";
       
 
 		if (DEBUG) {
@@ -363,11 +384,16 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 		
           $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
           $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		  $db->beginTransaction();
           $db->query($sql);
+			
+
+		  $db->commit();
           $db=null;
 
           }
           catch(PDOException $e){
+			  $db->rollBack();
               print "<br>".$e->getMessage();
           }
 
@@ -376,12 +402,72 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
         
           //die();
           
-
+		  $_SESSION['Eintrag']	= $bezeichnung.' erfolgreich eingetragen';	
           header('location:../uebersicht');
 
 
 
     }
+
+else if ( $action == "aktiv" ) {
+
+	 
+        try {
+		  // einfacher Switch	
+          $sql = "update `speisekomponente` Set `aktiv`=(`aktiv`-1)*-1 where `speisekomponente_id`=".$id.";";
+
+  
+         // print $sql."<br>";
+
+          $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+          $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $db->query($sql);
+          $db=null;
+
+          //echo "<br>".$sql."<br>";
+          //die();
+
+
+          }
+          catch(PDOException $e){
+              print "<br>".$e->getMessage();
+          }
+         //die();
+        header('location:../zeigeAlleSpeisekomponenten') ;
+
+	}
+
+	else if ( $action == "loeschbar" ) {
+
+	 
+        try {
+		  // einfacher Switch	
+          $sql = "update `speisekomponente` Set `loeschbar`=(`loeschbar`-1)*-1 where `speisekomponente_id`=".$id.";";
+
+  
+         // print $sql."<br>";
+
+          $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+          $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $db->query($sql);
+          $db=null;
+
+          //echo "<br>".$sql."<br>";
+          //die();
+
+
+          }
+          catch(PDOException $e){
+              print "<br>".$e->getMessage();
+          }
+         //die();
+        header('location:../zeigeAlleSpeisekomponenten') ;
+
+	}
+
+
+
+
 
 
 

@@ -60,9 +60,13 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
         
        try {
 		
-               //   SELECT speisekomponente_id, sk.bezeichnung as skb,m.bezeichnung, m.einheit FROM `speisekomponente` sk, `menge` m WHERE m.menge_id=sk.menge_id order By sk.bezeichnung asc
-		//$sql = "SELECT speisekomponente_id, sk.bezeichnung as skb, m.bezeichnung as mb, m.einheit as me FROM `speisekomponente` sk, `menge` m WHERE m.menge_id=sk.menge_id order By sk.bezeichnung asc";
-		$sql = "SELECT rt.rezept_id as rid, rt.rezeptteil_id as rtid, rt.bezeichnung as rtb, rez.bezeichnung as rb FROM `rezeptteil` rt, rezept rez WHERE rt.rezept_id=rez.rezept_id group by rt.rezept_id";
+   		$sql = "SELECT 	rt.rezept_id as rid, 
+					   	rt.rezeptteil_id as rtid, 
+					 	rt.bezeichnung as rtb, 
+						rez.bezeichnung as rb, 
+						rez.aktiv as aktiv,
+						rez.loeschbar as loeschbar
+					FROM `rezeptteil` rt, rezept rez WHERE rt.rezept_id=rez.rezept_id group by rt.rezept_id";
 
 		if (DEBUG) echo "<br>".$sql."<br>";
        
@@ -83,6 +87,8 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
             </td>
             <td style=\"background:darkgrey;a color:orange;width:350px;\" class=\"odd\">Rezeptbestandteil</td>
 		    <td style=\"background:darkgrey;a color:orange;width:80px;\" class=\"odd\">   </td>
+			<td style=\"background:darkgrey;a color:orange;width:20px;\" class=\"odd\">A</td>
+			<td style=\"background:darkgrey;a color:orange;width:20px;\" class=\"odd\">L</td>
           </tr>";
 	        foreach ($ergebnis as  $inhalt)
 	        {
@@ -101,6 +107,18 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 				echo "<td style=\"background:lightgrey;a color:orange;width:50px;padding:6px;\" class=\"odd\"> ";
 			    echo  $inhalt['rtb'];
 				echo "</td>";
+			
+					$color = $inhalt['aktiv'] == 1?'green':'red';
+             	echo "<td style=\"background:".$color.";a::link,a::hover { text-decoration: none; color: white; };width:50px;\" class=\"tdhersteller\">";
+             	echo "<small><a href=\"aktiv/".$rezept_id."\">AK</a></small>";
+             	echo "</td>";
+             
+            	 $color = $inhalt['loeschbar'] == 0?'green':'red';
+             	echo "<td style=\"background:".$color.";a::link,a::hover { text-decoration: none; color: white; };width:50px;\" class=\"tdhersteller\">";
+             	echo "<small><a href=\"loeschbar/".$rezept_id."\">L&Ouml;</a></small>";
+             	echo "</td>";
+
+
 				echo "</tr>";
 	        }
 	        
@@ -111,7 +129,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 	    echo "</table>";
 	    $db=null;
 	    
-      
+         echo "<br><a href=\"anlegen\">neues Rezept anlegen</a><br>";
       
 
 		if (DEBUG) {
@@ -355,7 +373,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 			 echo $VorspeiseSelect;
 			 echo "<br><br>\n";
 			 
-			 echo "<textarea id='editor' name='editor'></textarea>";
+			 echo "<textarea id='editorVorspeise' name='editorVorspeise'></textarea>";
   	
    		     echo '</fieldset>';
 
@@ -372,46 +390,105 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 			
 			</div>';
 
+
 			// Dessert
-			echo '<div class="tab4">
-				<div class="thumb">
-					<img src="img/tabs-paris.jpg" width="220" height="220" alt="tabs-paris">
-				</div>
+		echo '<div class="tab4">
 				<div class="lines">
 					<h5>Dessert</h5>
-					<p>
-						In Paris they just simply opened their eyes and stared when we spoke to them in French! We never did succeed in making those idiots understand their own language.
-					
-					</p>
+					<p>';
+			  echo '<div class="form" style="width:750px; text-align:right; padding:10px; margin:10px auto auto auto;">';
+ 		
+			  echo '<form method="post" action="dessertEintragen" style="width:700px; padding:10px; margin:10px;">
+           <fieldset style="background:#cfcfcf; width:500px; text-align:right; padding:10px; margin-right:10px;">
+           <legend>Rezept anlegen</legend>';       
+             echo '<label>Rezept: </label><input class="textform eyecatch" type="text" name="rezept"  required /><br>';
+             echo '</fieldset>';
+             echo "<br>\n";
+			 
+			 echo '<fieldset style="background:#cfcfcf; width:800px; text-align:right; padding:10px; margin-right:10px;">';
+             
+			 echo "Was soll es f&uuml;r ein Dessert werden?<br>\n";
+		
+	
+			 $DessertSelect="\n<select class=\"auswahl eyecatch\" name=\"vorspeise\" size=\"5\" multiple>\n";
+             $DessertSelect.=getDessert()."\n";
+             $DessertSelect.="</select>\n";
+			
+			 echo $DessertSelect;
+			 echo "<br><br>\n";
+			 
+			  echo "<textarea id='editorDessert' name='editorDessert'></textarea>";
+  	
+   		     echo '</fieldset>';
+
+
+             echo ' <fieldset style="background:#cfcfcf; text-align:right; padding:10px; margin-right:10px;">
+              <button type="reset">Eingaben l&ouml;schen</button>
+              <button type="submit">Absenden</button>
+            </fieldset>
+          </form>
+       </div>';
+					echo '</p>
 				</div>
 			
 			</div>';
 
 			// kleine Speisen
 			echo '<div class="tab5">
-				<div class="thumb">
-					<img src="img/tabs-paris.jpg" width="220" height="220" alt="tabs-paris">
-				</div>
 				<div class="lines">
-					<h5>kleine Speisen</h5>
-					<p>
-						In Paris they just simply opened their eyes and stared when we spoke to them in French! We never did succeed in making those idiots understand their own language.
-					
-					</p>
+					<h5>Speiseteil</h5>
+					<p>';
+			  echo '<div class="form" style="width:750px; text-align:right; padding:10px; margin:10px auto auto auto;">';
+ 		
+			  echo '<form method="post" action="dessertEintragen" style="width:700px; padding:10px; margin:10px;">
+           <fieldset style="background:#cfcfcf; width:500px; text-align:right; padding:10px; margin-right:10px;">
+           <legend>Rezept anlegen</legend>';       
+             echo '<label>Rezept: </label><input class="textform eyecatch" type="text" name="rezept"  required /><br>';
+             echo '</fieldset>';
+             echo "<br>\n";
+			 
+			 echo '<fieldset style="background:#cfcfcf; width:800px; text-align:right; padding:10px; margin-right:10px;">';
+             
+			 echo "Was soll es f&uuml;r eine Speiseteil werden?<br>\n";
+		
+	
+			 $SpeiseteilSelect="\n<select class=\"auswahl eyecatch\" name=\"vorspeise\" size=\"5\" multiple>\n";
+             $SpeiseteilSelect.=getBestandteil()."\n";
+             $SpeiseteilSelect.="</select>\n";
+			
+			 echo $SpeiseteilSelect;
+			 echo "<br><br>\n";
+			 
+			  echo "<textarea id='editorSpeiseteil' name='editorSpeiseteil'></textarea>";
+  	
+   		     echo '</fieldset>';
+
+
+             echo ' <fieldset style="background:#cfcfcf; text-align:right; padding:10px; margin-right:10px;">
+              <button type="reset">Eingaben l&ouml;schen</button>
+              <button type="submit">Absenden</button>
+            </fieldset>
+          </form>
+       </div>';
+					echo '</p>
 				</div>
 			
-			</div>
+			</div>';
 
 
 
-		</figure>
+
+		echo '</figure>
 	</div>
 </section>';
 	
    echo '<script type="text/javascript">';
    echo "	CKEDITOR.replace('editor');";
-   echo "	CKEDITOR.replace('editorSuppe');
-       </script>";
+   echo "	CKEDITOR.replace('editorSuppe');";
+   echo "	CKEDITOR.replace('editorVorspeise');";
+   echo "	CKEDITOR.replace('editorDessert');";
+   echo "	CKEDITOR.replace('editorSpeiseteil');";
+   echo "    </script>";
 			
 
      include 'inc/footer.php';
@@ -652,13 +729,69 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
         
           //die();
           
-
+		   $_SESSION['Eintrag']	= $bezeichnung.' erfolgreich eingetragen';
           header('location:../uebersicht');
 
 
 
     }
 
+
+	else if ( $action == "aktiv" ) {
+
+	 
+        try {
+		  // einfacher Switch	
+          $sql = "update `rezept` Set `aktiv`=(`aktiv`-1)*-1 where `rezept_id`=".$id.";";
+
+  
+         // print $sql."<br>";
+
+          $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+          $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $db->query($sql);
+          $db=null;
+
+          //echo "<br>".$sql."<br>";
+          //die();
+
+
+          }
+          catch(PDOException $e){
+              print "<br>".$e->getMessage();
+          }
+         //die();
+        header('location:../zeigeAlleRezepte') ;
+
+	}
+
+	else if ( $action == "loeschbar" ) {
+
+	 
+        try {
+		  // einfacher Switch	
+          $sql = "update `rezept` Set `loeschbar`=(`loeschbar`-1)*-1 where `rezept_id`=".$id.";";
+
+  
+         // print $sql."<br>";
+
+          $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+          $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $db->query($sql);
+          $db=null;
+
+          //echo "<br>".$sql."<br>";
+          //die();
+
+
+          }
+          catch(PDOException $e){
+              print "<br>".$e->getMessage();
+          }
+         //die();
+        header('location:../zeigeAlleRezepte') ;
+
+	}
 
 
 
