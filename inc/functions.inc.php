@@ -588,6 +588,83 @@ function getAlleWochenplaene( ) {
 }
 
 
+	function zeileDesWochenPlan( $rezbez, $rezid, $zaehl, $last_rezid ) {
+    			$wp_id=1;
+				echo "\n";
+	            echo "<tr style=\"padding:8px;border:1px dotted black;\">";
+				echo "\n";
+				echo "<td style=\"background:lightgrey;a color:orange;width:50px;padding:6px;\" class=\"odd\">";
+	            echo "\n";
+			
+				//if($zaehl%5==1){
+				//	$wt="Mo";
+				//}
+				switch ($zaehl%7) {
+					case 0:
+					  $wt="Mo";
+					  break;						
+					case 1:
+					  $wt="Di";
+					  break;
+					case 2:
+					  $wt="Mi";
+					  break;
+					case 3:
+					  $wt="Do";
+					  break;
+					case 4:
+					  $wt="Fr";
+					  break;
+					case 5:
+					  $wt="Sa";
+					  break;
+				    case 6:
+					  $wt="So";
+					  break;
+				}
+
+	            echo "<a href=\"../rezept/$rezid\">
+				 <small><strong style=\"color:black;\">".$wt."</strong></small></td>";
+				echo "\n";
+				echo "<td style=\"background:lightgrey;a color:orange;width:350px;padding:6px;\" class=\"odd\">
+				  ".$rezbez."</a>";
+				echo "\n";
+	            
+	            
+	 
+           
+               
+	            echo "</td>";
+			    echo "\n";
+				echo "<td style=\"background:lightgrey;a color:orange;width:50px;padding:6px;\" class=\"odd\"> ";
+				
+				/* ******************************************* */
+
+				echo "\n";	
+	          //  if($zaehl%5!=0) {
+			//		
+			//		echo "<a href=\"wechselhoch/".$wp_id."/".$rezid."/".$last_rezid."/".$wt."\"><span class=\"glyphicon glyphicon-arrow-up\"></span></a>";
+			//	}
+				echo "\n";
+				echo "</td>";
+				echo "\n";
+				echo "<td style=\"background:lightgrey;a color:orange;width:50px;padding:6px;\" class=\"odd\"> ";
+
+				
+				if ($zaehl%5!=6) {
+				
+					echo "<a href=\"wechselrunter/".$wp_id."/".$rezid."/".$last_rezid."/".$wt."\"><span class=\"glyphicon glyphicon-arrow-down\"></span></a>";
+				}
+				echo "\n";
+				echo "<br></td></tr>";
+				echo "\n";
+			   
+      }
+
+
+
+
+
 
 function isRecipeExist( $rezept ) {
 
@@ -687,7 +764,113 @@ function getBezeichnungSpeisekomponente ($sk_id) {
 }
 
 
-		
+	
+/************************************************************
+Parameter: 
+  $wt = Wochentag Format mo,di,mi
+  $wp_id = WochenplanID f√ºr den die √Ñnderung erfolgen soll
+  $upOrDown = true -> up false -> down
+  
+*************************************************************/ 
+
+
+function wechselPositionSpeiseplan( $wt, $wp_id, $upOrDown) {
+
+  $lwt = strtolower($wt);
+  $change_wt = $lwt;
+  //echo "Wochentag: ".$lwt."<br>\n";
+  //echo "Wechseltag: ".$change_wt."<br>\n";
+  //echo "upOrDown: ".$upOrDown."<br>\n";
+
+  if ($upOrDown == 1) {
+
+/**	if ( $lwt == 'mo' ) $change_wt='di';
+	elseif ( $lwt == "di") $change_wt='mi';
+**/
+	//echo "<br><br>".'->lwt: '.$lwt.' == "mi" - wenn gleich dann Bedingung erf√ºllt'."<br><br>";
+	/**** Der Switch Case funktioniert nicht **/
+   // echo "2.Wochentag: ".$lwt."<br>\n";
+    switch($lwt){
+      case 'mo':
+          $change_wt='di';
+		  break;
+      case "di":
+          $change_wt='mi';
+		  break;
+      case "mi":
+          $change_wt='do';
+		  break;
+      case 'do':
+          $change_wt='fr';
+		  break;
+      case 'fr':
+          $change_wt='sa';
+		  break;
+      case 'sa':
+          $change_wt='so';
+		  break;
+      default:
+		  $change_wt='unerf√ºllt';
+		  break;      
+    } 
+   /* */
+	//echo "change: ".$change_wt."<br>\n";
+  } else {
+  /*** */
+    switch($lwt) {
+      case 'so':
+          $change_wt='sa';
+		  break;
+      case 'sa':
+          $change_wt='fr';
+		  break;
+      case 'fr':
+          $change_wt='do';
+		  break;
+      case 'do':
+          $change_wt='mi';
+		  break;
+      case 'mi':
+          $change_wt='di';
+		  break;
+      case "di":
+          $change_wt='mo';
+		  break;            
+    }
+	//echo "\n<br>change: ".$change_wt."<br>\n";
+ /*  **/
+  }  // end if
+  
+ 
+
+
+ // echo "change: ".$change_wt."<br>\n";
+  try {
+
+	$db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+    $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        		
+    $db->beginTransaction();	
+
+    $sql="select @rezept_id_change:=rezept_id_".$lwt." from wochenplan where wochenplan_id=".$wp_id."; 
+		update wochenplan set `rezept_id_".$lwt."`=`rezept_id_".$change_wt."`,`rezept_id_".$change_wt."`=@rezept_id_change where wochenplan_id=".$wp_id;
+   
+    print "SQL: ".$sql."<br>\n";
+
+	die();
+
+	$db->query($sql);
+    $db->commit();
+	$db=null;
+  }
+  catch(PDOException $e){
+    print "<br>".$e->getMessage();
+  }
+
+}
+
+
+	
 function bestellzettelEintragExist($bestellzettel_id, $ingredienz_id) {
 
 	try {
@@ -760,9 +943,9 @@ function getAktuellGenutzteLizenzen($id){
         
         /* an dieser Stelle wird nur die Anzahl an Lizenzarten eines Produktes bestimmt */
         
-        /* Das gef‰llt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gez‰hlt wird.
-         * Was wir benˆtigen ist eine ‹bersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
-         * Es wird daher auf eine solche Funktion zur¸ckgegriffen werden.
+        /* Das gefÔøΩllt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gezÔøΩhlt wird.
+         * Was wir benÔøΩtigen ist eine ÔøΩbersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
+         * Es wird daher auf eine solche Funktion zurÔøΩckgegriffen werden.
          *
          */
         
@@ -799,9 +982,9 @@ try {
     
     /* an dieser Stelle wird nur die Anzahl an Lizenzarten eines Produktes bestimmt */
     
-    /* Das gef‰llt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gez‰hlt wird.
-     * Was wir benˆtigen ist eine ‹bersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
-     * Es wird daher auf eine solche Funktion zur¸ckgegriffen werden.
+    /* Das gefÔøΩllt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gezÔøΩhlt wird.
+     * Was wir benÔøΩtigen ist eine ÔøΩbersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
+     * Es wird daher auf eine solche Funktion zurÔøΩckgegriffen werden.
      *
      */
     
@@ -839,9 +1022,9 @@ function getTagesAktuelleLizenzAuswertungParentId($id){
         
         /* an dieser Stelle wird nur die Anzahl an Lizenzarten eines Produktes bestimmt */
         
-        /* Das gef‰llt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gez‰hlt wird.
-         * Was wir benˆtigen ist eine ‹bersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
-         * Es wird daher auf eine solche Funktion zur¸ckgegriffen werden.
+        /* Das gefÔøΩllt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gezÔøΩhlt wird.
+         * Was wir benÔøΩtigen ist eine ÔøΩbersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
+         * Es wird daher auf eine solche Funktion zurÔøΩckgegriffen werden.
          *
          */
         
@@ -878,9 +1061,9 @@ function getTagesAktuelleLizenzAuswertungInitialId($id){
         
         /* an dieser Stelle wird nur die Anzahl an Lizenzarten eines Produktes bestimmt */
         
-        /* Das gef‰llt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gez‰hlt wird.
-         * Was wir benˆtigen ist eine ‹bersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
-         * Es wird daher auf eine solche Funktion zur¸ckgegriffen werden.
+        /* Das gefÔøΩllt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gezÔøΩhlt wird.
+         * Was wir benÔøΩtigen ist eine ÔøΩbersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
+         * Es wird daher auf eine solche Funktion zurÔøΩckgegriffen werden.
          *
          */
         
@@ -1015,9 +1198,9 @@ function getNutzerName($id){
         
         /* an dieser Stelle wird nur die Anzahl an Lizenzarten eines Produktes bestimmt */
         
-        /* Das gef‰llt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gez‰hlt wird.
-         * Was wir benˆtigen ist eine ‹bersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
-         * Es wird daher auf eine solche Funktion zur¸ckgegriffen werden.
+        /* Das gefÔøΩllt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gezÔøΩhlt wird.
+         * Was wir benÔøΩtigen ist eine ÔøΩbersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
+         * Es wird daher auf eine solche Funktion zurÔøΩckgegriffen werden.
          *
          */
         
@@ -1056,9 +1239,9 @@ function getCountProduktLizenz($id) {
 
          /* an dieser Stelle wird nur die Anzahl an Lizenzarten eines Produktes bestimmt */
 
-         /* Das gef‰llt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gez‰hlt wird.
-          * Was wir benˆtigen ist eine ‹bersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
-          * Es wird daher auf eine solche Funktion zur¸ckgegriffen werden.
+         /* Das gefÔøΩllt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gezÔøΩhlt wird.
+          * Was wir benÔøΩtigen ist eine ÔøΩbersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
+          * Es wird daher auf eine solche Funktion zurÔøΩckgegriffen werden.
           *
           */
 
@@ -1299,9 +1482,9 @@ function getLastLizenzId() {
 
          /* an dieser Stelle wird nur die Anzahl an Lizenzarten eines Produktes bestimmt */
 
-         /* Das gef‰llt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gez‰hlt wird.
-          * Was wir benˆtigen ist eine ‹bersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
-          * Es wird daher auf eine solche Funktion zur¸ckgegriffen werden.
+         /* Das gefÔøΩllt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gezÔøΩhlt wird.
+          * Was wir benÔøΩtigen ist eine ÔøΩbersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
+          * Es wird daher auf eine solche Funktion zurÔøΩckgegriffen werden.
           *
           */
 
@@ -1341,9 +1524,9 @@ function getLastLizenzId() {
 
          /* an dieser Stelle wird nur die Anzahl an Lizenzarten eines Produktes bestimmt */
 
-         /* Das gef‰llt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gez‰hlt wird.
-          * Was wir benˆtigen ist eine ‹bersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
-          * Es wird daher auf eine solche Funktion zur¸ckgegriffen werden.
+         /* Das gefÔøΩllt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gezÔøΩhlt wird.
+          * Was wir benÔøΩtigen ist eine ÔøΩbersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
+          * Es wird daher auf eine solche Funktion zurÔøΩckgegriffen werden.
           *
           */
 
@@ -1384,9 +1567,9 @@ function getLastLizenzId() {
 
          /* an dieser Stelle wird nur die Anzahl an Lizenzarten eines Produktes bestimmt */
 
-         /* Das gef‰llt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gez‰hlt wird.
-          * Was wir benˆtigen ist eine ‹bersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
-          * Es wird daher auf eine solche Funktion zur¸ckgegriffen werden.
+         /* Das gefÔøΩllt mir noch nicht wirklich, weil hier lediglich ein Produkt eines Herstellers gezÔøΩhlt wird.
+          * Was wir benÔøΩtigen ist eine ÔøΩbersicht der gesamten Lizenzen, aller Produkte und aller Hersteller.
+          * Es wird daher auf eine solche Funktion zurÔøΩckgegriffen werden.
           *
           */
 
@@ -1424,11 +1607,11 @@ function getLastLizenzId() {
  
  function getUmlauteArray() { 
  
-    return array( '√º'=>'¸', '√§'=>'‰', '√∂'=>'ˆ', '√ñ'=>'÷', '√ü'=>'ﬂ', '√ '=>'‡', '√°'=>'·', '√¢'=>'‚', '√£'=>'„', '√π'=>'˘', '√∫'=>'˙', '√ª'=>'˚', 
-                  '√ô'=>'Ÿ', '√ö'=>'⁄', '√õ'=>'€', '√ú'=>'‹', '√≤'=>'Ú', '√≥'=>'Û', '√¥'=>'Ù', '√®'=>'Ë', '√©'=>'È', '√™'=>'Í', '√´'=>'Î', '√Ä'=>'¿',
-                  '√?'=>'??', '√Ç'=>'¬', '√É'=>'√', '√Ñ'=>'ƒ', '√Ö'=>'≈', '√á'=>'«', '√à'=>'»', '√â'=>'…', '√ä'=>' ', '√ã'=>'À', '√å'=>'Ã', '√?'=>'??', 
-                  '√é'=>'Œ', '√?'=>'??', '√ë'=>'—', '√í'=>'“', '√ì'=>'”', '√??'=>'‘', '√ï'=>'’', '√ò'=>'ÿ', '√•'=>'Â', '√¶'=>'Ê', '√ß'=>'Á', '√¨'=>'Ï', 
-                  '√≠'=>'Ì', '√Æ'=>'Ó', '√Ø'=>'Ô', '√∞'=>'', '√±'=>'Ò', '√µ'=>'ı', '√∏'=>'¯', '√Ω'=>'˝', '√ø'=>'ˇ', '‚Ç¨'=>'Ä' );
+    return array( '√º'=>'ÔøΩ', '√§'=>'ÔøΩ', '√∂'=>'ÔøΩ', '√ñ'=>'ÔøΩ', '√ü'=>'ÔøΩ', 'ÔøΩ '=>'ÔøΩ', '√°'=>'ÔøΩ', '√¢'=>'ÔøΩ', '√£'=>'ÔøΩ', '√π'=>'ÔøΩ', '√∫'=>'ÔøΩ', '√ª'=>'ÔøΩ', 
+                  '√ô'=>'ÔøΩ', '√ö'=>'ÔøΩ', '√õ'=>'ÔøΩ', '√ú'=>'ÔøΩ', '√≤'=>'ÔøΩ', '√≥'=>'ÔøΩ', '√¥'=>'ÔøΩ', '√®'=>'ÔøΩ', '√©'=>'ÔøΩ', '√™'=>'ÔøΩ', '√´'=>'ÔøΩ', '√Ä'=>'ÔøΩ',
+                  'ÔøΩ?'=>'??', '√Ç'=>'ÔøΩ', '√É'=>'ÔøΩ', '√Ñ'=>'ÔøΩ', '√Ö'=>'ÔøΩ', '√á'=>'ÔøΩ', '√à'=>'ÔøΩ', '√â'=>'ÔøΩ', '√ä'=>'ÔøΩ', '√ã'=>'ÔøΩ', '√å'=>'ÔøΩ', 'ÔøΩ?'=>'??', 
+                  '√é'=>'ÔøΩ', 'ÔøΩ?'=>'??', '√ë'=>'ÔøΩ', '√í'=>'ÔøΩ', '√ì'=>'ÔøΩ', 'ÔøΩ??'=>'ÔøΩ', '√ï'=>'ÔøΩ', '√ò'=>'ÔøΩ', '√•'=>'ÔøΩ', '√¶'=>'ÔøΩ', '√ß'=>'ÔøΩ', '√¨'=>'ÔøΩ', 
+                  '√≠'=>'ÔøΩ', '√Æ'=>'ÔøΩ', '√Ø'=>'ÔøΩ', '√∞'=>'ÔøΩ', '√±'=>'ÔøΩ', '√µ'=>'ÔøΩ', '√∏'=>'ÔøΩ', '√Ω'=>'ÔøΩ', '√ø'=>'ÔøΩ', '‚Ç¨'=>'ÔøΩ' );
  
  }
     

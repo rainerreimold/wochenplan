@@ -96,13 +96,13 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 	             $rezept_id=$inhalt['rid'];
 	            echo "<tr style=\"border:1px dotted black;\"><td style=\"background:lightgrey;a color:orange;width:350px;padding:6px;\" class=\"odd\">";
 	            
-	            echo "<a href=\"/details/$rezept_id\">".$inhalt['rb']."</a>";
+	            echo "<a href=\"details/$rezept_id\">".$inhalt['rb']."</a>";
 	            
 	 
            
                 //&nbsp;&nbsp;&nbsp;<small><small><em style=\"color:red;\">(<a href=\"details/".$domain_id."\">bearbeiten</a>)</em></small></small>";
 	            echo "</td><td style=\"background:lightgrey;a color:orange;width:50px;padding:6px;\" class=\"odd\"> ";
-				echo "<a href=\"/details/$rezeptteil_id\">".$inhalt['rb']."</a>";
+				echo "<a href=\"details/$rezeptteil_id\">".$inhalt['rb']."</a>";
 	            echo "<br></td>";
 				echo "<td style=\"background:lightgrey;a color:orange;width:50px;padding:6px;\" class=\"odd\"> ";
 			    echo  $inhalt['rtb'];
@@ -142,6 +142,32 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 
 		include 'inc/footer.php';
 	}
+
+/****
+
+ Das Detail für Rezepte geht hier natürlich völlig ab.
+
+ Orientiert an dem vorhandenem Rezept anlegen, muss hier im 
+ 
+ 1. Schritt 
+ - festgestellt werden, um welche Art von Rezept es sich handelt.
+ 
+ 2. Damit erfolgt die Auswahl/Aktivierung des Formulars und
+
+ 3. mit den Rezeptbestandteilen werden diese ausgelesen und in dem Formular angezeigt. 
+
+ Wichtig! 
+ ---> Soll die Darstellung / Detail des Rezeptes und die Bearbeitung unterschieden werden?
+
+ Im Prinzip schon, denn die Anzeige sollte für jeden Nutzer möglich sein, die BEarbeitung aber nur für einen 
+ berechtigten Personenkreis.
+
+
+
+
+**/
+
+
 	
     else if ( $action == 'details') {
         
@@ -149,9 +175,9 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 	
 
        try {
-		echo "HIER";
+		//echo "HIER";
                //    SELECT domain_id, domain_name FROM `domain` WHERE 1
-		$sql = "Select domain_id, domain_name from domain";
+		$sql = "SELECT * FROM `rezept` WHERE `rezept_id` = $id";
 
 		if (DEBUG) echo "<br>".$sql."<br>";
        
@@ -167,22 +193,56 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 	        
 	        echo "<table  style=\"background:#777;padding:4px;border:1px;\"   cellpadding=\"6\" cellspacing=\"1\">";
 	        echo '<tr style="padding:8px;"><th colspan=3 style="font-family: Fira ;color:#ddd">Lizenzen f&uuml;r Clients</th></tr>';
-	        echo "<tr  style=\"padding:8px;\"><td style=\"background:darkgrey;a color:orange;width:350px;\" class=\"odd\">
+	        echo "<tr  style=\"padding:8px;\"><td style=\"background:darkgrey;a color:orange;width:350px;\" class=\"odd\"> Das Rezept
 
           </td>
-           <td style=\"background:darkgrey;a color:orange;width:350px;\" class=\"odd\">Lizenz</td><td style=\"background:darkgrey;a color:orange;width:80px;\" class=\"odd\">Anzahl</td></tr>";
+           <td style=\"background:darkgrey;a color:orange;width:350px;\" class=\"odd\">Komponenten</td>";
+           //echo "<td style=\"background:darkgrey;a color:orange;width:80px;\" class=\"odd\">Anzahl</td>
+			echo "</tr>";
+
 	        foreach ($ergebnis as  $inhalt)
 	        {
-	            $domain_id=$inhalt['domain_id'];
+	            $rezept_id=$id;
 	            
 	            echo "<tr style=\"border:1px dotted black;\"><td style=\"background:lightgrey;a color:orange;width:350px;padding:6px;\" class=\"odd\">";
 	            
-	            echo "<a href=\"auspraegung/".$domain_id."\">".$inhalt['domain_name']."</a>";
+	            echo "<a href=\"auspraegung/".$rezept_id."\">".$inhalt['beschreibung']."</a>";
+	            echo "</td><td>";
+				//echo "<a href=\"auspraegung/".$rezept_id."\">".$inhalt['beschreibung']."</a>";
 	            
-	            
-	 
+/***	 
+
+AN DIESER STELLE SOLLTE DER REKURSIVE AUFRUF UND ANZEIGE DER REZEPTBESTANDTEILE ERFOLGEN
+
+***/
+
+
+/* */
+
+				$sql2 = "SELECT distinct rt.rezeptteil_id,rt.aktiv, sk.speisekomponente_id as skid, sk.bezeichnung as skbez FROM `rezept` rez, `rezeptteil` rt,`speisekomponente` sk
+				WHERE rt.rezept_id=$id
+				and rt.aktiv=1 
+				and rt.rezept_id = rez.rezept_id
+				and sk.speisekomponente_id = rt. speisekomponente_id";
+
+ 				$db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+          		$db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      
+          		$rueckgabe2 = $db->query($sql2);
+          
+		  		$ergebnis2 = $rueckgabe2->fetchAll(PDO::FETCH_ASSOC);
+
+
+				echo "<div>";
+				foreach ($ergebnis2 as  $inhalt2) {
+					echo "<a href=\"../speisekomponente/".$inhalt2['skid']."\">".$inhalt2['skbez']."</a><br>";
+				}
+				echo "</div>";
+/* */
+
+
            
-                //&nbsp;&nbsp;&nbsp;<small><small><em style=\"color:red;\">(<a href=\"details/".$domain_id."\">bearbeiten</a>)</em></small></small>";
+                //&nbsp;&nbsp;&nbsp;<small><small><em style=\"color:red;\">(<a href=\"details/".$rezept_id."\">bearbeiten</a>)</em></small></small>";
 	            echo "</td><td style=\"background:lightgrey;a color:orange;width:50px;padding:6px;\" class=\"odd\"> ";
 	            echo "<br></td></tr>";
 	        }
@@ -699,7 +759,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 		  $sql = "replace into rezeptteil set speisekomponente_id = '".$suppe."', rezept_id = '".$rezept_id."', bezeichnung = '". $bez_suppe."'  ";
 		  
 
-          //print $sql."<br>";
+          print $sql."<br>";
 
           $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
           $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -708,8 +768,11 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
   		        
 
 		  $db->query($sql);
+		  
 		  $sql = "update rezeptteil set initial_id=rezeptteil_id order by rezeptteil_id desc Limit 1;";          
-          $db->query($sql);		  	  
+          print $sql."<br>";
+ 
+		  $db->query($sql);		  	  
           
 		  $db->commit();
   
@@ -717,7 +780,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 
           }
           catch(PDOException $e){
-			  $dbh->rollBack();
+			  $db->rollBack();
               print "<br>".$e->getMessage();
           }
 

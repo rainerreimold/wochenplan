@@ -7,3 +7,34 @@ select i.bezeichnung, m.bezeichnung, m.einheit from menge m, ingredienz i, rezep
 
 select i.bezeichnung, m.bezeichnung, m.einheit from menge m, ingredienz i, rezeptteil rt, rezept r, speisekomponente sk where rt.rezept_id=1 and sk.ingredienz_id=i.ingredienz_id and sk.speisekomponente_id=rt.rezeptteil_id and sk.menge_id=m.menge_id
 
+
+
+
+
+
+
+select i.bezeichnung, m.bezeichnung, m.einheit from menge m, ingredienz i, rezeptteil rt, rezept r, speisekomponente sk where rt.rezept_id=1 and sk.ingredienz_id=i.ingredienz_id and sk.speisekomponente_id=rt.rezeptteil_id and sk.menge_id=m.menge_id
+
+
+select distinct
+rez.rezept_id as rezid,
+rez.bezeichnung as rezbez,
+wp.wochenplan_id as Wp_id
+
+from 
+rezept rez,
+rezeptteil rz,
+wochenplan wp
+where 
+wp.rezept_id_mo=rez.rezept_id
+or
+wp.rezept_id_di=rez.rezept_id
+or
+wp.rezept_id_mi=rez.rezept_id
+or
+wp.rezept_id_do=rez.rezept_id
+or
+wp.rezept_id_fr=rez.rezept_id
+AND
+rez.aktiv=1
+order by wp.wochenplan_id asc

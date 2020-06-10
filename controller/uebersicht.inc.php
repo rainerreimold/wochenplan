@@ -8,7 +8,7 @@ require_once './inc/global_config.inc.php';
 
 
 
-$_SESSION['title'] = 'Rezept - Verwaltung von Rezepten, Speiseplänen und Bestellzetteln';
+$_SESSION['title'] = 'Rezept - Verwaltung von Rezepten, Speisepl&auml;nen und Bestellzetteln';
 $_SESSION['start'] = isset($_SESSION['start'])?$_SESSION['start']:false;
 
 
@@ -121,7 +121,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
       
       echo '<a href="speiseplan/anlegen" title="Die installierte Software auf dem PC des Nutzers">Speiseplan anlegen</a>';
       echo "<br>";
-       echo '<a href="speiseplan/anzeigen">Speiseplan anzeigen</a>';
+       echo '<a href="speiseplan/zeigeAlleSpeiseplaene">Speiseplan anzeigen</a>';
       echo "<br>";
      /* */ 
       echo "<br><h3>Bestellzettel</h3>";

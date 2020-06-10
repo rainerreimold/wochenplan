@@ -69,7 +69,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
        try {
 		//echo "HIER";
               
-		/*	$sql = "select distinct
+			$sql = "select distinct
 					rez.rezept_id as rezid,
 					rez.bezeichnung as rezbez,
 					wp.wochenplan_id as wp_id
@@ -91,74 +91,6 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 					AND
 					rez.aktiv=1
 					order by wp.wochenplan_id asc";
-			*/
-			$sql = "Select A.Mo As MoRezept, A.MoRezId As MoRezeptId, 
-						   B.Di As DiRezept, B.DiRezId As DiRezeptId, 
-						   C.Mi As MiRezept, C.MiRezId As MiRezeptId, 
-						   D.Do As DoRezept, D.DoRezId As DoRezeptId,
-						   E.Fr As FrRezept, E.FrRezId As FrRezeptId, 
-						   F.Sa As SaRezept, F.SaRezId As SaRezeptId, 
-						   G.So As SoRezept, G.SoRezId As SoRezeptId
-					From wochenplan wp, 
-					(select distinct					
-					rez.bezeichnung as Mo,
-					rez.rezept_id as MoRezId	
-					from 			
-					wochenplan wp,
-					rezept rez
-					where 				
-					wp.wochenplan_id=1 and wp.rezept_id_mo=rez.rezept_id) A,
-					(select distinct					
-					rez.bezeichnung as Di,
-					rez.rezept_id as DiRezId	
-					from 			
-					wochenplan wp,
-					rezept rez
-					where 				
-					wp.wochenplan_id=1 and wp.rezept_id_di=rez.rezept_id ) B,
-					(select distinct					
-					rez.bezeichnung as Mi,
-					rez.rezept_id as MiRezId	
-					from 			
-					wochenplan wp,
-					rezept rez
-					where 				
-					wp.wochenplan_id=1 and wp.rezept_id_mi=rez.rezept_id) C,
-					(select distinct					
-					rez.bezeichnung as Do,
-					rez.rezept_id as DoRezId	
-					from 			
-					wochenplan wp,
-					rezept rez
-					where 				
-					wp.wochenplan_id=1 and wp.rezept_id_do=rez.rezept_id) D,
-					(select distinct					
-					rez.bezeichnung as Fr,
-					rez.rezept_id as FrRezId	
-					from 			
-					wochenplan wp,
-					rezept rez
-					where 				
-					wp.wochenplan_id=1 and wp.rezept_id_fr=rez.rezept_id) E,
-					(select distinct					
-					rez.bezeichnung as Sa,
-					rez.rezept_id as SaRezId	
-					from 			
-					wochenplan wp,
-					rezept rez
-					where 				
-					wp.wochenplan_id=1 and wp.rezept_id_sa=rez.rezept_id) F,
-					(select distinct					
-					rez.bezeichnung as So,
-					rez.rezept_id as SoRezId	
-					from 			
-					wochenplan wp,
-					rezept rez
-					where 				
-					wp.wochenplan_id=1 and wp.rezept_id_so=rez.rezept_id) G
-					Limit 1	";		
-
-
 
 		if (DEBUG) echo "<br>".$sql."<br>";
        
@@ -180,68 +112,6 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
            //<td style=\"background:darkgrey;a color:orange;width:350px;\" class=\"odd\">Wochenplan</td><td style=\"background:darkgrey;a color:orange;width:80px;\" class=\"odd\">Anzahl</td></tr>";
 	        $zaehl=4;
 			$wt='';
-
-			/*** 
-			##############################################################################
-
-				Nach dem gewähltem Ansatz wird der Datensatz für die Woche in einem Zug 
-				ausgelesen, so dass es sich anbieten würde die Ausgabe über eine Schleife 
-				in 2er Schritten zu itereieren.
-
-			##############################################################################
-			*/
-
-            foreach ($ergebnis as  $inhalt)
-	        {
-				++$zaehl;
-				//$wp_id=$inhalt['wp_id'];
-				$wp_id = 1;
-	          //  $rezid=$inhalt['rezid'];
-				//Wochenplan .. später Kalenderwoche anzeigen
-	            if ($zaehl%5==0) {
-					 echo "<tr  style=\"padding:8px;\">";
-					echo "<td colspan=\"4\" style=\"background:darkgrey;a color:orange;\" class=\"odd\">Wochenplan ".$wp_id."</td></tr>";
-					$last_rezid=0;
-				}
-	
-				//echo "INHALT: ".$inhalt['MoRezept'];
-				//die();
-				zeileDesWochenPlan($inhalt['MoRezept'], $inhalt['MoRezeptId'], 0, $inhalt['SoRezeptId']);
-				zeileDesWochenPlan($inhalt['DiRezept'], $inhalt['DiRezeptId'], 1, $inhalt['MoRezeptId']); 
-				zeileDesWochenPlan($inhalt['MiRezept'], $inhalt['MiRezeptId'], 2, $inhalt['DiRezeptId']);
-				zeileDesWochenPlan($inhalt['DoRezept'], $inhalt['DoRezeptId'], 3, $inhalt['MiRezeptId']);
-				zeileDesWochenPlan($inhalt['FrRezept'], $inhalt['FrRezeptId'], 4, $inhalt['DoRezeptId']);
-				zeileDesWochenPlan($inhalt['SaRezept'], $inhalt['SaRezeptId'], 5, $inhalt['FrRezeptId']);
-				zeileDesWochenPlan($inhalt['SoRezept'], $inhalt['SoRezeptId'], 6, $inhalt['SaRezeptId']);
-
-  
-				
-			}    
-	        
-	    }
-	    catch(PDOException $e){
-	        print $e->getMessage();
-	    }
-	    echo "</table>";
-	    $db=null;
-	    
-      
-        echo "<br><a href=\"anlegen\">neuen Speiseplan anlegen</a><br>";
-
-		if (DEBUG) {
-			echo "<br /><br />action= $action<br /><br />";
-			echo "<br /><br />id= $id<br /><br />";
-		}
-
-
-
-
-
-
-
-
-
-			/*** backup falls was schief geht 14.04.21 
 			foreach ($ergebnis as  $inhalt)
 	        {
 				++$zaehl;
@@ -281,11 +151,9 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 					  break;
 				}
 
-	            echo "<a href=\"../rezept/$rezid\">
-				 <small><strong style=\"color:black;\">".$wt."</strong></small></td>";
+	            echo "<a href=\"../rezept/$rezid\"><small><strong style=\"color:black;\">".$wt."</strong></small></td>";
 				echo "\n";
-				echo "<td style=\"background:lightgrey;a color:orange;width:350px;padding:6px;\" class=\"odd\">
-				  ".$inhalt['rezbez']."</a>";
+				echo "<td style=\"background:lightgrey;a color:orange;width:350px;padding:6px;\" class=\"odd\"> ".$inhalt['rezbez']."</a>";
 				echo "\n";
 	            
 	            
@@ -296,7 +164,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 			    echo "\n";
 				echo "<td style=\"background:lightgrey;a color:orange;width:50px;padding:6px;\" class=\"odd\"> ";
 				
-/* ******************************************* * /
+/* ******************************************* */
 				echo "\n";	
 	            if($zaehl%5!=0) {
 					
@@ -310,7 +178,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 				
 				if ($zaehl%5!=4) {
 				
-					echo "<a href=\"wechselrunter/".$wp_id."/".$rezid."/".$last_rezid."/".$wt."\"><span class=\"glyphicon glyphicon-arrow-down\"></span></a>";
+					echo "<a href=\"wechselrunter/".$wp_id."/".$rezid."\"><span class=\"glyphicon glyphicon-arrow-down\"></span></a>";
 				}
 				echo "\n";
 				echo "<br></td></tr>";
@@ -333,7 +201,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 			echo "<br /><br />id= $id<br /><br />";
 		}
 
-*/
+
 
 
 		include 'inc/footer.php';
@@ -609,11 +477,39 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 
 	else if ( $action == 'wechselrunter') {
 
-	   $wp_id = $id;
-	   $wt = $order;
-	   $upOrDown=false;	
-       wechselPositionSpeiseplan( $wt, $wp_id, $upOrDown);
-       //header('location:../zeigeAlleSpeiseplaene') ;
+	// $id = Mo, dann $id2= getId Dienstag und set Di =$id und Mo=$id2
+
+	//Übergeben werden muss sowohl die "id" des Wochenplans, als auch die "rezept_id"	   
+
+	   try {
+		  // einfacher Switch	
+         
+			
+
+			 $sql = "update `rezept` Set `aktiv`=(`aktiv`-1)*-1 where `rezept_id`=".$id.";";
+
+  
+		  //  $sql = "replace into wochenplan set rezept_id_mo= '".$rezeptMo."',rezept_id_di= '".$rezeptDi."',rezept_id_mi= '".$rezeptMi."',
+			//		rezept_id_do= '".$rezeptDo."',rezept_id_fr= '".$rezeptFr."',  bezeichnung='".$bezeichnung."', beschreibung = '".$editor."'";
+
+
+          print $sql."<br>";
+
+          $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+          $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $db->query($sql);
+          $db=null;
+
+          //echo "<br>".$sql."<br>";
+          //die();
+
+
+          }
+          catch(PDOException $e){
+              print "<br>".$e->getMessage();
+          }
+         //die();
+        header('location:../zeigeAlleSpeiseplaene') ;
 
 	}
 	
@@ -621,11 +517,196 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 	
 	else if ( $action == 'wechselhoch') {
 
-	   $wp_id = $id;
-	   $wt = $order;	
-	   $upOrDown=true;	
-       wechselPositionSpeiseplan( $wt, $wp_id, $upOrDown);
- 	   //header('location:../zeigeAlleSpeiseplaene') ;
+	 // $id, $von, $bis  =>  $id = '', $von=0, $lim=0, $order='asc'
+     //$rezept.$wt=$bis;
+	 
+
+	 // Wochentag (2stellig)
+	 $wt = $order;
+	 
+	 // das letzte Rezept 
+	 //$wt = $von;
+
+	 // Wochenplan-id
+	  $wp_id = $id;
+
+
+	  echo "wp_id= ".$wp_id."<br>\n";	
+	  echo "wt= ".$order."<br>\n";			
+	  //die();	
+	 //$rezeptMo        = $_POST['rezeptMo'];
+	 //$rezeptDi        = $_POST['rezeptDi'];
+ 	 //$rezeptMi        = $_POST['rezeptMi'];
+	 //$rezeptDo        = $_POST['rezeptDo'];
+	 //$rezeptFr        = $_POST['rezeptFr'];
+
+    // $wp_id        = $_POST['rezeptMo'];
+
+	// update wochenplan set rezeptMo=$rezeptDi, rezeptDi=$rezeptMo where wochenplan_id=$wp_id;
+	if ($wt=="Mo"){
+
+		$sql = "update wochenplan set rezeptMo=".$rezeptDi.", rezeptDi=".$rezeptMo." where wochenplan_id=".$wp_id;
+		print $sql;
+	    die($sql);
+	
+	}
+	else if  ($wt=="Di"){
+
+		
+		try {
+
+		  	$db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+          	$db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+			
+          	$db->beginTransaction();	
+
+			/* $sql="select @rezept_id_mo:=rezept_id_mo from wochenplan where wochenplan_id=".$wp_id; 			
+			$db->query($sql);
+
+			$sql1 = "update wochenplan set `rezept_id_mo`=`rezept_id_di` where wochenplan_id=".$wp_id;
+		  	$db->query($sql1);	
+			// print "temporäre Variable: ".
+			$sql2 = "update wochenplan set `rezept_id_di`=@rezept_id_mo where wochenplan_id=".$wp_id;
+			$db->query($sql2);
+          	*/
+
+			$sql="select @rezept_id_mo:=rezept_id_mo from wochenplan where wochenplan_id=".$wp_id."; 
+				update wochenplan set `rezept_id_mo`=`rezept_id_di`,`rezept_id_di`=@rezept_id_mo where wochenplan_id=".$wp_id;
+			print "SQL: ".$sql."<br>\n";
+
+			die();
+
+			$db->query($sql);
+
+		    $db->commit();
+			$db=null;
+          }
+          catch(PDOException $e){
+              print "<br>".$e->getMessage();
+          }
+
+
+	   // print $sql;
+		//die($sql);
+	
+
+		}
+		else if  ($wt=="Mi"){
+
+		
+		try {
+
+		  	$db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+          	$db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+			
+          	$db->beginTransaction();	
+			/*
+			$sql="select @rezept_id_di:=rezept_id_di from wochenplan where wochenplan_id=".$wp_id; 
+						
+			$db->query($sql);
+
+			$sql1 = "update wochenplan set `rezept_id_di`=`rezept_id_mi` where wochenplan_id=".$wp_id;
+		  	$db->query($sql1);	
+			// print "temporäre Variable: ".
+			$sql2 = "update wochenplan set `rezept_id_mi`=@rezept_id_di where wochenplan_id=".$wp_id;
+			$db->query($sql2);
+          	*/
+
+			$sql="select @rezept_id_di:=rezept_id_di from wochenplan where wochenplan_id=".$wp_id."; 
+				update wochenplan set `rezept_id_di`=`rezept_id_mi`,`rezept_id_mi`=@rezept_id_di where wochenplan_id=".$wp_id;
+		
+			$db->query($sql);
+
+
+		    $db->commit();
+			$db=null;
+          }
+          catch(PDOException $e){
+              print "<br>".$e->getMessage();
+          }
+
+
+	   // print $sql;
+		//die($sql);
+	
+
+	}
+
+	else if  ($wt=="Do"){
+
+		
+		try {
+
+		  	$db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+          	$db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+			
+          	$db->beginTransaction();	
+			/*
+			$sql="select @rezept_id_mi:=rezept_id_mi from wochenplan where wochenplan_id=".$wp_id; 
+						
+			$db->query($sql);
+
+			$sql1 = "update wochenplan set `rezept_id_mi`=`rezept_id_do` where wochenplan_id=".$wp_id;
+		  	$db->query($sql1);	
+			// print "temporäre Variable: ".
+			$sql2 = "update wochenplan set `rezept_id_do`=@rezept_id_mi where wochenplan_id=".$wp_id;
+			$db->query($sql2);
+          	*/
+			$sql="select @rezept_id_mi:=rezept_id_mi from wochenplan where wochenplan_id=".$wp_id."; update wochenplan set `rezept_id_mi`=`rezept_id_do`,`rezept_id_do`=@rezept_id_mi where wochenplan_id=".$wp_id;
+
+			$db->query($sql);
+	
+		    $db->commit();
+			$db=null;
+          }
+          catch(PDOException $e){
+              print "<br>".$e->getMessage();
+          }
+
+
+	   // print $sql;
+		//die($sql);
+	
+
+	}
+		
+ 	else if  ($wt=="Fr"){
+
+		
+		try {
+
+		  	$db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+          	$db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+			
+          	$db->beginTransaction();	
+
+			
+
+			$sql="select @rezept_id_do:=rezept_id_do from wochenplan where wochenplan_id=".$wp_id."; 
+				update wochenplan set `rezept_id_do`=`rezept_id_fr`,`rezept_id_dfr`=@rezept_id_do where wochenplan_id=".$wp_id;
+
+			$db->query($sql);
+
+		    $db->commit();
+			$db=null;
+          }
+          catch(PDOException $e){
+              print "<br>".$e->getMessage();
+          }
+
+
+	   // print $sql;
+		//die($sql);
+	
+
+	}
+
+	
+	 header('location:../zeigeAlleSpeiseplaene') ;
 
 	}
     
