@@ -68,10 +68,11 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 		}
 
 	  echo '<div class="table">';
-      echo '<div class="spalte">';
-      echo '<h3>Ingredenzien</h3><a href="ingredienzien/zeigeAlleIngredienzien">zeige alle Ingredienzien</a>';
+      echo '<div class="spalte" style="opacity: 1;">';
+      echo '<h3>Lebensmittel</h3>';
+	  echo '<a href="lebensmittel/zeigeAlleLebensmittel">zeige alle Lebensmittel</a>';
       echo "<br>";
-      echo '<a href="ingredienzien/anlegen">Ingredienz anlegen</a>';
+      echo '<a href="lebensmittel/anlegen">Lebensmittel anlegen</a>';
       echo "<br>";
       echo '<a href="hersteller/anlegen"></a>';
       //echo "<br>";

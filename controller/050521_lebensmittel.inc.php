@@ -94,17 +94,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 	    try {
 		
                //   
-		//$sql = "SELECT Distinct `lebensmittel_id`,`lebensmittel_hash`, `bezeichnung`,`kategorie`, `artikelnummer`, `sorte`, `teil`, `eigenschaft`, `herkunft`, `aktiv`, `loeschbar` FROM `lebensmittel` where 1 order By `bezeichnung` asc";
-		$sql = "SELECT Distinct `lebensmittel_id`,`lebensmittel_hash`, `bezeichnung`,`kategorie`, `artikelnummer`, `sorte`, `teil`, `eigenschaft`, `herkunft`, `aktiv`, `loeschbar` FROM `lebensmittel` 
-    			where 
-    			`lebensmittel_id` in (select max(lebensmittel_id) From lebensmittel group by initial_id ) 
-			     order By `bezeichnung` asc";
-
-
-
-
-
-
+		$sql = "SELECT Distinct `lebensmittel_id`,`bezeichnung`,`kategorie`, `artikelnummer`, `sorte`, `teil`, `eigenschaft`, `herkunft`, `aktiv`, `loeschbar` FROM `lebensmittel` where 1 order By `bezeichnung` asc";
 
 		if (DEBUG) echo "<br>".$sql."<br>";
        
@@ -147,15 +137,15 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 				echo "<a href=\"/wochenplan/lebensmittel/details/$lebensmittel_id\">".$inhalt['kategorie']."</a>";
 	            echo "<br></td>";
 
-				echo "<td style=\"background:lightgrey;a color:orange;width:50px;padding:6px;\" class=\"odd\"> ";
+				 echo "<td style=\"background:lightgrey;a color:orange;width:50px;padding:6px;\" class=\"odd\"> ";
 				echo "<a href=\"/wochenplan/lebensmittel/details/$lebensmittel_id\">".$inhalt['sorte']."</a>";
 	            echo "<br></td>";
 
-				echo "<td style=\"background:lightgrey;a color:orange;width:50px;padding:6px;\" class=\"odd\"> ";
+				 echo "<td style=\"background:lightgrey;a color:orange;width:50px;padding:6px;\" class=\"odd\"> ";
 				echo "<a href=\"/wochenplan/lebensmittel/details/$lebensmittel_id\">".$inhalt['teil']."</a>";
 	            echo "<br></td>";
 		
-				echo "<td style=\"background:lightgrey;a color:orange;width:50px;padding:6px;\" class=\"odd\"> ";
+				 echo "<td style=\"background:lightgrey;a color:orange;width:50px;padding:6px;\" class=\"odd\"> ";
 				echo "<span class=\"tiny\"><small><small><a href=\"/wochenplan/lebensmittel/details/$lebensmittel_id\">".$inhalt['artikelnummer']."</a></small></small></span>";
 	            echo "<br></td>";
 
@@ -201,7 +191,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 
        try {
 		 
-		$sql = "Select bezeichnung, beschreibung, lebensmittel_hash, initial_id, kategorie, sorte, teil, eigenschaft, artikelnummer, herkunft from lebensmittel where lebensmittel_id = ".$id;
+		$sql = "Select bezeichnung, beschreibung from lebensmittel where lebensmittel_id = ".$id;
 
 
 		if (DEBUG) echo "<br>".$sql."<br>";
@@ -213,54 +203,28 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
           $rueckgabe = $db->query($sql);
           
 		  $ergebnis = $rueckgabe->fetchAll(PDO::FETCH_ASSOC);
-	 	
-          $lebensmittel_hash     = $ergebnis[0]['lebensmittel_hash'];       
-     
-		  $bezeichnung     = $ergebnis[0]['bezeichnung'];
-		  $beschreibung    = $ergebnis[0]['beschreibung'];
-		  $kategorie       = $ergebnis[0]['kategorie'];
-	   	  $sorte           = $ergebnis[0]['sorte'];
-	      $teil            = $ergebnis[0]['teil'];
-	      $eigenschaft     = $ergebnis[0]['eigenschaft'];
-	      $artikelnummer   = $ergebnis[0]['artikelnummer'];
-	      $herkunft        = $ergebnis[0]['herkunft'];
-			
-		  $initial_id      = $ergebnis[0]['initial_id']; 
-
-		 echo '<h1 style="background: darkslategray; color:white;  text-shadow: 2px 2px 4px #000000; padding:20;margin:20px;
-	             padding-left:120px; bottom:1px black solid;">Lebensmittel</h1>';
-         echo '<div class="form" style="border-radius:20px;width:750px; text-align:right; padding:10px; margin:10px auto auto auto;background-image: linear-gradient(darkslategray, darkblue);">
-
+	        
+		  $bezeichnung = $ergebnis[0]['bezeichnung'];
+		  $beschreibung = $ergebnis[0]['beschreibung'];
+ 
+		 echo '<h1 style="background: orange;
+	             padding-left:120px;">Lebensmittel</h1>';
+         echo '<div class="form" style="width:750px; text-align:right; padding:10px; margin:10px auto auto auto;">
 
          <form method="post" action="../eintragen" style="width:700px; padding:10px; margin:10px;">
            <fieldset style="background:#cfcfcf; width:500px; text-align:right; padding:10px; margin-right:10px;">
            <legend>Lebensmittel anlegen</legend>';  
 
-		 echo "<input type=\"hidden\" name=\"lebensmittel_id\" value=\"".$id."\">"; 
-	     echo "<input type=\"hidden\" name=\"initial_id\" value=\"".$initial_id."\">";     
-		 echo "<input type=\"hidden\" name=\"lebensmittel_hash\" value=\"".$lebensmittel_hash."\">";	
-
+		 echo "<input type=\"hidden\" name=\"lebensmittel_id\" value=\"".$id."\">";     
 
          echo "<label>Lebensmittel: </label><input class=\"textform eyecatch\" type=\"text\" name=\"lebensmittel\"  value=\"".$bezeichnung."\" required /><br>";
          echo '</fieldset>';
          echo "<br>\n";
 
-		 echo "<textarea id='editor' name='editor'>".$beschreibung."</textarea>";
-
-				 // Lebensmittelhauptkategorie
-		 echo ' <fieldset class="produktform" style="text-align:right; width:90%; padding:10px; margin-right:10px;">';
-
-		 echo '<label>Kategorie: </label><input class="textform eyecatch" type="text" name="kategorie" value="'.$kategorie.'" required /><br>';	
-		 echo '<label>Sorte: </label><input class="textform eyecatch" type="text" name="sorte" value="'.$sorte.'" /><br>';
-		 echo '<label>Teil: </label><input class="textform eyecatch" type="text" name="teil" value="'.$teil.'"  /><br>';
-	     echo '<label>Herkunft: </label><input class="textform eyecatch" type="text" name="herkunft" value="'.$herkunft.'" /><br>';
-		 echo '<label>Eigenschaft: </label><input class="textform eyecatch" type="text" name="eigenschaft" value="'.$eigenschaft.'" /><br>';		
-		 echo '<label>Artikelnummer: </label><input class="textform eyecatch" type="text" name="artikelnummer" value="'.$artikelnummer.'" /><br>';
-		 echo '</fieldset>';	
+		echo "<textarea id='editor' name='editor'>".$beschreibung."</textarea>";
 
 
-
-         echo ' <fieldset style="text-align:right; width:90%;padding:10px; margin-right:10px;">
+         echo ' <fieldset style="background:#cfcfcf; text-align:right; padding:10px; margin-right:10px;">
               <button type="reset">Eingaben l&ouml;schen</button>
               <button type="submit">Absenden</button>
             </fieldset>
@@ -323,12 +287,37 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 		
 		 // Lebensmittelhauptkategorie
 		 echo ' <fieldset class="produktform" style="text-align:right; width:90%; padding:10px; margin-right:10px;">';
-		 echo '<label>Kategorie: </label><input class="textform eyecatch" type="text" name="kategorie"  required /><br>';	
-		 echo '<label>Sorte: </label><input class="textform eyecatch" type="text" name="sorte"   /><br>';
-		 echo '<label>Teil: </label><input class="textform eyecatch" type="text" name="teil"   /><br>';
-	     echo '<label>Herkunft: </label><input class="textform eyecatch" type="text" name="herkunft"   /><br>';
-		 echo '<label>Eigenschaft: </label><input class="textform eyecatch" type="text" name="eigenschaft"  /><br>';		
-		 echo '<label>Artikelnummer: </label><input class="textform eyecatch" type="text" name="artikelnummer"  /><br>';
+		 echo '<h4>Lebensmittelhauptkategorie</h4>';	
+		 $LebensmittelhauptkategorieSelect="\n<select class=\"produktform\" onchange=\"update_auswahl()\" name=\"lebensmittelhauptkategorie\" size=\"1\">\n";
+         $LebensmittelhauptkategorieSelect.=getLebensmittelHauptKategorie()."\n";
+         $LebensmittelhauptkategorieSelect.="</select>\n";	
+		 echo $LebensmittelhauptkategorieSelect;
+	
+		 echo '</fieldset>';	
+
+
+		 // Lebensmittelunterkategorie
+		 echo ' <fieldset class="produktform" style="text-align:right; width:90%; padding:10px; margin-right:10px;">';
+		 echo '<h4>Lebensmittelunterkategorie</h4>';
+
+		/**************************************************************************************************
+
+		Falls ich hier das Menü in Abhängigkeit des ersten erstellen möchte, muss ich Javascript im Header
+		einfügen, sodass hier ein anderer Dateikopf eingebunden werden müsste, oder aber eine Steuerung über Parameter erfolgen müsste.
+		
+		Ob es möglich ist, das Javascript am Ende der HTML Datei einzufügen, habe ich noch nie probiert.
+		Das würde mir hier viel erleichtern  
+
+	
+
+		*/
+
+		 $LebensmittelunterkategorieSelect="\n<select class=\"produktform\" onchange=\"update_auswahl()\" name=\"lebensmittelunterkategorie\" size=\"1\">\n";
+         $LebensmittelunterkategorieSelect.=getLebensmittelUnterKategorie()."\n";
+         $LebensmittelunterkategorieSelect.="</select>\n";	
+		 echo $LebensmittelunterkategorieSelect;
+
+		
 		 echo '</fieldset>';
 
          echo ' <fieldset style="text-align:right; width:90%;padding:10px; margin-right:10px;">
@@ -359,107 +348,45 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 
 	 Eintragen der Lebensmittel 19.04.2021
 
-	 05.05.21
-	 Die Funktion ist zum einen für das Anlegen, aber auch das Editieren eines 
-	 Eintrages gedacht. 
-	 Ich habe nach der Änderung von Ingredenzien auf Lebensmittel allerdings die 
-	 Versionierung mit einbezogen, bei der ein Update wiederum keinen Sinn macht.
-
-	 Wenn die Verionierung genutzt werden soll, dann muss die bisher aktuelle 
- 	 lebensmittel_id zur parent_id des jetzt folgenden Eintrags werden.
-
-	 Zugleich kann dann nicht mehr der 2. Teil der Transaction heißen
-	 initial_id = lebensmittel_id
-
-	 Es muss vielmehr auch i nder detailansicht die intial_id ausgelesen werden.
-	 und wenn diese hier nicht leer ist, dann wird sie auch wieder so eingetragen.
-
 	****************************************/
 
 	else if ( $action == 'eintragen') {
 
      
      $lebensmittel    = $_REQUEST['lebensmittel'];
-	 $beschreibung    = $_REQUEST['editor'];
+	 $beschreibung  = $_REQUEST['editor'];
 	 $lebensmittel_id = isset($_REQUEST['lebensmittel_id'])?$_REQUEST['lebensmittel_id']:null;
-	 $kategorie       = isset($_REQUEST['kategorie'])?$_REQUEST['kategorie']:null;
-	 $sorte           = isset($_REQUEST['sorte'])?$_REQUEST['sorte']:null;
-	 $teil            = isset($_REQUEST['teil'])?$_REQUEST['teil']:null;
-	 $eigenschaft     = isset($_REQUEST['eigenschaft'])?$_REQUEST['eigenschaft']:null;
-	 $artikelnummer   = isset($_REQUEST['artikelnummer'])?$_REQUEST['artikelnummer']:null;
-	 $herkunft        = isset($_REQUEST['herkunft'])?$_REQUEST['herkunft']:null;
-	 $initial_id      = isset($_REQUEST['initial_id'])?$_REQUEST['initial_id']:0;
-										 
-	 
+	 if (DEBUG) print "<br><br><br>$lebensmittel_id<br><br>";
 
-	 //echo "<br>Intial_id: $initial_id<br>";
-
-	 if (DEBUG) {
-			print "<br><br><br>$lebensmittel_id<br><br>";
-			var_dump($_REQUEST);
-	  }
      try {
 
 	 	  $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
           $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-         // if(!$lebensmittel_id) { 
+          if(!$ingredienz_id) { 
 
-		  	$sql = "replace into lebensmittel 
-					 set 
-						bezeichnung = '".$lebensmittel."', 
-						beschreibung = '".$beschreibung."', 
-						kategorie =	'".$kategorie."',
-						sorte =	'".$sorte."',
-						teil =	'".$teil."',
-						herkunft =	'".$herkunft."',
-						eigenschaft =	'".$eigenschaft."',
-						artikelnummer =	'".$artikelnummer."'";
-
-
-          	print $sql."<br>";
+		  	$sql = "replace into lebensmittel set bezeichnung = '".$lebensmittel."', beschreibung='".$beschreibung."' ";
+          	//print $sql."<br>";
 		  	$db->beginTransaction();          
 
 		  	$db->query($sql);
-	      	if ($initial_id == 0 ) {
-        		$sql="update lebensmittel set initial_id = lebensmittel_id, lebensmittel_hash = SHA1(lebensmittel_id) order by lebensmittel_id desc limit 1";		
-		  		echo "<br>1<br>";
-			} else {
-				$sql="update lebensmittel set initial_id = ".$initial_id.", parent_id = $lebensmittel_id, lebensmittel_hash = SHA1(lebensmittel_id) order by lebensmittel_id desc limit 1";		
-		        echo "<br>2<br>";
-			}	
 
-			print $sql."<br>";
-			$db->query($sql);
-			//$sql="update lebensmittel set lebensmittel_hash = SHA1(lebensmittel_id) order by lebensmittel_id desc limit 1";		
-		  	//$db->query($sql);
-						
-	
+	      	$sql="update lebensmittel set initial_id = lebensmittel_id order by lebensmittel_id desc limit 1";		
+		  	$db->query($sql);
+				
    		  	$db->commit();
           	
-		 /* } else {
+		  } else {
 
-		    $sql="update lebensmittel 
-				   set 
-					bezeichnung = '".$lebensmittel."', 
-					beschreibung='".$beschreibung."',
-					kategorie =	'".$kategorie."',
-					sorte =	'".$sorte."',
-					teil =	'".$teil."',
-					herkunft =	'".$herkunft."',
-					eigenschaft =	'".$eigenschaft."',
-					artikelnummer =	'".$artikelnummer."'
-				   where 
-					lebensmittel_id=".$lebensmittel_id;	
-	
-           	print $sql."<br>";
+		    $sql="update lebensmittel set bezeichnung = '".$lebensmittel."', beschreibung='".$beschreibung."' where lebensmittel_id=".$lebensmittel_id;		
+           	//print $sql."<br>";
 			$db->beginTransaction();          
 		  	$db->query($sql);
 			$db->commit();
           	
-		   } */
-		   $db=null;
- 		   $mes = "Eintrag erfolgreich !";
+		   }
+		  $db=null;
+ 	
           }
           catch(PDOException $e){
             $db->rollBack();  
@@ -467,7 +394,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
           }
 
 
-			
+
         
           //die();
           

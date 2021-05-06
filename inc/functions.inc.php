@@ -1,5 +1,117 @@
 <?php
 
+/*******
+
+
+
+
+****/
+
+
+function getLebensmittelHauptKategorie() {
+
+	try {
+
+		$sql = "SELECT 	lebensmittelhauptkategorie_id as lmid,
+						lebensmittelhauptkategorie_hash as lmhash,
+						lebensmittelhauptkategorie_bezeichnung as lmbez
+		FROM `lebensmittelhauptkategorie` 
+		order by lebensmittelhauptkategorie_bezeichnung asc";
+        
+        $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+        $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $rueckgabe = $db->query($sql);
+        
+        $ergebnis = $rueckgabe->fetchAll(PDO::FETCH_ASSOC);
+					
+        $db=null;
+        $i=0;
+		$ret="";
+		if ($ergebnis) {
+		  foreach ( $ergebnis as $inhalt) {
+				
+		/*	$sk[$i][0] = $inhalt['speisekomponente_id'];
+			$sk[$i][1] = $inhalt['skb'];
+			$sk[$i][2] = $inhalt['mb'];
+			$sk[$i][3] = $inhalt['me'];
+			$sk[$i][4] = $inhalt['zb'];
+		*/	
+			++$i;
+		  
+			$selected=$inhalt['lmbez']=='Gem&uuml;se'?" selected":" ";
+			$ret=$ret."<option".$selected." value=\"".$inhalt['lmhash']."\">".$inhalt['lmbez']."</option>\n";
+
+
+		  }
+		  return $ret;        
+        }
+        //return $ergebnis[0]['domain_name'];
+
+    }
+
+    catch(PDOException $e){
+        print $e->getMessage();
+    }
+    return -1;
+    
+    
+}
+
+
+function getLebensmittelUnterKategorie() {
+
+	try {
+	
+
+		$sql = "SELECT 	lebensmittelunterkategorie_id as lmuid,
+						lebensmittelunterkategorie_hash as lmhash,
+						lebensmittelunterkategorie_bezeichnung as lmbez,
+						lebensmittelhauptkategorie_id as lmhid
+		FROM `lebensmittelunterkategorie` 
+		order by lebensmittelunterkategorie_bezeichnung asc";
+        
+        $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+        $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $rueckgabe = $db->query($sql);
+        
+        $ergebnis = $rueckgabe->fetchAll(PDO::FETCH_ASSOC);
+					
+        $db=null;
+        $i=0;
+		$ret="";
+		if ($ergebnis) {
+		  foreach ( $ergebnis as $inhalt) {
+				
+				++$i;
+		  
+			$selected=$inhalt['lmbez']=='Gem&uuml;se'?" selected":" ";
+			$ret=$ret."<option".$selected." value=\"".$inhalt['lmhash']."\">".$inhalt['lmbez']."</option>\n";
+
+
+		  }
+		  return $ret;        
+        }
+        //return $ergebnis[0]['domain_name'];
+
+    }
+
+    catch(PDOException $e){
+        print $e->getMessage();
+    }
+    return -1;
+    
+    
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -1625,5 +1737,558 @@ function fixeUmlauteDb() {
    } 
  }
  
+
+/*** 
+Die Funktion als Vorlage aus dem Projekt Handwerker-Landkreise
+
+Wichtig ist aber, dass diese PHP-Funktion das Javascript dynamisch nach dem Inhalt der Tabelle Lebensmittelunterkategorie generiert
+
+Autor: Rainer  
+Datum:20.04.2021
+
+*/
+
+function pullDownChange() {
+
+
+
+
+/*** für jede Hauptkategorie eine Außenschleife **/
+/*
+if (kategorieAuswahl.options[kategorieAuswahl.selectedIndex].value == "1")
+{
+	a=0;	
+*/
+/***  hier eine Innenschleife **/
+/*	unterkategorieAuswahl.options[a] = new Option("Altmarkkreis Salzwedel [Salzwedel]");a=a+1;
+
+*/
+
+
+
+
+###################################################################################
+
+return '<script language="Javascript">
+			
+				// Start 
+function update_auswahl()
+{
+c=0;
+kategorieAuswahl = document.forms.verzeichnis.lebensmittelhauptkategorie;
+unterkategorieAuswahl = document.forms.verzeichnis.lebensmittelunterkategorie;
+unterkategorieAuswahl.options.length = 0; // DropDown Menü entleer	
+
+
+// Sachsen-Anhalt				
+if (kategorieAuswahl.options[kategorieAuswahl.selectedIndex].value == "1")
+{
+	a=0;	
+	unterkategorieAuswahl.options[a] = new Option("Altmarkkreis Salzwedel [Salzwedel]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Anhalt-Zerbst [Zerbst]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Aschersleben-Staßfurt");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Bernburg");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Bitterfeld");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Bördekreis [Oschersleben]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Burgenlandkreis [Naumburg]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Halberstadt");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Jerichower Land [Burg]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Köthen/Anhalt [Köthen]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Mansfelder Land [Eisleben]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Merseburg-Querfurt [Merseburg]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Ohrekreis [Haldensleben]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Quedlinburg");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Saalkreis [Halle]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Sangerhausen");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Schönebeck");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Stendal");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Weißenfels");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Wernigerode");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Wittenberg");a=a+1;
+	
+	unterkategorieAuswahl.options[a] = new Option("Dessau");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Halle [Saale]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Magdeburg");a=a+1;	
+}
+// Sachsen
+else if (kategorieAuswahl.options[kategorieAuswahl.selectedIndex].value == "2")
+{	
+	a=0;	
+	unterkategorieAuswahl.options[a] = new Option("Annaberg [Annaberg-Buchholz]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Aue-Schwarzenberg [Aue]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Bautzen");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Chemnitzer Land [Glauchau]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Delitzsch ");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Döbeln");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Freiberg");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Kamenz ");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Leipziger Land [Leipzig]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Löbau-Zittau [Zittau]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Meißen");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Mittlerer Erzgebirgskreis [Marienberg]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Mittweida");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Muldentalkreis [Grimma]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Niederschlesischer Oberlausitzkreis [Niesky]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Riesa-Großenhain [Großenhain]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Sächsische Schweiz [Pirna]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Stollberg");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Torgau-Oschatz [Torgau]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Vogtlandkreis [Plauen]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Weißeritzkreis [Dippoldiswalde]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option(" Zwickauer Land [Werdau]");a=a+1;
+	
+	unterkategorieAuswahl.options[a] = new Option("Chemnitz");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Dresden");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Görlitz");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Hoyerswerda");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Plauen");a=a+1;
+}
+// Thüringen
+else if (kategorieAuswahl.options[kategorieAuswahl.selectedIndex].value == "3")
+{
+	a=0;	
+	unterkategorieAuswahl.options[a] = new Option("Altenburger Land [Altenburg]");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Eichsfeld [Heiligenstadt]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Gotha");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Greiz");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Hildburghausen");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Ilm-Kreis [Arnstadt]");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Kyffhäuser-Kreis [Sondershausen]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Nordhausen");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Saale-Holzland-Kreis [Eisenberg]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Saale-Orla-Kreis [Schleiz]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Saalfeld-Rudolstadt [Saalfeld]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Schmalkalden-Meiningen [Meiningen]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Sömmerda");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Sonneberg");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Unstrut-Hainich-Kreis [Mühlhausen]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Wartburgkreis [Bad Salzungen]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Weimarer Land [Apolda]");a=a+1;
+		
+	unterkategorieAuswahl.options[a] = new Option("Eisenach");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Erfurt");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Gera");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Jena");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Suhl");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Weimar");a=a+1;
+	
+}
+// Bayern
+else if (kategorieAuswahl.options[kategorieAuswahl.selectedIndex].value == "4"){
+	a=0;		
+	unterkategorieAuswahl.options[a] = new Option("Aichach-Friedberg [Aichach]");a=a+1;	 
+	unterkategorieAuswahl.options[a] = new Option("Altötting");a=a+1;	    	 
+	unterkategorieAuswahl.options[a] = new Option("Amberg-Sulzbach [Amberg]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Ansbach");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Aschaffenburg");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Augsburg");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Bad Kissingen");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Bad Tölz-Wolfratshausen [Bad Tölz]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Bamberg");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Bayreuth");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Berchtesgadener Land [Bad Reichenhall]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Cham");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Coburg");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Dachau");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Deggendorf");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Dillingen a.d. Donau");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Dingolfing-Landau [Dingolfing]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Donau-Ries [Donauwörth]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Ebersberg");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Eichstätt");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Erding");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Erlangen-Höchstadt [Erlangen]");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Forchheim");a=a+1;	 
+	unterkategorieAuswahl.options[a] = new Option("Freising ");a=a+1;	    	 
+	unterkategorieAuswahl.options[a] = new Option("Freyung-Grafenau [Freyung]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Fürstenfeldbruck");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Fürth");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Garmisch-Partenkirchen");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Günzburg");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Haßberge [Haßfurt]");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Hof");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Kelheim");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Kitzingen");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Kronach");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Kulmbach");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Landsberg am Lech ");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Landshut");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Lichtenfels ");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Lindau (Bodensee)");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Main-Spessart [Karlstadt]");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Miesbach");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Miltenberg");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Mühldorf am Inn");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("München");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Neuburg-Schrobenhausen [Neuburg an der Donau]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Neumarkt/Oberpfalz");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Neustadt a.d. Waldnaab");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Neustadt/Aisch-Bad Windsheim [Neustadt a.d. Aisch]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Neu-Ulm");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Nürnberger Land [Lauf a.d. Pegnitz]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Oberallgäu [Sonthofen]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Ostallgäu [Marktoberdorf]");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Passau");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Pfaffenhofen a. d. Ilm");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Regen");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Regensburg");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Rhön-Grabfeld [Bad Neustadt a.d. Saale]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Rosenheim");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Roth");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Rottal-Inn [Pfarrkirchen]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Schwandorf");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Schweinfurt");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Starnberg");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Straubing-Bogen [Straubing]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Tirschenreuth");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Traunstein");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Unterallgäu [Mindelheim]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Weilheim-Schongau [Weilheim/Obb.]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Weißenburg-Gunzenhausen [Weißenburg i. Bay.]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Wunsiedel/Fichtelgeb.");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Würzburg");a=a+1;
+	
+	unterkategorieAuswahl.options[a] = new Option("Bayreuth");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Coburg");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Erlangen");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Ingolstadt");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Kempten [Allgäu]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Kaufbeuren");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Memmingen");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Nürnberg");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Schwabach");a=a+1;	
+}
+//Schleswig-Holstein
+else if (kategorieAuswahl.options[kategorieAuswahl.selectedIndex].value == "5"){	
+	a=0;		
+	unterkategorieAuswahl.options[a] = new Option("Dithmarschen [Heide]");a=a+1;	 
+	unterkategorieAuswahl.options[a] = new Option("Herzogtum Lauenburg [Ratzeburg]");a=a+1;	    	 
+	unterkategorieAuswahl.options[a] = new Option("Nordfriesland [Husum]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Ostholstein [Eutin]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Pinneberg");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Pön");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Rendsburg-Eckernförde [Rendsburg]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Schleswig-Flensburg [Schleswig]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Segeberg [Bad Segeberg]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Steinburg [Itzehoe]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Stormarn [Bad Oldesloe]");a=a+1;
+	
+	unterkategorieAuswahl.options[a] = new Option("Flensburg");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Hansestadt Lübeck");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Kiel");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Neumünster");a=a+1;
+}
+//Niedersachsen
+else if (kategorieAuswahl.options[kategorieAuswahl.selectedIndex].value == "6"){
+	a=0;			
+	unterkategorieAuswahl.options[a] = new Option("Ammerland [Westerstede]");	 a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Aurich");a=a+1;	    	 
+	unterkategorieAuswahl.options[a] = new Option("Celle");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Cloppenburg ");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Cuxhaven");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Diepholz");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Emsland [Meppen]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Friesland [Jever]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Gifhorn ");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Goslar");	 a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Göttingen");a=a+1;	    	 
+	unterkategorieAuswahl.options[a] = new Option("Grafschaft Bentheim [Nordhorn]");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Hameln-Pyrmont [Hameln]");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Hannover");	 a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Harburg [Winsen (Luhe)]");a=a+1;	    		 
+	unterkategorieAuswahl.options[a] = new Option("Helmstedt");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Hildesheim");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Holzminden");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Leer");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Lüchow-Dannenberg [Lüchow]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Lüneburg");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Nienburg / Weser [Nienburg]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Northeim");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Oldenburg [Wildeshausen]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Osnabrück");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Osterholz [Osterholz-Scharmbeck]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Osterode am Harz");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Peine");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Rotenburg (Wümme)");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Schaumburg [Stadthagen]");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Soltau-Fallingbostel [Fallingbostel]");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Stade");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Uelzen");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Vechta");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Verden [Verden (Aller)]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Wesermarsch [Brake]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Wittmund");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Wolfenbüttel");a=a+1;
+	
+	unterkategorieAuswahl.options[a] = new Option("Braunschweig");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Delmenhorst");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Emden");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Salzgitter");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Wilhelmshaven");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Wolfsburg");a=a+1;		
+	
+}
+//Bremen
+else if (kategorieAuswahl.options[kategorieAuswahl.selectedIndex].value == "7"){	
+	a=0;		
+	unterkategorieAuswahl.options[a] = new Option("Hansestadt Bremen");a=a+1; }
+//Hamburg
+else if (kategorieAuswahl.options[kategorieAuswahl.selectedIndex].value == "8"){
+	a=0;			
+	unterkategorieAuswahl.options[a] = new Option("Hansestadt Hamburg");a=a+1;	
+}
+// Nordrheinwestfalen
+else if (kategorieAuswahl.options[kategorieAuswahl.selectedIndex].value == "9"){		
+	a=0;
+	unterkategorieAuswahl.options[a] = new Option("Aachen");a=a+1;	 
+	unterkategorieAuswahl.options[a] = new Option("Borken");a=a+1;	    	 
+	unterkategorieAuswahl.options[a] = new Option("Coesfeld ");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Düren");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Ennepe-Ruhr-Kreis [Schwelm]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Euskirchen ");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Gütersloh");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Heinsberg");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Herford");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Hochsauerlandkreis [Meschede]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Höxter");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Kleve");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Lippe [Detmold]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Märkischer Kreis [Lüdenscheid]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Mettmann");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Minden-Lübbecke [Minden]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Oberbergischer Kreis [Gummersbach]");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Olpe");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Paderborn");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Recklinghausen");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Rheinisch-Bergischer-Kreis [Bergisch-Gladbach]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Rhein-Erft-Kreis [Bergheim]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Rhein-Kreis Neuss [Grevenbroich]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Rhein-Sieg-Kreis [Siegburg]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Siegen-Wittgenstein [Siegen]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Soest");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Steinfurt");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Unna");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Viersen");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Warendorf");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Wesel");a=a+1;
+	
+	
+	unterkategorieAuswahl.options[a] = new Option("Bielefeld");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Bonn");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Bochum");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Bottrop");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Düsseldorf");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Dortmund");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Duisburg");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Essen");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Gelsenkirchen");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Hagen [Westfalen]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Hamm [Westfalen]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Herne");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Köln");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Krefeld");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Leverkusen");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Mönchengladbach");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Mülheim [Ruhr]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Münster [Westfalen]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Oberhausen [Rheinland]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Remscheid");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Solingen");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Wuppertal");a=a+1;
+
+}
+//Mecklenburg-Vorpommern
+else if (kategorieAuswahl.options[kategorieAuswahl.selectedIndex].value == "10"){
+	a=0;			
+	unterkategorieAuswahl.options[a] = new Option("Bad Doberan");a=a+1;	 
+	unterkategorieAuswahl.options[a] = new Option("Demmin");a=a+1;	    	 
+	unterkategorieAuswahl.options[a] = new Option("Güstrow ");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Ludwigslust");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Mecklenburg-Strelitz [Neustrelitz]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Müritz [Waren]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Nordvorpommern [Grimmen]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Nordwestmecklenburg [Grevesmühlen]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Ostvorpommern [Anklam]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Parchim");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Rügen [Bergen]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Uecker-Randow [Pasewalk]");a=a+1;
+	
+	unterkategorieAuswahl.options[a] = new Option("Hansestadt Greifswald");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Hansestadt Rostock");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Hansestadt Stralsund");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Hansestadt Wismar");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Neubrandenburg");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Schwerin");a=a+1;
+
+}
+//Berlin
+else if (kategorieAuswahl.options[kategorieAuswahl.selectedIndex].value == "11"){	
+	a=0;		
+	unterkategorieAuswahl.options[a] = new Option("Berlin");a=a+1;	 
+}
+//Brandenburg
+else if (kategorieAuswahl.options[kategorieAuswahl.selectedIndex].value == "12"){
+	a=0;			
+	unterkategorieAuswahl.options[a] = new Option("Barnim [Eberswalde]");a=a+1;	 
+	unterkategorieAuswahl.options[a] = new Option("Dahme-Spreewald [Lübben]");a=a+1;	    	 
+	unterkategorieAuswahl.options[a] = new Option("Elbe-Elster [Herzberg]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Havelland [Rathenow]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Märkisch-Oderland [Seelow]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Oberhavel [Oranienburg]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Oberspreewald-Lausitz [Senftenberg]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Oder-Spree [Beeskow]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Ostprignitz-Ruppin [Neuruppin]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Potsdam-Mittelmark [Belzig]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Prignitz [Perleberg]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Spree-Neiße [Forst]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Teltow-Fläming [Luckenwalde]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Uckermark [Prenzlau]");a=a+1;
+	
+	
+	unterkategorieAuswahl.options[a] = new Option("Brandenburg");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Cottbus");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Frankfurt [Oder]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Potsdam");a=a+1;
+
+	
+}
+//Hessen
+else if (kategorieAuswahl.options[kategorieAuswahl.selectedIndex].value == "13"){
+	a=0;			
+	unterkategorieAuswahl.options[a] = new Option("Bergstraße [Heppenheim]");a=a+1;	 
+	unterkategorieAuswahl.options[a] = new Option("Darmstadt-Dieburg [Darmstadt]");a=a+1;	    	 
+	unterkategorieAuswahl.options[a] = new Option("Fulda");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Gießen");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Groß-Gerau");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Hersfeld-Rotenburg [Bad Hersfeld]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Hochtaunuskreis [Bad Homburg v. d. Höhe]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Kassel");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Lahn-Dill-Kreis [Wetzlar]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Limburg-Weilburg [Limburg]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Main-Kinzig-Kreis [Hanau]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Main-Taunus-Kreis [Hofheim / Ts.]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Marburg-Biedenkopf [Marburg-Cappel]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Neuwied");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Odenwaldkreis [Erbach / Odw.]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Offenbach [Dietzenbach]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Rheingau-Taunus-Kreis [Bad Schwalbach]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Schwalm-Eder-Kreis [Homberg / Efze]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Vogelsbergkreis [Lauterbach]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Waldeck-Frankenberg [Korbach]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Werra-Meißner-Kreis [Eschwege]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Wetteraukreis [Friedberg]");a=a+1;
+	
+	unterkategorieAuswahl.options[a] = new Option("Darmstadt");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Frankfurt am Main");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Wiesbaden");a=a+1;
+			
+}
+//Rheinlandpfalz
+else if (kategorieAuswahl.options[kategorieAuswahl.selectedIndex].value == "14"){	
+	a=0;	
+	unterkategorieAuswahl.options[a] = new Option("Ahrweiler [Bad Neuenahr-Ahrweiler]"); a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Altenkirchen ");a=a+1;	    	 
+	unterkategorieAuswahl.options[a] = new Option("Alzey-Worms [Alzey]");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Bad Dürkheim");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Bad Kreuznach");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Bernkastel-Wittlich [Wittlich]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Birkenfeld");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Bitburg-Prüm [Bitburg]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Cochem-Zell [Cochem]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Daun");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Donnersbergkreis [Kirchheimbolanden]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Daun");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Germersheim ");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Kaiserslautern");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Kusel");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Mainz-Bingen [Ingelheim]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Mayen-Koblenz [Koblenz]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Rhein-Hunsrück-Kreis [Simmern]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Rhein-Lahn-Kreis [Bad Ems]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Rhein-Pfalz-Kreis [Ludwigshafen]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Südliche Weinstraße [Landau]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Südwestpfalz [Pirmasens]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Trier-Saarburg [Trier]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Westerwaldkreis [Montabaur]");a=a+1;
+	
+	unterkategorieAuswahl.options[a] = new Option("Frankenthal [Pfalz]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Koblenz");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Landau [Pfalz]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Neustadt [Weinstraße]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Speyer");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Worms");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Zweibrücken");a=a+1;	
+	
+
+}
+//Saarland
+else if (kategorieAuswahl.options[kategorieAuswahl.selectedIndex].value == "15"){
+	a=0;		
+	unterkategorieAuswahl.options[a] = new Option("Merzig-Wadern [Merzig]");a=a+1;	 
+	unterkategorieAuswahl.options[a] = new Option("Neunkirchen [Ottweiler]");a=a+1;    	 
+	unterkategorieAuswahl.options[a] = new Option("Saarlouis");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Saarpfalz-Kreis [Homburg]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("St. Wendel");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Stadtverband Saarbrücken [Saarbrücken]");a=a+1;
+	
+	
+	unterkategorieAuswahl.options[a] = new Option("St.Ingbert");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Völklingen");a=a+1;
+	
+}
+//Baden-Würtemberg
+else if (kategorieAuswahl.options[kategorieAuswahl.selectedIndex].value == "16"){	
+	a=0;	
+	unterkategorieAuswahl.options[a] = new Option("Alb-Donau-Kreis [Ulm]");a=a+1;	 
+	unterkategorieAuswahl.options[a] = new Option("Biberach");a=a+1;;	    	 
+	unterkategorieAuswahl.options[a] = new Option("Böblingen");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Bodenseekreis [Friedrichshafen]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Breisgau-Hochschwarzwald [Freiburg]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Calw");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Emmendingen");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Enzkreis [Pforzheim]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Esslingen ");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Freudenstadt");a=a+1;		 
+	unterkategorieAuswahl.options[a] = new Option("Göppingen ");a=a+1;   	 
+	unterkategorieAuswahl.options[a] = new Option("Heidenheim");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Heilbronn");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Hohenlohekreis [Künzelsau]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Karlsruhe");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Konstanz");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Lörrach");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Ludwigsburg ");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Main-Tauber-Kreis [Tauberbischofsheim]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Neckar-Odenwald-Kreis [Mosbach]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Ortenaukreis [Offenburg]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Ostalbkreis [Aalen]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Rastatt");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Ravensburg");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Rems-Murr-Kreis [Waiblingen]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Reutlingen");a=a+1;	
+	unterkategorieAuswahl.options[a] = new Option("Rhein-Neckar-Kreis [Heidelberg]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Rottweil");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Schwäbisch-Hall");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Schwarzwald-Baar-Kreis [Villingen-Schwenningen]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Sigmaringen");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Tübingen");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Tuttlingen ");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Waldshut");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Zollernalbkreis [Balingen]");a=a+1;
+	
+	
+	unterkategorieAuswahl.options[a] = new Option("Baden-Baden");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Freiburg [Breisgau]");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Mannheim");a=a+1;
+	unterkategorieAuswahl.options[a] = new Option("Stuttgart");a=a+1;
+
+	 
+}
+}
+// ENDE
+ </script>
+';
+}
+
+
 
 ?>
