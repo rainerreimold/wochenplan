@@ -1,0 +1,79 @@
+replace into speisekomponente 
+                set 
+				bezeichnung 		= 'Bratkartoffeln',
+				beschreibung 		= '<p>Kartoffeln roh in Scheiben geschnitten, in Schweineschmalz oder gew&uuml;rfeltem Speck angebraten, Salz, Pfeffer, Paprika, K&uuml;mmel und etwas Majoran.klein gew&uuml;rfelte Zwiebeln hinzugeben und goldgelb braten.</p>
+'
+;
+SELECT speisekomponente_id as skid
+				FROM  `speisekomponente` 
+				ORDER BY eingetragen DESC 
+				LIMIT 1;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '1',
+						schnittform_id			= '12',
+						zubereitungsart_id 		= '1',
+						garmethode_id 			= '5',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '26',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '1',
+						schnittform_id			= '12',
+						zubereitungsart_id 		= '1',
+						garmethode_id 			= '5',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '26',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '31',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '10',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '26',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '1',
+						schnittform_id			= '12',
+						zubereitungsart_id 		= '1',
+						garmethode_id 			= '5',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '26',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '31',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '10',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '26',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '24',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '5',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '26',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;

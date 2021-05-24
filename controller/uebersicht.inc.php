@@ -108,9 +108,9 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
       
       echo "<h3>Rezepte</h3>";
       
-      echo '<a href="rezept/zeigeAlleRezepte">zeige alle Rezepte</a>';
+      echo '<a href="speise/zeigeAlleSpeisen">zeige alle Speisen</a>';
       echo "<br>";
-      echo '<a href="rezept/anlegen">Rezept anlegen</a>';  
+      echo '<a href="speise/anlegen">Speise anlegen</a>';  
       echo "<br>";
 	  /* echo '<a href="rezeptbestandteil/zeigeAlleRezepte">zeige alle Rezeptbestanteile</a>';
       echo "<br>";
@@ -153,9 +153,9 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
       echo "<br>";
 
 	  echo "<br>";
-	  echo "<h3>Schnittformen</h3>";
+	  echo "<h3>Schnittformenen</h3>";
       
-      echo '<a href="schnittform/zeigeAlleSchnittform">zeige alle Schnittformen</a>';
+      echo '<a href="schnittform/zeigeAlleSchnittformen">zeige alle Schnittformen</a>';
       echo "<br>";
 
       echo '<div class="clear"></div>';

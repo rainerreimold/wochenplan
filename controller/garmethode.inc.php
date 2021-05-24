@@ -1,7 +1,12 @@
 <?php
+/*******************************************************************
+  garmethoden
 
 
 
+
+
+********************************************************************/
 
 session_start();
 
@@ -136,7 +141,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 		include 'inc/footer.php';
 	}
 	
-    else if ( $action == 'details') {
+    else if ( $action == 'bearbeiten') {
      
        include 'inc/header.php';        
 
@@ -168,11 +173,87 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 
 		 echo "<input type=\"hidden\" name=\"garmethode_id\" value=\"".$id."\">";     
 
-         echo "<label>Garmethode: </label><input class=\"textform eyecatch\" type=\"text\" name=\"ingredienz\"  value=\"".$bezeichnung."\" required /><br>";
+         echo "<label>Garmethode: </label><input class=\"textform eyecatch\" type=\"text\" name=\"bezeichnung\"  value=\"".$bezeichnung."\" required /><br>";
          echo '</fieldset>';
          echo "<br>\n";
-
+		//echo "<div class='block'>".$beschreibung."</div>";
 		echo "<textarea id='editor' name='editor'>".$beschreibung."</textarea>";
+
+
+         echo ' <fieldset style="background:#cfcfcf; text-align:right; padding:10px; margin-right:10px;">
+              <button type="reset">Eingaben l&ouml;schen</button>
+              <button type="submit">Absenden</button>
+            </fieldset>
+          </form>
+       </div>
+       <br>
+       <br>
+       <br>
+       <br>';
+
+   echo '<script type="text/javascript">';
+   echo "	CKEDITOR.replace('editor');";
+   echo "</script>";
+			
+
+    }
+	    catch(PDOException $e){
+	        print $e->getMessage();
+	    }
+	    echo "</table>";
+	    $db=null;
+	    
+      
+      
+
+		if (DEBUG) {
+			echo "<br /><br />action= $action<br /><br />";
+			echo "<br /><br />id= $id<br /><br />";
+		}
+
+
+
+
+		include 'inc/footer.php';
+	}
+
+	else if ( $action == 'details') {
+     
+       include 'inc/header.php';        
+
+       try {
+		 
+		$sql = "Select garmethode_bezeichnung, beschreibung from garmethode where garmethode_id = ".$id;
+
+
+		if (DEBUG) echo "<br>".$sql."<br>";
+       
+	 
+          $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+          $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      
+          $rueckgabe = $db->query($sql);
+          
+		  $ergebnis = $rueckgabe->fetchAll(PDO::FETCH_ASSOC);
+	        
+		  $bezeichnung = $ergebnis[0]['garmethode_bezeichnung'];
+		  $beschreibung = $ergebnis[0]['beschreibung'];
+ 
+		 echo '<h1 style="background: orange;
+	             padding-left:120px;">Garmethode</h1>';
+         echo '<div class="form" style="width:750px; text-align:right; padding:10px; margin:10px auto auto auto;">
+
+         <form method="post" action="../eintragen" style="width:700px; padding:10px; margin:10px;">
+           <fieldset style="background:#cfcfcf; width:500px; text-align:right; padding:10px; margin-right:10px;">
+           <legend>'.$bezeichnung.'</legend>';  
+
+		 echo "<input type=\"hidden\" name=\"garmethode_id\" value=\"".$id."\">";     
+
+         echo "<label>Garmethode: </label><input class=\"textform eyecatch\" type=\"text\" name=\"bezeichnung\"  value=\"".$bezeichnung."\" required /><br>";
+         echo '</fieldset>';
+         echo "<br>\n";
+		echo "<div class='block'>".$beschreibung."</div>";
+		//echo "<textarea id='editor' name='editor'>".$beschreibung."</textarea>";
 
 
          echo ' <fieldset style="background:#cfcfcf; text-align:right; padding:10px; margin-right:10px;">

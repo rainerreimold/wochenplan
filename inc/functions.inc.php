@@ -160,15 +160,33 @@ function getSpeiseKomponenten() {
     
 }
 //getSaettigungsBeilage
+
+/******
+
+nach der Umstellung von Rezepte muss auch die Abfrage umgestellt werden.
+
+
+******/
+
+
 function getSaettigungsBeilage() {
 
 	try {
 
-		$sql = "SELECT speisekomponente_id, sk.bezeichnung as skb, m.bezeichnung as mb, m.einheit as me, 
-				z.zubereitungsart_bezeichnung as zb FROM `speisekomponente` sk, `menge` m, zubereitungsart z 
-				WHERE m.menge_id=sk.menge_id and z.zubereitungsart_id= sk.zubereitungsart_id 
-				and speisekategorie_id=1
-				order By sk.bezeichnung asc";
+
+		$sql = "SELECT distinct sk.bezeichnung as skb, 
+								sk.speisekomponente_id as id,
+								sk.beschreibung as skbesch,
+								sk.speisekomponente_hash as hash,
+								sk.speisekategorie_id as kat,
+								sk.aktiv as akt,
+								sk.loeschbar as loe
+					FROM 
+							`speisekomponente` sk
+					where 	sk.speisekomponente_id in 
+							(Select Max(speisekomponente_id) from `speisekomponente` group by initial_id)
+					and sk.speisekategorie_id=3
+					order By sk.bezeichnung asc";
         
         $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
         $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -186,7 +204,7 @@ function getSaettigungsBeilage() {
 
 			++$i;
 
-			$ret=$ret."<option value=\"".$inhalt['speisekomponente_id']."\">".$inhalt['skb']." - ".$inhalt['mb']." ".$inhalt['me'] ."</option>\n";
+			$ret=$ret."<option value=\"".$inhalt['id']."\">".$inhalt['skb']." - ".$inhalt['skbesch']."</option>\n";
 
 
 		  }
@@ -206,11 +224,20 @@ function getGemueseBeilage() {
 
 	try {
 
-		$sql = "SELECT speisekomponente_id, sk.bezeichnung as skb, m.bezeichnung as mb, m.einheit as me, 
-				z.zubereitungsart_bezeichnung as zb FROM `speisekomponente` sk, `menge` m, zubereitungsart z 
-				WHERE m.menge_id=sk.menge_id and z.zubereitungsart_id= sk.zubereitungsart_id 
-				and speisekategorie_id=2
-				order By sk.bezeichnung asc";
+			$sql = "SELECT distinct sk.bezeichnung as skb, 
+								sk.speisekomponente_id as id,
+								sk.beschreibung as skbesch,
+								sk.speisekomponente_hash as hash,
+								sk.speisekategorie_id as kat,
+								sk.aktiv as akt,
+								sk.loeschbar as loe
+					FROM 
+							`speisekomponente` sk
+					where 	sk.speisekomponente_id in 
+							(Select Max(speisekomponente_id) from `speisekomponente` group by initial_id)
+					and sk.speisekategorie_id=2
+					order By sk.bezeichnung asc";	
+
         $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
         $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
@@ -224,7 +251,7 @@ function getGemueseBeilage() {
 		if ($ergebnis) {
 		  foreach ( $ergebnis as $inhalt) {
 				
-			$ret=$ret."<option value=\"".$inhalt['speisekomponente_id']."\">".$inhalt['skb']." - ".$inhalt['mb']." ".$inhalt['me'] ."</option>\n";
+			$ret=$ret."<option value=\"".$inhalt['id']."\">".$inhalt['skb']." - ".$inhalt['skbesch']."</option>\n";
 
 
 		  }
@@ -247,11 +274,23 @@ function getHauptBeilage() {
 
 	try {
 
-		$sql = "SELECT speisekomponente_id, sk.bezeichnung as skb, m.bezeichnung as mb, m.einheit as me, 
-				z.zubereitungsart_bezeichnung as zb FROM `speisekomponente` sk, `menge` m, zubereitungsart z 
-				WHERE m.menge_id=sk.menge_id and z.zubereitungsart_id= sk.zubereitungsart_id 
-				and speisekategorie_id=3 or speisekategorie_id=7
-				order By sk.bezeichnung asc";
+		$sql = "SELECT distinct sk.bezeichnung as skb, 
+								sk.speisekomponente_id as id,
+								sk.beschreibung as skbesch,
+								sk.speisekomponente_hash as hash,
+								sk.speisekategorie_id as kat,
+								sk.aktiv as akt,
+								sk.loeschbar as loe
+					FROM 
+							`speisekomponente` sk
+					where 	sk.speisekomponente_id in 
+							(Select Max(speisekomponente_id) from `speisekomponente` group by initial_id)
+					and sk.speisekategorie_id=1
+					order By sk.bezeichnung asc";	
+
+
+
+
         $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
         $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
@@ -265,7 +304,7 @@ function getHauptBeilage() {
 		if ($ergebnis) {
 		  foreach ( $ergebnis as $inhalt) {
 				
-			$ret=$ret."<option value=\"".$inhalt['speisekomponente_id']."\">".$inhalt['skb']." - ".$inhalt['mb']." ".$inhalt['me'] ."</option>\n";
+			$ret=$ret."<option value=\"".$inhalt['id']."\">".$inhalt['skb']." - ".$inhalt['skbesch']."</option>\n";
 
 
 		  }
@@ -484,6 +523,14 @@ function getMengen() {
 }
 
 
+
+/*** Diese Funktion wird ersetzt durch die Funktion getLebensmittel 
+	 die ich zunächst nach dieser Funktion erstellen werde.
+
+	11.05.2021
+**/
+
+
  function getIngredienz() {
 
 	try {
@@ -519,6 +566,61 @@ function getMengen() {
     return "-1";
 
 }
+
+
+ function getLebensmittel( $kategorie = '' ) {
+
+
+	print "<br>Kategorie: $kategorie<br><br>";
+
+	$kat = $kategorie;
+
+	try {
+
+		// wenn $kategorie leer dann zeige alles 
+		if ( $kategorie == '' ) {
+			
+			$sql = "SELECT lebensmittel_id, bezeichnung, beschreibung FROM lebensmittel WHERE `lebensmittel_id` in (select max(lebensmittel_id) From lebensmittel group by initial_id ) 
+			     order By `bezeichnung` asc";
+				// print $sql;
+		}
+		else {
+
+			$sql = 'SELECT lebensmittel_id, bezeichnung, beschreibung FROM lebensmittel WHERE `kategorie`="'.$kat.'" and `lebensmittel_id` in (select max(lebensmittel_id) From lebensmittel group by initial_id ) 
+			     order By `bezeichnung` asc';			
+			//print $sql;
+	//die();
+		}
+		
+        $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+        $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $rueckgabe = $db->query($sql);
+        
+        $ergebnis = $rueckgabe->fetchAll(PDO::FETCH_ASSOC);
+					
+        $db=null;
+        $i=0;
+		$ret="";
+		if ($ergebnis) {
+		  foreach ( $ergebnis as $inhalt) {
+				
+			$ret=$ret."<option value=\"".$inhalt['lebensmittel_id']."\" title=\"".$inhalt['beschreibung'] ."\">".$inhalt['bezeichnung'] ."</option>\n";
+
+
+		  }
+		  return $ret;        
+        }
+
+    }
+
+    catch(PDOException $e){
+        print $e->getMessage();
+    }
+    return "-1";
+
+}
+
 
 // Speisekategorie
  function getSpeisekategorie() {
@@ -578,9 +680,11 @@ function getMengen() {
 		$ret="";
 		if ($ergebnis) {
 		  foreach ( $ergebnis as $inhalt) {
-				
-			$ret=$ret."<option value=\"".$inhalt['zubereitungsart_id']."\">".$inhalt['zubereitungsart_bezeichnung'] ."</option>\n";
-
+		
+			if ( $inhalt['zubereitungsart_id'] == 10)	
+				$ret=$ret."<option value=\"10\" selected>".$inhalt['zubereitungsart_bezeichnung'] ."</option>\n";
+			else
+				$ret=$ret."<option value=\"".$inhalt['zubereitungsart_id']."\">".$inhalt['zubereitungsart_bezeichnung'] ."</option>\n";
 
 		  }
 		  return $ret;        
@@ -596,8 +700,75 @@ function getMengen() {
 
 }
 
+// Garmethode
+
+ function getGarmethode() {
+
+	try {
+
+		$sql = "SELECT garmethode_id, garmethode_bezeichnung FROM garmethode WHERE 1";
+
+        $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+        $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $rueckgabe = $db->query($sql);
+        
+        $ergebnis = $rueckgabe->fetchAll(PDO::FETCH_ASSOC);
+					
+        $db=null;
+        $i=0;
+		$ret="";
+		if ($ergebnis) {
+		  foreach ( $ergebnis as $inhalt) {
+			if ($inhalt['garmethode_id'] == 19)	
+			  	$ret=$ret."<option value=\"19\" selected>".$inhalt['garmethode_bezeichnung'] ."</option>\n";
+			else 
+				$ret=$ret."<option value=\"".$inhalt['garmethode_id']."\">".$inhalt['garmethode_bezeichnung'] ."</option>\n";
+		  }
+		  return $ret;        
+        }
+    }
+    catch(PDOException $e){
+        print $e->getMessage();
+    }
+    return "-1";
+}
 
 
+// Schnittform
+
+ function getSchnittform() {
+
+	try {
+
+		$sql = "SELECT schnittform_id, schnittform_bezeichnung FROM schnittform WHERE 1";
+
+        $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+        $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $rueckgabe = $db->query($sql);
+        
+        $ergebnis = $rueckgabe->fetchAll(PDO::FETCH_ASSOC);
+					
+        $db=null;
+        $i=0;
+		$ret="";
+		if ($ergebnis) {
+		  foreach ( $ergebnis as $inhalt) {
+			
+			if ($inhalt['schnittform_id']==13)			
+				$ret=$ret."<option value=\"13\" selected>".$inhalt['schnittform_bezeichnung'] ."</option>\n";
+			else	
+				$ret=$ret."<option value=\"".$inhalt['schnittform_id']."\">".$inhalt['schnittform_bezeichnung'] ."</option>\n";
+		  }
+		  return $ret;        
+        }
+    }
+    catch(PDOException $e){
+        print $e->getMessage();
+    }
+    return "-1";
+}
 
 
 
@@ -802,6 +973,32 @@ function isRecipeExist( $rezept ) {
 
 }
 
+
+function isSpeiseExist( $rezept ) {
+
+	try {
+		$sql= "SELECT speise_id FROM `speise` WHERE bezeichnung=\"".$rezept."\";";
+
+     	$db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+        $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $rueckgabe = $db->query($sql);
+        
+        $ergebnis = $rueckgabe->fetchAll(PDO::FETCH_ASSOC);
+        $db=null;
+        
+        if ($ergebnis==null) return null;
+        	return $ergebnis[0]['speise_id'];
+    }
+
+    catch(PDOException $e){
+        print $e->getMessage();
+    }
+    return null;
+
+}
+
+
 function getLastRezeptId(  ) {
 
 	try {
@@ -848,6 +1045,54 @@ function setRezeptInitialId($rezeptId) {
         return -1;
         
     }
+
+// 27.05.21
+function getLastSpeiseId(  ) {
+
+	try {
+		$sql= "SELECT speise_id  FROM `speise` order by speise_id desc limit 1;";
+
+     	$db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+        $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $rueckgabe = $db->query($sql);
+        
+        $ergebnis = $rueckgabe->fetchAll(PDO::FETCH_ASSOC);
+        $db=null;
+        
+        if ($ergebnis==null) return null;
+        	return $ergebnis[0]['speise_id'];
+    }
+
+    catch(PDOException $e){
+        print $e->getMessage();
+    }
+    return null;
+
+}
+
+// 27.05.2021
+function setSpeiseInitialId($speiseId) {
+        
+        try {
+            
+            $sql = "update speise set initial_id=".$speiseId.", speise_hash = sha1(speise_id)  where speise_id=".$speiseId.";";
+        
+           // echo "<br>".$sql."<br>";
+            $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+            
+            $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $db->query($sql);
+        }
+        
+        catch(PDOException $e){
+            print $e->getMessage();
+            //die();
+        }
+        return -1;
+        
+    }
+
 
 
 

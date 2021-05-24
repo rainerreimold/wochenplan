@@ -1,0 +1,98 @@
+11.06.21
+
+
+--
+-- Tabellenstruktur für Tabelle `speisekomponentezaehler`
+--
+
+CREATE TABLE `speisekomponentezaehler` (
+  `spkomp_id` int(11) NOT NULL,
+  `speisekomponente_id` int(11) NOT NULL,
+  `speise_id` int(11) NOT NULL,
+  `letzterEintrag` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `zaehler` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Indizes der exportierten Tabellen
+--
+
+--
+-- Indizes für die Tabelle `speisekomponentezaehler`
+--
+ALTER TABLE `speisekomponentezaehler`
+  ADD PRIMARY KEY (`spkomp_id`),
+  ADD KEY `speise_ibfk_1` (`speise_id`),
+  ADD KEY `speisekomponente_ibfk_2` (`speisekomponente_id`);
+
+--
+-- AUTO_INCREMENT für exportierte Tabellen
+--
+
+--
+-- AUTO_INCREMENT für Tabelle `speisekomponentezaehler`
+--
+ALTER TABLE `speisekomponentezaehler`
+  MODIFY `spkomp_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Constraints der exportierten Tabellen
+--
+
+--
+-- Constraints der Tabelle `speisekomponentezaehler`
+--
+ALTER TABLE `speisekomponentezaehler`
+  ADD CONSTRAINT `speise_ibfk_1` FOREIGN KEY (`speise_id`) REFERENCES `speise` (`speise_id`),
+  ADD CONSTRAINT `speisekomponente_ibfk_2` FOREIGN KEY (`speisekomponente_id`) REFERENCES `speisekomponente` (`speisekomponente_id`);
+COMMIT;
+
+
+
+
+
+
+
+--
+-- Tabellenstruktur für Tabelle `speiseinplan`
+--
+
+CREATE TABLE `speiseinplan` (
+  `speiseinplan_id` int(11) NOT NULL,
+  `speise_id` int(11) NOT NULL,
+  `speiseplan_id` int(11) NOT NULL,
+  `zaehler` int(11) NOT NULL,
+  `letztereintrag` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Indizes der exportierten Tabellen
+--
+
+--
+-- Indizes für die Tabelle `speiseinplan`
+--
+ALTER TABLE `speiseinplan`
+  ADD PRIMARY KEY (`speiseinplan_id`),
+  ADD KEY `speisecounter_ibfk_1` (`speise_id`),
+  ADD KEY `speiseplancounter_ibfk_1` (`speiseplan_id`);
+
+--
+-- AUTO_INCREMENT für exportierte Tabellen
+--
+
+--
+-- AUTO_INCREMENT für Tabelle `speiseinplan`
+--
+ALTER TABLE `speiseinplan`
+  MODIFY `speiseinplan_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Constraints der exportierten Tabellen
+--
+
+--
+-- Constraints der Tabelle `speiseinplan`
+--
+ALTER TABLE `speiseinplan`
+  ADD CONSTRAINT `speisecounter_ibfk_1` FOREIGN KEY (`speise_id`) REFERENCES `speise` (`speise_id`),
+  ADD CONSTRAINT `speiseplancounter_ibfk_1` FOREIGN KEY (`speiseplan_id`) REFERENCES `wochenplan` (`wochenplan_id`);
+COMMIT;

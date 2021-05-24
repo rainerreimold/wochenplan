@@ -1,0 +1,34 @@
+::1
+
+
+	User Agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36
+
+	Request URI/wochenplan/speisekomponente/eintragen
+controller => speisekomponente
+action => eintragen
+bezeichnung => Schweineleber
+editor => <p>Schweineleber gebraten</p>
+
+lebensmittel => Array
+menge => Array
+einheit => Array
+schnittform => Array
+zubereitungsart => Array
+garmethode => Array
+::1
+
+
+	User Agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36
+
+	Request URI/wochenplan/speisekomponente/eintragen
+controller => speisekomponente
+action => eintragen
+bezeichnung => Gulasch
+editor => <p>Gulasch Halb und Halb (Rind und Schwein)&nbsp;</p>
+
+lebensmittel => Array
+menge => Array
+einheit => Array
+schnittform => Array
+zubereitungsart => Array
+garmethode => Array

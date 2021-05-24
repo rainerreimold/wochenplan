@@ -1,0 +1,448 @@
+replace into lebensmittel 
+					 set 
+						bezeichnung = 'Rinderkeule', 
+						beschreibung = '', 
+						kategorie =	'Fleisch',
+						sorte =	'Rind',
+						teil =	'Keule',
+						herkunft =	'Deutschland',
+						eigenschaft =	'festes Fleisch',
+						artikelnummer =	'';
+replace into lebensmittel 
+					 set 
+						bezeichnung = 'Rinderkeule', 
+						beschreibung = '', 
+						kategorie =	'Fleisch',
+						sorte =	'Rind',
+						teil =	'Keule',
+						herkunft =	'Deutschland',
+						eigenschaft =	'festes Fleisch',
+						artikelnummer =	'';
+replace into lebensmittel 
+					 set 
+						bezeichnung = 'Rinderkeule', 
+						beschreibung = '', 
+						kategorie =	'Fleisch',
+						sorte =	'Rind',
+						teil =	'Keule',
+						herkunft =	'Deutschland',
+						eigenschaft =	'festes Fleisch',
+						artikelnummer =	'300999';
+update lebensmittel set initial_id = lebensmittel_id, lebensmittel_hash = SHA1(lebensmittel_id) order by lebensmittel_id desc limit 1;
+replace into lebensmittel 
+					 set 
+						bezeichnung = 'Rinderkeule', 
+						beschreibung = '', 
+						kategorie =	'Fleisch',
+						sorte =	'Rind',
+						teil =	'Keule',
+						herkunft =	'Deutschland',
+						eigenschaft =	'festes Fleisch',
+						artikelnummer =	'300999';
+update lebensmittel set initial_id = lebensmittel_id, lebensmittel_hash = SHA1(lebensmittel_id) order by lebensmittel_id desc limit 1;
+replace into lebensmittel 
+					 set 
+						bezeichnung = 'Rinderkeule', 
+						beschreibung = '', 
+						kategorie =	'Fleisch',
+						sorte =	'Rind',
+						teil =	'Keule',
+						herkunft =	'Deutschland',
+						eigenschaft =	'festes Fleisch',
+						artikelnummer =	'300999';
+update lebensmittel set initial_id = lebensmittel_id, lebensmittel_hash = SHA1(lebensmittel_id) order by lebensmittel_id desc limit 1;
+replace into lebensmittel 
+					 set 
+						bezeichnung = 'Schweinekeule', 
+						beschreibung = '', 
+						kategorie =	'Fleisch',
+						sorte =	'Schwein',
+						teil =	'Keule',
+						herkunft =	'Deutschland',
+						eigenschaft =	'festes Fleisch',
+						artikelnummer =	'300998';
+update lebensmittel set initial_id = lebensmittel_id, lebensmittel_hash = SHA1(lebensmittel_id) order by lebensmittel_id desc limit 1;
+replace into lebensmittel 
+					 set 
+						bezeichnung = 'Schweineleber', 
+						beschreibung = '', 
+						kategorie =	'Fleisch',
+						sorte =	'Schwein',
+						teil =	'Leber',
+						herkunft =	'Deutschland',
+						eigenschaft =	'Innerei',
+						artikelnummer =	'300997';
+update lebensmittel set initial_id = lebensmittel_id, lebensmittel_hash = SHA1(lebensmittel_id) order by lebensmittel_id desc limit 1;
+replace into speisekomponente 
+                set 
+				bezeichnung 		= 'Schweineleber',
+				beschreibung 		= '<p>Schweineleber gebraten</p>
+'
+;
+SELECT speisekomponente_id as skid
+				FROM  `speisekomponente` 
+				ORDER BY eingetragen DESC 
+				LIMIT 1;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '49',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '1',
+						garmethode_id 			= '19',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '27',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '49',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '1',
+						garmethode_id 			= '19',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '27',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '24',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '5',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '27',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '49',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '1',
+						garmethode_id 			= '19',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '27',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '24',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '5',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '27',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '41',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '5',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '27',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into speisekomponente 
+                set 
+				bezeichnung 		= 'Gulasch',
+				beschreibung 		= '<p>Gulasch Halb und Halb (Rind und Schwein)&nbsp;</p>
+'
+;
+SELECT speisekomponente_id as skid
+				FROM  `speisekomponente` 
+				ORDER BY eingetragen DESC 
+				LIMIT 1;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '47',
+						schnittform_id			= '4',
+						zubereitungsart_id 		= '6',
+						garmethode_id 			= '8',
+						menge 					= '75',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '28',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '47',
+						schnittform_id			= '4',
+						zubereitungsart_id 		= '6',
+						garmethode_id 			= '8',
+						menge 					= '75',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '28',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '48',
+						schnittform_id			= '4',
+						zubereitungsart_id 		= '6',
+						garmethode_id 			= '8',
+						menge 					= '75',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '28',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '47',
+						schnittform_id			= '4',
+						zubereitungsart_id 		= '6',
+						garmethode_id 			= '8',
+						menge 					= '75',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '28',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '48',
+						schnittform_id			= '4',
+						zubereitungsart_id 		= '6',
+						garmethode_id 			= '8',
+						menge 					= '75',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '28',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '27',
+						schnittform_id			= '9',
+						zubereitungsart_id 		= '6',
+						garmethode_id 			= '8',
+						menge 					= '50',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '28',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '47',
+						schnittform_id			= '4',
+						zubereitungsart_id 		= '6',
+						garmethode_id 			= '8',
+						menge 					= '75',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '28',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '48',
+						schnittform_id			= '4',
+						zubereitungsart_id 		= '6',
+						garmethode_id 			= '8',
+						menge 					= '75',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '28',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '27',
+						schnittform_id			= '9',
+						zubereitungsart_id 		= '6',
+						garmethode_id 			= '8',
+						menge 					= '50',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '28',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '41',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '10',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '28',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '47',
+						schnittform_id			= '4',
+						zubereitungsart_id 		= '6',
+						garmethode_id 			= '8',
+						menge 					= '75',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '28',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '48',
+						schnittform_id			= '4',
+						zubereitungsart_id 		= '6',
+						garmethode_id 			= '8',
+						menge 					= '75',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '28',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '27',
+						schnittform_id			= '9',
+						zubereitungsart_id 		= '6',
+						garmethode_id 			= '8',
+						menge 					= '50',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '28',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '41',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '10',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '28',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '24',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '5',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '28',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '47',
+						schnittform_id			= '4',
+						zubereitungsart_id 		= '6',
+						garmethode_id 			= '8',
+						menge 					= '75',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '28',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '48',
+						schnittform_id			= '4',
+						zubereitungsart_id 		= '6',
+						garmethode_id 			= '8',
+						menge 					= '75',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '28',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '27',
+						schnittform_id			= '9',
+						zubereitungsart_id 		= '6',
+						garmethode_id 			= '8',
+						menge 					= '50',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '28',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '41',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '10',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '28',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '24',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '5',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '28',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '35',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '10',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '28',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lebensmittel 
+					 set 
+						bezeichnung = 'Öl, Sonnenblumen', 
+						beschreibung = '<p>Soonenblumen&ouml;l</p>
+', 
+						kategorie =	'Öle & Fette',
+						sorte =	'Sonnenblumen',
+						teil =	'Kerne gepresst',
+						herkunft =	'Deutschland',
+						eigenschaft =	'typisch',
+						artikelnummer =	'300999';
+update lebensmittel set initial_id = lebensmittel_id, lebensmittel_hash = SHA1(lebensmittel_id) order by lebensmittel_id desc limit 1;
+replace into lebensmittel 
+					 set 
+						bezeichnung = 'Mehl, Weizen', 
+						beschreibung = '<p>Weizenmehl</p>
+', 
+						kategorie =	'Backzutat',
+						sorte =	'Weizen',
+						teil =	'Ähre',
+						herkunft =	'Deutschland',
+						eigenschaft =	'',
+						artikelnummer =	'300999';
+update lebensmittel set initial_id = lebensmittel_id, lebensmittel_hash = SHA1(lebensmittel_id) order by lebensmittel_id desc limit 1;
+replace into lebensmittel 
+					 set 
+						bezeichnung = 'Semmelmehl', 
+						beschreibung = '<p>auch Semmelbr&ouml;sel</p>
+', 
+						kategorie =	'Backzutat',
+						sorte =	'Weizenbrötchen',
+						teil =	'komplett',
+						herkunft =	'Deutschland',
+						eigenschaft =	'kleingerieben',
+						artikelnummer =	'300995';
+update lebensmittel set initial_id = lebensmittel_id, lebensmittel_hash = SHA1(lebensmittel_id) order by lebensmittel_id desc limit 1;
+replace into lebensmittel 
+					 set 
+						bezeichnung = 'Butter', 
+						beschreibung = '', 
+						kategorie =	'Öle & Fette',
+						sorte =	'Butter',
+						teil =	'Komplett',
+						herkunft =	'Deutschland',
+						eigenschaft =	'Kuhmilch',
+						artikelnummer =	'300993';
+update lebensmittel set initial_id = lebensmittel_id, lebensmittel_hash = SHA1(lebensmittel_id) order by lebensmittel_id desc limit 1;

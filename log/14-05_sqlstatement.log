@@ -1,0 +1,350 @@
+replace into speisekomponente 
+                set 
+				bezeichnung 		= 'Butterbohnen',
+				beschreibung 		= ''
+;
+SELECT speisekomponente_id as skid
+				FROM  `speisekomponente` 
+				ORDER BY eingetragen DESC 
+				LIMIT 1;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '4',
+						schnittform_id			= '0',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '22',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '4',
+						schnittform_id			= '0',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '22',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '31',
+						schnittform_id			= '0',
+						zubereitungsart_id 		= '0',
+						garmethode_id 			= '0',
+						menge 					= '5',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '22',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '4',
+						schnittform_id			= '0',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '22',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '31',
+						schnittform_id			= '0',
+						zubereitungsart_id 		= '0',
+						garmethode_id 			= '0',
+						menge 					= '5',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '22',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '24',
+						schnittform_id			= '0',
+						zubereitungsart_id 		= '0',
+						garmethode_id 			= '0',
+						menge 					= '5',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '22',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+Fehler<br>SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rezept`.`lm_sk_verbindung`, CONSTRAINT `lm_sk_verbindung_ibfk_4` FOREIGN KEY (`schnittform_id`) REFERENCES `schnittform` (`schnittform_id`) ON DELETE NO ACTION ON UPDATE NO ACTION);
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '4',
+						schnittform_id			= '0',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '22',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '31',
+						schnittform_id			= '0',
+						zubereitungsart_id 		= '0',
+						garmethode_id 			= '0',
+						menge 					= '5',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '22',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '24',
+						schnittform_id			= '0',
+						zubereitungsart_id 		= '0',
+						garmethode_id 			= '0',
+						menge 					= '5',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '22',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into speisekomponente 
+                set 
+				bezeichnung 		= 'Butterbohnen',
+				beschreibung 		= ''
+;
+SELECT speisekomponente_id as skid
+				FROM  `speisekomponente` 
+				ORDER BY eingetragen DESC 
+				LIMIT 1;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '4',
+						schnittform_id			= '0',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '23',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '4',
+						schnittform_id			= '0',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '23',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '31',
+						schnittform_id			= '0',
+						zubereitungsart_id 		= '0',
+						garmethode_id 			= '0',
+						menge 					= '5',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '23',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '4',
+						schnittform_id			= '0',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '23',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '31',
+						schnittform_id			= '0',
+						zubereitungsart_id 		= '0',
+						garmethode_id 			= '0',
+						menge 					= '5',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '23',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '24',
+						schnittform_id			= '0',
+						zubereitungsart_id 		= '0',
+						garmethode_id 			= '0',
+						menge 					= '5',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '23',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+Fehler<br>SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rezept`.`lm_sk_verbindung`, CONSTRAINT `lm_sk_verbindung_ibfk_4` FOREIGN KEY (`schnittform_id`) REFERENCES `schnittform` (`schnittform_id`) ON DELETE NO ACTION ON UPDATE NO ACTION);
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '4',
+						schnittform_id			= '0',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '23',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '31',
+						schnittform_id			= '0',
+						zubereitungsart_id 		= '0',
+						garmethode_id 			= '0',
+						menge 					= '5',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '23',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '24',
+						schnittform_id			= '0',
+						zubereitungsart_id 		= '0',
+						garmethode_id 			= '0',
+						menge 					= '5',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '23',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into speisekomponente 
+                set 
+				bezeichnung 		= 'Wirsingkohl',
+				beschreibung 		= '<p>Wirsingkohlgem&uuml;se</p>
+'
+;
+SELECT speisekomponente_id as skid
+				FROM  `speisekomponente` 
+				ORDER BY eingetragen DESC 
+				LIMIT 1;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '7',
+						schnittform_id			= '5',
+						zubereitungsart_id 		= '6',
+						garmethode_id 			= '8',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '24',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '7',
+						schnittform_id			= '5',
+						zubereitungsart_id 		= '6',
+						garmethode_id 			= '8',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '24',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '31',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '10',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '24',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '7',
+						schnittform_id			= '5',
+						zubereitungsart_id 		= '6',
+						garmethode_id 			= '8',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '24',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '31',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '10',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '24',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '28',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '10',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '24',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into speisekomponente 
+                set 
+				bezeichnung 		= 'Salzkartoffeln',
+				beschreibung 		= '<p>Salzkartoffeln</p>
+'
+;
+SELECT speisekomponente_id as skid
+				FROM  `speisekomponente` 
+				ORDER BY eingetragen DESC 
+				LIMIT 1;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '1',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '2',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '25',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '1',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '2',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '25',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '31',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '20',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '25',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;

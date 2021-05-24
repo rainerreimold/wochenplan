@@ -1,0 +1,82 @@
+127.0.0.1
+
+
+	User Agent Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:88.0) Gecko/20100101 Firefox/88.0
+
+	Request URI/wochenplan/speisekomponente/eintragen
+controller => speisekomponente
+action => eintragen
+bezeichnung => Butterbohnen
+editor => 
+lebensmittel => Array
+menge => Array
+einheit => Array
+schnittform => Array
+zubereitungsart => Array
+garmethode => Array
+127.0.0.1
+
+
+	User Agent Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:88.0) Gecko/20100101 Firefox/88.0
+
+	Request URI/wochenplan/speisekomponente/eintragen
+controller => speisekomponente
+action => eintragen
+bezeichnung => Butterbohnen
+editor => 
+lebensmittel => Array
+menge => Array
+einheit => Array
+schnittform => Array
+zubereitungsart => Array
+garmethode => Array
+127.0.0.1
+
+
+	User Agent Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:88.0) Gecko/20100101 Firefox/88.0
+
+	Request URI/wochenplan/speisekomponente/eintragen
+controller => speisekomponente
+action => eintragen
+bezeichnung => Butterbohnen
+editor => 
+lebensmittel => Array
+menge => Array
+einheit => Array
+schnittform => Array
+zubereitungsart => Array
+garmethode => Array
+127.0.0.1
+
+
+	User Agent Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:88.0) Gecko/20100101 Firefox/88.0
+
+	Request URI/wochenplan/speisekomponente/eintragen
+controller => speisekomponente
+action => eintragen
+bezeichnung => Wirsingkohl
+editor => <p>Wirsingkohlgem&uuml;se</p>
+
+lebensmittel => Array
+menge => Array
+einheit => Array
+schnittform => Array
+zubereitungsart => Array
+garmethode => Array
+127.0.0.1
+
+
+	User Agent Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:88.0) Gecko/20100101 Firefox/88.0
+
+	Request URI/wochenplan/speisekomponente/eintragen
+controller => speisekomponente
+action => eintragen
+bezeichnung => Salzkartoffeln
+editor => <p>Salzkartoffeln</p>
+
+lebensmittel => Array
+menge => Array
+einheit => Array
+schnittform => Array
+zubereitungsart => Array
+garmethode => Array

@@ -1,4 +1,4 @@
-<?php
+                                                                                                                                       <?php
 /**
 Die Datei entsteht, da ich mich mit den Ingredenzien "verzettelt" habe.
 
@@ -83,30 +83,53 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 
 		}
 
-	/** Eintrag sollte gelöscht werden können 
-		03.05.20 
+	/** Die Funktion soll erweitert werden um eine OnchangeSelect Variante
+	 zur EIngrenzung der Lebensmittel auf Kategorien 
+			(Es sollten die Kategorien der Lebensmittel auch beschränkt werden, da eine Sortierung sonnst erschwert wird)
+		Gemüse/Gewürze
 
 	*/
 
     else if ( $action == 'zeigeAlleLebensmittel') {
         
         include 'inc/header.php';
+
+
+		echo '<form method="get" action="zeigeAlleLebensmittel"><label>Auswahl: </label>';
+		echo ' <select class="produktform" name="id" size="1" onchange="this.form.submit()">';
+		echo '  <option value="default" selected>Bitte ausw&auml;hlen</option>';
+		echo '  <option value="-1">nicht zugeordnet</option>';
+		echo '  <option value="Gem&uuml;se">Gem&uuml;se</option>';
+		echo '  <option value="S&auml;ttigungsbeilage">S&auml;ttigungsbeilage</option>';
+		echo '  <option value="Fleisch">Fleisch</option>';
+		echo '  <option value="&Ouml;le & Fette">&Ouml;le & Fette</option>';
+		echo '  <option value="Fisch">Fisch</option>';
+		echo '  <option value="Eier">Eier</option>';
+		echo '  <option value="Gew&uuml;rz">Gew&uuml;rze</option>';
+		echo ' </select>';
+		echo '</form>';
+		
+		echo "<br><br>".$id."<br><br";		
+
 	    try {
 		
-               //   
-		//$sql = "SELECT Distinct `lebensmittel_id`,`lebensmittel_hash`, `bezeichnung`,`kategorie`, `artikelnummer`, `sorte`, `teil`, `eigenschaft`, `herkunft`, `aktiv`, `loeschbar` FROM `lebensmittel` where 1 order By `bezeichnung` asc";
-		$sql = "SELECT Distinct `lebensmittel_id`,`lebensmittel_hash`, `bezeichnung`,`kategorie`, `artikelnummer`, `sorte`, `teil`, `eigenschaft`, `herkunft`, `aktiv`, `loeschbar` FROM `lebensmittel` 
+        	if ( $id == '' Or $id == '-1' ) { 
+				$sql = "SELECT Distinct `lebensmittel_id`,`lebensmittel_hash`, `bezeichnung`,`kategorie`, `artikelnummer`, `sorte`, `teil`, `eigenschaft`, `herkunft`, `aktiv`, `loeschbar` FROM `lebensmittel` 
     			where 
     			`lebensmittel_id` in (select max(lebensmittel_id) From lebensmittel group by initial_id ) 
 			     order By `bezeichnung` asc";
+			} else {
+
+				$sql = "SELECT Distinct `lebensmittel_id`,`lebensmittel_hash`, `bezeichnung`,`kategorie`, `artikelnummer`, `sorte`, `teil`, `eigenschaft`, `herkunft`, `aktiv`, `loeschbar` FROM `lebensmittel` 
+    			where 
+    			`lebensmittel_id` in (select max(lebensmittel_id) From lebensmittel group by initial_id ) 
+				and kategorie = '".$id."'
+			     order By `bezeichnung` asc";
+			}
+	
 
 
-
-
-
-
-
-		if (DEBUG) echo "<br>".$sql."<br>";
+	      if (DEBUG) echo "<br>".$sql."<br>";
        
 	 
           $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
@@ -328,7 +351,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 		 echo '<label>Teil: </label><input class="textform eyecatch" type="text" name="teil"   /><br>';
 	     echo '<label>Herkunft: </label><input class="textform eyecatch" type="text" name="herkunft"   /><br>';
 		 echo '<label>Eigenschaft: </label><input class="textform eyecatch" type="text" name="eigenschaft"  /><br>';		
-		 echo '<label>Artikelnummer: </label><input class="textform eyecatch" type="text" name="artikelnummer"  /><br>';
+		 echo '<label>Artikelnummer: </label><input class="textform eyecatch" type="text" name="artikelnummer"  value="300999" /><br>';
 		 echo '</fieldset>';
 
          echo ' <fieldset style="text-align:right; width:90%;padding:10px; margin-right:10px;">
@@ -378,6 +401,11 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 
 	else if ( $action == 'eintragen') {
 
+	
+     require_once './class/Log.classes.php';
+	 $oLog = new Log();
+
+
      
      $lebensmittel    = $_REQUEST['lebensmittel'];
 	 $beschreibung    = $_REQUEST['editor'];
@@ -418,6 +446,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 
 
           	print $sql."<br>";
+			$oLog->writeSqlLog($sql);	
 		  	$db->beginTransaction();          
 
 		  	$db->query($sql);
@@ -430,6 +459,9 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 			}	
 
 			print $sql."<br>";
+			$oLog->writeSqlLog($sql);	
+
+
 			$db->query($sql);
 			//$sql="update lebensmittel set lebensmittel_hash = SHA1(lebensmittel_id) order by lebensmittel_id desc limit 1";		
 		  	//$db->query($sql);
