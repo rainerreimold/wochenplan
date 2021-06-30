@@ -1,0 +1,243 @@
+replace into speisekomponente 
+                set 
+				bezeichnung 		= 'Kartoffelsuppe',
+				beschreibung 		= '<p>Kartoffelsuppe&nbsp;</p>
+',
+			    speisekategorie     = '4'
+;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '1',
+						schnittform_id			= '7',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '100',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+Fehler<br>SQLSTATE[HY000]: General error: 1366 Incorrect integer value: '' for column 'speisekomponente_id' at row 1;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '1',
+						schnittform_id			= '7',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '100',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into speisekomponente 
+                set 
+				bezeichnung 		= 'Kartoffelsuppe',
+				beschreibung 		= '<p>Kartoffelsuppe&nbsp;</p>
+',
+			    speisekategorie_id     = '4'
+;
+SELECT speisekomponente_id as skid
+				FROM  `speisekomponente` 
+				ORDER BY eingetragen DESC 
+				LIMIT 1;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '1',
+						schnittform_id			= '7',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '100',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '29',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+Fehler<br>SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rezept`.`lm_sk_verbindung`, CONSTRAINT `lm_sk_verbindung_ibfk_7` FOREIGN KEY (`speisekomponente_id`) REFERENCES `speisekomponente` (`speisekomponente_id`));
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '1',
+						schnittform_id			= '7',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '100',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '29',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into speisekomponente 
+                set 
+				bezeichnung 		= 'Kartoffelsuppe',
+				beschreibung 		= '<p>Kartoffelsuppe&nbsp;</p>
+',
+			    speisekategorie_id     = '4'
+;
+SELECT speisekomponente_id as skid
+				FROM  `speisekomponente` 
+				ORDER BY eingetragen DESC 
+				LIMIT 1;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '1',
+						schnittform_id			= '7',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '100',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '30',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+Fehler<br>SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rezept`.`lm_sk_verbindung`, CONSTRAINT `lm_sk_verbindung_ibfk_7` FOREIGN KEY (`speisekomponente_id`) REFERENCES `speisekomponente` (`speisekomponente_id`) ON DELETE NO ACTION ON UPDATE NO ACT);
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '1',
+						schnittform_id			= '7',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '100',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '30',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into speisekomponente 
+                set 
+				bezeichnung 		= 'Kartoffelsuppe',
+				beschreibung 		= '<p>Kartoffelsuppe&nbsp;</p>
+',
+			    speisekategorie_id     = '4'
+;
+SELECT speisekomponente_id as skid
+				FROM  `speisekomponente` 
+				ORDER BY eingetragen DESC 
+				LIMIT 1;
+update speisekomponente SET `initial_id` = '31', `speisekomponente_hash` = SHA1('31');
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '1',
+						schnittform_id			= '7',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '100',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '31',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '1',
+						schnittform_id			= '7',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '100',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '31',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '2',
+						schnittform_id			= '12',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '50',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '31',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '1',
+						schnittform_id			= '7',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '100',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '31',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '2',
+						schnittform_id			= '12',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '50',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '31',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '40',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '5',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '31',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '1',
+						schnittform_id			= '7',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '100',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '31',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '2',
+						schnittform_id			= '12',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '50',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '31',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '40',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '5',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '31',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '41',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '5',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '31',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lebensmittel 
+					 set 
+						bezeichnung = 'Graupen', 
+						beschreibung = '<p>Graupen - das hei&szlig;t Gerste - sind sowohl Kernbestandteil der Graupensuppe, als auch als S&auml;ttigungsbeilage oder auch vegane Frikadellen bzw. Vegieburger denkbar.<br />
+Im Handel sind 3 Gr&ouml;&szlig;en erh&auml;ltlich. Fein, mittel und grob, letztere sind auch als Kalbsz&auml;hne bekannt.</p>
+', 
+						kategorie =	'Sättigungsbeilage',
+						sorte =	'Gerste',
+						teil =	'Korn',
+						herkunft =	'Deutschland',
+						eigenschaft =	'typisch',
+						artikelnummer =	'70043';
+update lebensmittel set initial_id = lebensmittel_id, lebensmittel_hash = SHA1(lebensmittel_id) order by lebensmittel_id desc limit 1;

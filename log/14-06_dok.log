@@ -1,0 +1,82 @@
+::1
+
+
+	User Agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41
+
+	Request URI/wochenplan/speisekomponente/eintragen
+controller => speisekomponente
+action => eintragen
+bezeichnung => Kartoffelsuppe
+speisekategorie => 4
+editor => <p>Kartoffelsuppe&nbsp;</p>
+
+lebensmittel => Array
+menge => Array
+einheit => Array
+schnittform => Array
+zubereitungsart => Array
+garmethode => Array
+::1
+
+
+	User Agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41
+
+	Request URI/wochenplan/speisekomponente/eintragen
+11111111111::1
+
+
+	User Agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41
+
+	Request URI/wochenplan/speisekomponente/eintragen
+s:31:"controller => speisekomponente
+";s:20:"action => eintragen
+";s:30:"bezeichnung => Kartoffelsuppe
+";s:21:"speisekategorie => 4
+";s:40:"editor => <p>Kartoffelsuppe&nbsp;</p>
+
+";s:22:"lebensmittel => Array
+";s:15:"menge => Array
+";s:17:"einheit => Array
+";s:21:"schnittform => Array
+";s:25:"zubereitungsart => Array
+";s:20:"garmethode => Array
+";::1
+
+
+	User Agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41
+
+	Request URI/wochenplan/speisekomponente/eintragen
+Request eingelesen.
+Request eingelesen.
+::1
+
+
+	User Agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41
+
+	Request URI/wochenplan/speisekomponente/eintragen
+Request eingelesen.
+Request eingelesen.
+::1
+
+
+	User Agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41
+
+	Request URI/wochenplan/speisekomponente/eintragen
+Request eingelesen.
+Request eingelesen.
+::1
+
+
+	User Agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41
+
+	Request URI/wochenplan/speisekomponente/eintragen
+Request eingelesen.
+Request eingelesen.
+::1
+
+
+	User Agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.41
+
+	Request URI/wochenplan/speisekomponente/eintragen
+Request eingelesen.
+Request eingelesen.

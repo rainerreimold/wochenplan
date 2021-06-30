@@ -327,11 +327,20 @@ function getSuppen() {
 
 	try {
 
-		$sql = "SELECT speisekomponente_id, sk.bezeichnung as skb, m.bezeichnung as mb, m.einheit as me, 
-				z.zubereitungsart_bezeichnung as zb FROM `speisekomponente` sk, `menge` m, zubereitungsart z 
-				WHERE m.menge_id=sk.menge_id and z.zubereitungsart_id= sk.zubereitungsart_id 
-				and speisekategorie_id=4 
-				order By sk.bezeichnung asc";
+				$sql = "SELECT distinct sk.bezeichnung as skb, 
+								sk.speisekomponente_id as id,
+								sk.beschreibung as skbesch,
+								sk.speisekomponente_hash as hash,
+								sk.speisekategorie_id as kat,
+								sk.aktiv as akt,
+								sk.loeschbar as loe
+					FROM 
+							`speisekomponente` sk
+					where 	sk.speisekomponente_id in 
+							(Select Max(speisekomponente_id) from `speisekomponente` group by initial_id)
+					and sk.speisekategorie_id=4
+					order By sk.bezeichnung asc";	
+
         $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
         $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
@@ -345,7 +354,7 @@ function getSuppen() {
 		if ($ergebnis) {
 		  foreach ( $ergebnis as $inhalt) {
 				
-			$ret=$ret."<option value=\"".$inhalt['speisekomponente_id']."\">".$inhalt['skb']." - ".$inhalt['mb']." ".$inhalt['me'] ."</option>\n";
+			$ret=$ret."<option value=\"".$inhalt['id']."\">".$inhalt['skb']." - ".$inhalt['skbesch']."</option>\n";
 
 
 		  }

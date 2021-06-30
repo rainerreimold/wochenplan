@@ -24,20 +24,25 @@ public function __construct() {}
 
 /* Hier soll das Schreiben in die MYSQL DB erfolgen */
 
-public function writeLetzteAktivitaet ( $bezeichnung="", $beschreibung="", $nutzer_id=1, $nutzername="Rainer", $projekt_id=1, $projektname="todo")
+public function writeLetzteAktivitaet ( $bezeichnung="", $beschreibung="", $nutzer_id=1, $nutzername="Rainer", $projekt_id=3, $projektname="wochenplan")
 {
+
+$cBezeichnung  = htmlspecialchars($bezeichnung);
+$cBeschreibung = htmlspecialchars($beschreibung);
+$cNutzername   = htmlspecialchars($nutzername);
+$cProjektname  = htmlspecialchars($projektname);
+
 
  try {
 		  
-		     $sql = "replace into letzteaktivitaet 
+		      $sql = "replace into letzteaktivitaet 
                 set 
-				letzteaktivitaet_bezeichnung 		= '".$bezeichnung."',
-				letzteaktivitaet_beschreibung 		= '".$beschreibung."',
+				letzteaktivitaet_bezeichnung 		= '".$cBezeichnung."',
+				letzteaktivitaet_beschreibung 		= '".$cBeschreibung."',
 				nutzer_id							= '".$nutzer_id."',
-				nutzername							= '".$nutzername."',
+				nutzername							= '".$cNutzername."',
 				projekt_id							= '".$projekt_id."',
-				projektname							= '".$projektname."'
-			";	
+				projektname							= '".$cProjektname."'";		
 
 			//$oLog = new Log();
 			//$oLog->writeSqlLog($sql);	
@@ -56,9 +61,9 @@ public function writeLetzteAktivitaet ( $bezeichnung="", $beschreibung="", $nutz
 		 	$db->rollBack();
             print "<br>".$e->getMessage();
          }
-		print "<br>";
-		print $sql;
-		die();
+		//print "<br>";
+		//print $sql;
+		//die();
 	
 
 }

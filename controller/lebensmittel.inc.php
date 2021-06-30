@@ -48,7 +48,8 @@ $_SESSION['start'] = isset($_SESSION['start'])?$_SESSION['start']:false;
 
 static $db;
 
-
+require_once './class/Log.classes.php';
+require_once './class/LetzteAktivitaet.class.php';
 
 
 function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
@@ -139,7 +140,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
           
 		  $ergebnis = $rueckgabe->fetchAll(PDO::FETCH_ASSOC);
 	        
-	        echo '<h3>Lebensmittel f&uuml;r Rezepte</h3>';
+	        echo '<h3>Lebensmittel f&uuml;r Speisen</h3>';
 	        
 	        echo "<table  style=\"background:#777;padding:4px;border:1px;\"   cellpadding=\"6\" cellspacing=\"1\">";
 	        echo '<tr style="padding:8px;">';
@@ -407,10 +408,10 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 
 
      
-     $lebensmittel    = $_REQUEST['lebensmittel'];
-	 $beschreibung    = $_REQUEST['editor'];
+     $lebensmittel    = htmlspecialchars($_REQUEST['lebensmittel']);
+	 $beschreibung    = htmlspecialchars($_REQUEST['editor']);
 	 $lebensmittel_id = isset($_REQUEST['lebensmittel_id'])?$_REQUEST['lebensmittel_id']:null;
-	 $kategorie       = isset($_REQUEST['kategorie'])?$_REQUEST['kategorie']:null;
+	 $kategorie       = isset($_REQUEST['kategorie'])?htmlspecialchars($_REQUEST['kategorie']):null;
 	 $sorte           = isset($_REQUEST['sorte'])?$_REQUEST['sorte']:null;
 	 $teil            = isset($_REQUEST['teil'])?$_REQUEST['teil']:null;
 	 $eigenschaft     = isset($_REQUEST['eigenschaft'])?$_REQUEST['eigenschaft']:null;
@@ -497,12 +498,14 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
             $db->rollBack();  
 			print "<br>".$e->getMessage();
           }
-
-
-			
-        
+       
           //die();
           
+		   $oLAkt = new LetzteAktivitaet();
+		   $string = "Es wurde der Eintrag: ".$lebensmittel." hinzugefügt.";	
+		   $beschreib = htmlspecialchars($string);
+
+		   $oLAkt -> writeLetzteAktivitaet( "wochenplan - Lebensmittel eingetragen", $beschreib, 1, "Rainer", 1, "wochenplan");	
 
           header('location:../uebersicht');
 
@@ -534,6 +537,11 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
               print "<br>".$e->getMessage();
           }
          //die();
+
+		   $oLAkt = new LetzteAktivitaet();
+		   $oLAkt -> writeLetzteAktivitaet( "wochenplan - Lebensmittel aktiv", "Der Eintrag: ".$lebensmittel." wurde aktiviert bzw. deaktiviert.", 1, "Rainer", 1, "todo");	
+
+
         header('location:../zeigeAlleLebensmittel') ;
 
 	}
@@ -562,6 +570,11 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
               print "<br>".$e->getMessage();
           }
          //die();
+		
+		 $oLAkt = new LetzteAktivitaet();
+		 $oLAkt -> writeLetzteAktivitaet( "wochenplan - Lebensmittel loeschbar", "Der Eintrag: ".$lebensmittel." wurde auf (nicht)loeschbar gesetzt.", 1, "Rainer", 1, "todo");	
+
+
         header('location:../zeigeAlleLebensmittel') ;
 
 	}

@@ -28,7 +28,7 @@ session_start();
 
 
 require_once './inc/global_config.inc.php';
-$_SESSION['title'] = 'Speisen - Erstellung von INgredenzien';
+$_SESSION['title'] = 'Speisen - Erstellung von Speisen';
 $_SESSION['start'] = isset($_SESSION['start'])?$_SESSION['start']:false;
 
 
@@ -80,14 +80,8 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
       
         
        try {
-		
-   		$sql = "SELECT 	rt.rezept_id as rid, 
-					   	rt.rezeptteil_id as rtid, 
-					 	rt.bezeichnung as rtb, 
-						rez.bezeichnung as rb, 
-						rez.aktiv as aktiv,
-						rez.loeschbar as loeschbar
-					FROM `rezeptteil` rt, rezept rez WHERE rt.rezept_id=rez.rezept_id group by rt.rezept_id";
+		// ermittle die jeweilige Speise_id und die bezeichnung
+   		$sql = "select speise_id, bezeichnung, aktiv, loeschbar from speise where aktiv=1 and loeschbar=0;";
 
 		if (DEBUG) echo "<br>".$sql."<br>";
        
@@ -98,45 +92,60 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
           $rueckgabe = $db->query($sql);
           
 		  $ergebnis = $rueckgabe->fetchAll(PDO::FETCH_ASSOC);
-	        
-	        
-	        
-	        echo "<table  style=\"background:#777;padding:4px;border:1px;\"   cellpadding=\"6\" cellspacing=\"1\">";
-	        echo '<tr style="padding:8px;"><th colspan=3 style="font-family: Fira ;color:#ddd">Speisekomponenten f&uuml;r Rezepte</th></tr>';
-	        echo "<tr  style=\"padding:8px;\"><td style=\"background:darkgrey;a color:orange;width:350px;\" class=\"odd\">
-            Rezept
-            </td>
-            <td style=\"background:darkgrey;a color:orange;width:350px;\" class=\"odd\">Rezeptbestandteil</td>
-		    <td style=\"background:darkgrey;a color:orange;width:80px;\" class=\"odd\">   </td>
-			<td style=\"background:darkgrey;a color:orange;width:20px;\" class=\"odd\">A</td>
-			<td style=\"background:darkgrey;a color:orange;width:20px;\" class=\"odd\">L</td>
-          </tr>";
-	        foreach ($ergebnis as  $inhalt)
-	        {
-	            $rezeptteil_id=$inhalt['rtid'];
-	             $rezept_id=$inhalt['rid'];
+	        	        
+	      echo "<table  style=\"background:#777;padding:4px;border:1px;\"   cellpadding=\"6\" cellspacing=\"1\">";
+	      echo '<tr style="padding:8px;"><th colspan=3 style="font-family: Fira ;color:#ddd">Speisekomponenten f&uuml;r Rezepte</th></tr>';
+	      echo "<tr  style=\"padding:8px;\"><td style=\"background:darkgrey;a color:orange;width:350px;\" class=\"odd\">";
+          echo "Rezept";
+          echo "</td>";
+          echo "<td style=\"background:darkgrey;a color:orange;width:350px;\" class=\"odd\">Rezeptbestandteil</td>";
+		  echo "<td style=\"background:darkgrey;a color:orange;width:80px;\" class=\"odd\">   </td>";
+		  echo "<td style=\"background:darkgrey;a color:orange;width:20px;\" class=\"odd\">A</td>";
+		  echo "<td style=\"background:darkgrey;a color:orange;width:20px;\" class=\"odd\">L</td>";
+          echo "</tr>";
+
+          foreach ($ergebnis as  $inhalt)
+	      {
+	          
+	            $speise_id=$inhalt['speise_id'];
 	            echo "<tr style=\"border:1px dotted black;\"><td style=\"background:lightgrey;a color:orange;width:350px;padding:6px;\" class=\"odd\">";
 	            
-	            echo "<a href=\"details/$rezept_id\">".$inhalt['rb']."</a>";
-	            
-	 
-           
-                //&nbsp;&nbsp;&nbsp;<small><small><em style=\"color:red;\">(<a href=\"details/".$domain_id."\">bearbeiten</a>)</em></small></small>";
-	            echo "</td><td style=\"background:lightgrey;a color:orange;width:50px;padding:6px;\" class=\"odd\"> ";
-				echo "<a href=\"details/$rezeptteil_id\">".$inhalt['rb']."</a>";
-	            echo "<br></td>";
+	            echo "<a href=\"details/$speise_id\">".$inhalt['bezeichnung']."</a>";
+	            echo "</td>";
+
 				echo "<td style=\"background:lightgrey;a color:orange;width:50px;padding:6px;\" class=\"odd\"> ";
-			    echo  $inhalt['rtb'];
+				echo "<br>";
+
+				/*********************************************************************
+				// innere Abfrage der Speise, nach den zugehörigen Speisebestandteilen 
+				*********************************************************************/
+
+				$sql2 = "select speisebestandteil_id,bezeichnung from speisebestandteil where speise_id=".$speise_id.";";		
+				$rueckgabe2 = $db->query($sql2);         
+		  		$ergebnis2 = $rueckgabe2->fetchAll(PDO::FETCH_ASSOC);
+	
+				foreach ($ergebnis2 as  $inhalt2)
+	        	{
+					
+					echo "<a href=\"../speisebestandteil/details/".$inhalt2['speisebestandteil_id']."\">".$inhalt2['bezeichnung']."</a>";
+	            	echo "<br>";		
+				}
+				echo "<br></td>";
+
+				echo "<td style=\"background:lightgrey;a color:orange;width:50px;padding:6px;\" class=\"odd\"> ";
+			    //echo  $inhalt['rtb'];
 				echo "</td>";
 			
-					$color = $inhalt['aktiv'] == 1?'green':'red';
+
+
+				$color = $inhalt['aktiv'] == 1?'green':'red';
              	echo "<td style=\"background:".$color.";a::link,a::hover { text-decoration: none; color: white; };width:50px;\" class=\"tdhersteller\">";
-             	echo "<small><a href=\"aktiv/".$rezept_id."\">AK</a></small>";
+             	echo "<small><a href=\"aktiv/".$speise_id."\">AK</a></small>";
              	echo "</td>";
              
             	 $color = $inhalt['loeschbar'] == 0?'green':'red';
              	echo "<td style=\"background:".$color.";a::link,a::hover { text-decoration: none; color: white; };width:50px;\" class=\"tdhersteller\">";
-             	echo "<small><a href=\"loeschbar/".$rezept_id."\">L&Ouml;</a></small>";
+             	echo "<small><a href=\"loeschbar/".$speise_id."\">L&Ouml;</a></small>";
              	echo "</td>";
 
 
@@ -739,20 +748,20 @@ AN DIESER STELLE SOLLTE DER REKURSIVE AUFRUF UND ANZEIGE DER REZEPTBESTANDTEILE 
 
      
     
-		 $rezept        	 = $_REQUEST['rezept'];
+		 $speise        	 = $_REQUEST['speise'];
 		 $beschreibung 		 = $_REQUEST['editorSuppe'];
 		
  		 // exisitert dieses Rezept schon?
 
-		 if (!isRecipeExist($rezept)) {
+		 if (!isSpeiseExist($speise)) {
 
 		
 		 // wenn nicht, dann eintragen und die ID ermitteln
 		try {
 	
-		  $sql = "replace into rezept set bezeichnung = '".$rezept."', beschreibung = '".$beschreibung."'";
+		  $sql = "replace into speise set bezeichnung = '".$speise."', beschreibung = '".$beschreibung."'";
 
-          //print $sql."<br>";
+          print $sql."<br>";
 
           $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
           $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -764,8 +773,9 @@ AN DIESER STELLE SOLLTE DER REKURSIVE AUFRUF UND ANZEIGE DER REZEPTBESTANDTEILE 
               print "<br>".$e->getMessage();
           }
 
-		  $rezept_id = getLastRezeptId();
-		  setRezeptInitialId( $rezept_id);	
+		  $speise_id = getLastSpeiseId();
+		  setSpeiseInitialId($speise_id);	
+
 
 
      	/***
@@ -788,7 +798,7 @@ AN DIESER STELLE SOLLTE DER REKURSIVE AUFRUF UND ANZEIGE DER REZEPTBESTANDTEILE 
 	    try {
 
        
-		  $sql = "replace into rezeptteil set speisekomponente_id = '".$suppe."', rezept_id = '".$rezept_id."', bezeichnung = '". $bez_suppe."'  ";
+		  $sql = "replace into speisebestandteil set speisekomponente_id = '".$suppe."', speise_id = '".$speise_id."', bezeichnung = '". $bez_suppe."'  ";
 		  
 
           print $sql."<br>";
@@ -801,7 +811,7 @@ AN DIESER STELLE SOLLTE DER REKURSIVE AUFRUF UND ANZEIGE DER REZEPTBESTANDTEILE 
 
 		  $db->query($sql);
 		  
-		  $sql = "update rezeptteil set initial_id=rezeptteil_id order by rezeptteil_id desc Limit 1;";          
+		  $sql = "update speisebestandteil set initial_id=speisebestandteil_id order by speisebestandteil_id desc Limit 1;";          
           print $sql."<br>";
  
 		  $db->query($sql);		  	  
@@ -809,23 +819,25 @@ AN DIESER STELLE SOLLTE DER REKURSIVE AUFRUF UND ANZEIGE DER REZEPTBESTANDTEILE 
 		  $db->commit();
   
 		  $db=null;
-
+		  $_SESSION['Eintrag']	= $bez_suppe.' erfolgreich eingetragen';	
           }
           catch(PDOException $e){
 			  $db->rollBack();
               print "<br>".$e->getMessage();
+			  $_SESSION['Eintrag']	= 'Fehler beim Eintrag der Speise';
           }
 
-		// das Rezept existiert nicht (if)
+		// die Speise existiert nicht (if)
          }
 		else {
- 			echo "Das Rezept existiert schon!";
+ 			echo "Die Speise existiert schon!";
+		    $_SESSION['Eintrag']	=  "Die Speise existiert schon!";
 		}
         
           //die();
           
-		   $_SESSION['Eintrag']	= $bezeichnung.' erfolgreich eingetragen';
-          header('location:../uebersicht');
+		
+        header('location:../uebersicht');
 
 
 

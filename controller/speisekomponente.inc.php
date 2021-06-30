@@ -121,6 +121,9 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 					case 3:
 						$kategorie='Fleischbeilage';
 						break;
+					case 4:
+						$kategorie='Suppe';
+						break;
 					}
 
 	            echo "<tr style=\"border:1px dotted black;\">";
@@ -321,6 +324,17 @@ M&ouml;hren, dann aber auch Zwiebeln, Salz, etwas Zucker und ein wenig Pfeffer d
          echo "<fieldset style=\"background:#cfcfcf; width:900px; text-align:right; padding:10px; margin-right:10px;\">";
          echo "<legend>Speisekomponente anlegen</legend>"; 
 		 echo '<label>Bezeichnung: </label><input class="textform eyecatch" type="text" name="bezeichnung" placeholder="!" required /><br>';
+
+		   // Speisekategorie
+		  echo '<h2>Speisekategorie</h2>';
+		  $SpeisekategorieSelect="\n<select class=\"produktform2\" name=\"speisekategorie\" size=\"3\" multiple>\n";
+          $SpeisekategorieSelect.=getSpeisekategorie()."\n";
+          $SpeisekategorieSelect.="</select>\n";
+			
+		  echo $SpeisekategorieSelect;
+		  echo "<br><br>";
+
+
          echo '<label>Beschreibung: </label>'."<br>";
 	     echo "<textarea id='editor' name='editor'></textarea>";
 		 echo "</fieldset>";
@@ -578,9 +592,12 @@ M&ouml;hren, dann aber auch Zwiebeln, Salz, etwas Zucker und ein wenig Pfeffer d
 									   
 	 $bezeichnung		  	= $_REQUEST['bezeichnung'];
 	 $beschreibung		  	= $_REQUEST['editor'];						
-
+	 $speisekategorie		= $_REQUEST['speisekategorie'];
 	
-	 Log::writeLog(var_dump($_REQUEST));
+	 $oLog = new Log();
+
+	 $oLog->writeLog('Request eingelesen.');
+	 //Log::writeLog(var_dump($_REQUEST));
 	 //die();
 
 
@@ -589,18 +606,19 @@ M&ouml;hren, dann aber auch Zwiebeln, Salz, etwas Zucker und ein wenig Pfeffer d
                     
 
 			/* 12.05.2021 
-				Schritt 1: .. Trage den Namen und BEschreibung in die Tabelle 
+				Schritt 1: .. Trage den Namen und Beschreibung in die Tabelle 
 				Speisekomponente */
 		  
 			$sql = "replace into speisekomponente 
                 set 
 				bezeichnung 		= '".$bezeichnung."',
-				beschreibung 		= '".$beschreibung."'
+				beschreibung 		= '".$beschreibung."',
+			    speisekategorie_id     = '".$speisekategorie."'
 ";	
 
-			$oLog->writeSqlLog($sql);	
-
-			/* Schritt 2: Lies die ID des EIntrags aus. */
+			$oLog->writeSqlLog("##########################\n".$sql."\n");
+		
+			/* Schritt 2: Lies die ID des Eintrags aus. */
 
 		 	// print $sql."<br><br>";
 		 	//print $sql2."<br><br>";	
@@ -623,9 +641,16 @@ M&ouml;hren, dann aber auch Zwiebeln, Salz, etwas Zucker und ein wenig Pfeffer d
          	$ergebnis = $rueckgabe->fetchAll(PDO::FETCH_ASSOC);
                      
         	$speisekomponente_id = $ergebnis[0]['skid'];	
-
-			$sql = "update speisekomponente SET `initial_id` = '".$speisekomponente_id."', `speisekomponente_hash` = SHA1('".$speisekomponente_id."'), speisekategorie = 3";
+			
+			print $speisekomponente_id."<br><br>";
 	
+			$sql = "update speisekomponente 
+				    SET `initial_id` = ".$speisekomponente_id.", 
+					`speisekomponente_hash` = SHA1(".$speisekomponente_id.")
+					where speisekomponente_id=".$speisekomponente_id;
+			
+			print $sql."<br><br>";	
+
   		    $db->query($sql);
 			$oLog->writeSqlLog($sql);
 			
@@ -638,6 +663,7 @@ M&ouml;hren, dann aber auch Zwiebeln, Salz, etwas Zucker und ein wenig Pfeffer d
          catch(PDOException $e){
 		 	$db->rollBack();
             print "<br>".$e->getMessage();
+			$oLog->writeSqlLog("FEHLER: ".$sql);
          }
 
 
@@ -649,12 +675,12 @@ M&ouml;hren, dann aber auch Zwiebeln, Salz, etwas Zucker und ein wenig Pfeffer d
 		D
 
 		*/ 
-		echo "<br>";
+	/*	echo "<br>";
     	echo "<br>";
 		echo ", ".$garmethode[0];
 		echo "<br>";
 		echo "<br>"; 
-		
+	*/	
 		$sql3= '';
 		try {
         
@@ -694,7 +720,8 @@ M&ouml;hren, dann aber auch Zwiebeln, Salz, etwas Zucker und ein wenig Pfeffer d
 
 
 
-		   }while(++$i<count($lebensmittel));
+ 	     } while(++$i<count($lebensmittel));
+
 		// print $sql3;
 		 $db->query($sql3);	
 		 $db->commit();

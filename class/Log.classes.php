@@ -32,13 +32,18 @@ public function writeLog($line="")
 	User Agent ".$_SERVER['HTTP_USER_AGENT']."\n
 	Request URI".$_SERVER['REQUEST_URI']."\n");
 	
+	fwrite ($logFH, $line . "\n");
+	
+	/*
 	foreach ($_REQUEST AS $param => $value)
 	{
-		fwrite ($logFH, $param.' => '.$value. "\n");
+		//$str = print_r($param.' => '.$value. "\n")
+		//fwrite ($logFH, print_r($param.' => '.$value. "\n"));
 
+	 	 fwrite ($logFH, $line . "\n");
 		//if ($param == 'DocPathUrl') $DocPathUrl = $value;
 	}
-
+    */
 	//fwrite ($logFH, '###############################################'."\n");
 
 	
