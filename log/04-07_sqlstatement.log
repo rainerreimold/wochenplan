@@ -1,0 +1,16 @@
+update speisebestandteil set initial_id=speisebestandteil_id order by speisebestandteil_id desc Limit 1;;
+update speisebestandteil set initial_id=speisebestandteil_id order by speisebestandteil_id desc Limit 1;;
+replace into speisebestandteil set speisekomponente_id = '20', speise_id = '19', bezeichnung = 'Schweinenackensteak' ;
+update speisebestandteil set initial_id=speisebestandteil_id order by speisebestandteil_id desc Limit 1;;
+replace into speisebestandteil set speisekomponente_id = '40', speise_id = '19', bezeichnung = 'Pommes Frites' ;
+update speisebestandteil set initial_id=speisebestandteil_id order by speisebestandteil_id desc Limit 1;;
+replace into speisebestandteil set speisekomponente_id = '20', speise_id = '20', bezeichnung = 'Schweinenackensteak' ;
+update speisebestandteil set initial_id=speisebestandteil_id order by speisebestandteil_id desc Limit 1;;
+replace into speisebestandteil set speisekomponente_id = '40', speise_id = '20', bezeichnung = 'Pommes Frites' ;
+update speisebestandteil set initial_id=speisebestandteil_id order by speisebestandteil_id desc Limit 1;;
+replace into speisebestandteil set speisekomponente_id = '20', speise_id = '21', bezeichnung = 'Schweinenackensteak' ;
+update speisebestandteil set initial_id=speisebestandteil_id order by speisebestandteil_id desc Limit 1;;
+replace into speisebestandteil set speisekomponente_id = '40', speise_id = '21', bezeichnung = 'Pommes Frites' ;
+update speisebestandteil set initial_id=speisebestandteil_id order by speisebestandteil_id desc Limit 1;;
+replace into speisebestandteil set speisekomponente_id = '41', speise_id = '21', bezeichnung = 'Letscho/Zigeunersoße' ;
+update speisebestandteil set initial_id=speisebestandteil_id order by speisebestandteil_id desc Limit 1;;

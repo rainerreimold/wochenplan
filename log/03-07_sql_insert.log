@@ -1,0 +1,24 @@
+update lebensmittel set initial_id = 55, parent_id = 55, lebensmittel_hash = SHA1(lebensmittel_id) order by lebensmittel_id desc limit 1;
+
+update speisekomponente 
+				    SET `initial_id` = 40, 
+					`speisekomponente_hash` = SHA1(40)
+					where speisekomponente_id=40;
+
+update lebensmittel set initial_id = lebensmittel_id, lebensmittel_hash = SHA1(lebensmittel_id) order by lebensmittel_id desc limit 1;
+
+update lebensmittel set initial_id = lebensmittel_id, lebensmittel_hash = SHA1(lebensmittel_id) order by lebensmittel_id desc limit 1;
+
+update lebensmittel set initial_id = lebensmittel_id, lebensmittel_hash = SHA1(lebensmittel_id) order by lebensmittel_id desc limit 1;
+
+update lebensmittel set initial_id = 65, parent_id = 65, lebensmittel_hash = SHA1(lebensmittel_id) order by lebensmittel_id desc limit 1;
+
+update speisekomponente 
+				    SET `initial_id` = 41, 
+					`speisekomponente_hash` = SHA1(41)
+					where speisekomponente_id=41;
+
+update speisebestandteil set initial_id=speisebestandteil_id order by speisebestandteil_id desc Limit 1;;
+
+update speisebestandteil set initial_id=speisebestandteil_id order by speisebestandteil_id desc Limit 1;;
+

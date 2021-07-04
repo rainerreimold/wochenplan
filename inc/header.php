@@ -83,7 +83,7 @@ echo '<link rel="stylesheet" type="text/css" href="'.PFAD.'/'.APPNAME.'/css/styl
 echo '<link rel="stylesheet" type="text/css" href="'.PFAD.'/'.APPNAME.'/lib/css/rrs.css" />
 <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500|Lobster+Two:400|Lato:300,400,500,700,900|Josefin+Sans:400,i,600,700|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|Work+Sans:300,400,600,700|Fira+Sans:200,200i,300,400,i,600,700|Oswald:300,400,500|Lobster+Two:400|Lato:300,400|Fjalla+One:400,i,600,700|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|Work+Sans:300,400,600,700|Fira+Sans:200,200i,300,400,i,600,700" rel="stylesheet">
 	
-<title>Rezept - Verwaltung von Rezepten, Speiseplänen und Bestellzetteln</title>';
+<title>Rezept - Verwaltung von Rezepten, Speisepl&auml;nen und Bestellzetteln</title>';
 
 //echo '<script src="https://cdn.ckeditor.com/ckeditor5/18.0.0/inline/ckeditor.js"></script>';
 echo '<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>';

@@ -31,6 +31,8 @@ require_once './inc/global_config.inc.php';
 $_SESSION['title'] = 'Speisen - Erstellung von Speisen';
 $_SESSION['start'] = isset($_SESSION['start'])?$_SESSION['start']:false;
 
+require_once './class/Log.classes.php';
+require_once './class/LetzteAktivitaet.class.php';
 
 static $db;
 
@@ -207,7 +209,8 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
        try {
 		//echo "HIER";
                //    SELECT domain_id, domain_name FROM `domain` WHERE 1
-		$sql = "SELECT * FROM `rezept` WHERE `rezept_id` = $id";
+
+		$sql = "SELECT * FROM `speise` WHERE `speise_id` = $id";
 
 		if (DEBUG) echo "<br>".$sql."<br>";
        
@@ -232,7 +235,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 
 	        foreach ($ergebnis as  $inhalt)
 	        {
-	            $rezept_id=$id;
+	            $speise_id=$id;
 	            
 	            echo "<tr style=\"border:1px dotted black;\"><td style=\"background:lightgrey;a color:orange;width:350px;padding:6px;\" class=\"odd\">";
 	            
@@ -247,13 +250,13 @@ AN DIESER STELLE SOLLTE DER REKURSIVE AUFRUF UND ANZEIGE DER REZEPTBESTANDTEILE 
 ***/
 
 
-/* */
+/* 
 
 				$sql2 = "SELECT distinct rt.rezeptteil_id,rt.aktiv, sk.speisekomponente_id as skid, sk.bezeichnung as skbez FROM `rezept` rez, `rezeptteil` rt,`speisekomponente` sk
 				WHERE rt.rezept_id=$id
 				and rt.aktiv=1 
 				and rt.rezept_id = rez.rezept_id
-				and sk.speisekomponente_id = rt. speisekomponente_id";
+				and sk.speisekomponente_id = rt. speisekomponente_id";*/
 
  				$db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
           		$db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -303,6 +306,11 @@ AN DIESER STELLE SOLLTE DER REKURSIVE AUFRUF UND ANZEIGE DER REZEPTBESTANDTEILE 
     kleines Formular zum hinzufügen einer Speise
 
 	Datum: 17:05.2021
+
+	03.07.21 EInbau zusätzliches Attribut 
+		- speiseart zur Auswahl von Süßspeisen, Hauptspeisen, Suppen.
+		Ziel: damit man später vermeiden kann, jeden Tag Fleischgerichte oder 5 mal in der Woche Süßspeisen zu essen.
+
   
 	*****************************************/
   	
@@ -342,7 +350,16 @@ AN DIESER STELLE SOLLTE DER REKURSIVE AUFRUF UND ANZEIGE DER REZEPTBESTANDTEILE 
 					
 					<p>';
 					
+
+			/**********************************************************************************************************
+
 		      // Formular Hauptspeise	
+
+
+
+			**********************************************************************************************************/
+
+
 			  echo '<div class="form" style="width:1000px; text-align:right; padding:10px; margin:10px auto auto auto;">';
  			
 			  echo '<form method="post" action="hauptspeiseEintragen" style="width:60px; padding:10px; margin:10px;">
@@ -355,27 +372,59 @@ AN DIESER STELLE SOLLTE DER REKURSIVE AUFRUF UND ANZEIGE DER REZEPTBESTANDTEILE 
 			// echo "Was soll es f&uuml;r ein Rezept werden?<br>\n";
 		
 
-			 $HauptbeilageSelect="\n<select class=\"auswahl2\" name=\"hauptbeilage\" size=\"5\" multiple>\n";
+			 $HauptbeilageSelect="\n<select class=\"auswahl2 haupt\" name=\"hauptbeilage\" size=\"5\" multiple>\n";
              $HauptbeilageSelect.=getHauptBeilage()."\n";
              $HauptbeilageSelect.="</select>\n";
-			
-			 echo $HauptbeilageSelect;
+			  
 
-			 $SaettigungsbeilageSelect="\n<select class=\"auswahl2\" name=\"saettigungsbeilage\" size=\"5\" multiple>\n";
-             $SaettigungsbeilageSelect.=getSaettigungsBeilage()."\n";
+			 $SaettigungsbeilageSelect="\n<select class=\"auswahl2 sat\" name=\"saettigungsbeilage\" size=\"5\" multiple>\n";
+			 $SaettigungsbeilageSelect.=getSaettigungsBeilage()."\n";
              $SaettigungsbeilageSelect.="</select>\n";
-			
-			 echo $SaettigungsbeilageSelect;
-
-			 $GemuesebeilageSelect="\n<select class=\"auswahl2\" name=\"gemuesebeilage\" size=\"5\" multiple>\n";
+						 
+			 $GemuesebeilageSelect="\n<select class=\"auswahl2 gem\" name=\"gemuesebeilage\" size=\"5\" multiple>\n";
              $GemuesebeilageSelect.=getGemueseBeilage()."\n";
              $GemuesebeilageSelect.="</select>\n";
 			
+			 $SaucebeilageSelect="\n<select class=\"auswahl2 sau\" name=\"saucebeilage\" size=\"5\" multiple>\n";
+             $SaucebeilageSelect.=getSaucen()."\n";
+             $SaucebeilageSelect.="</select>\n";
+			 
+			
+
+			 echo "<span class=\"label2 haupt\">Hauptkomponente&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span>\n";
+			 echo "<span class=\"label2 sat\">-&nbsp;&nbsp;&nbsp;S&auml;ttigungsbeilage&nbsp;&nbsp;&nbsp;</span><br>\n";
+
+			 echo $HauptbeilageSelect;
+ 			 echo $SaettigungsbeilageSelect;
+			 
+			 echo "<br/><br/>";
+			 echo "<span class=\"label2 gem\">Gem&uuml;sebeilage</span>\n";  	
+			 echo "<span class=\"label2 sau\">Saucebeilage</span><br>\n";  		
+	
+			
 			 echo $GemuesebeilageSelect;
+			 echo $SaucebeilageSelect;
+
+			 echo "<br/><br/>";
+
+				
+			 /*
+				
+				Vielleicht ist die Unterscheidung über die Speiseart 
+				hier auch in Fleisch und Fisch sinnvoll 
+			
+			*/ 
+			 	
+			 $SpeiseartSelect="\n<select class=\"auswahl2\" name=\"speiseart\" size=\"5\" multiple>\n";
+             $SpeiseartSelect.=getSpeiseart()."\n";
+             $SpeiseartSelect.="</select>\n";
+
+			 echo "<span class=\"label2 haupt\">Speiseart&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span>";
+			 echo $SpeiseartSelect;	
 
 			 echo "<br/><br/>";
 			 echo "<textarea id='editor' name='editor'></textarea>";
-
+			
 
              echo '</fieldset>';
 			  echo ' <fieldset style="background:#cfcfcf; text-align:right; padding:10px; margin-right:10px;">
@@ -389,9 +438,16 @@ AN DIESER STELLE SOLLTE DER REKURSIVE AUFRUF UND ANZEIGE DER REZEPTBESTANDTEILE 
 				</div>
 			</div>';
 
+		/* Ende Tab/Bereich Anlegen eines Hauptgerichtes */
 
-			// Suppe	
-			echo '<div class="tab2">
+		/********************************************************************************************************
+			
+			 Beginn Tab Anlegen 
+			 :Suppe	
+			
+		********************************************************************************************************/
+
+		echo '<div class="tab2">
 				  <div class="lines">
 					<h5>Suppe</h5>
 					<p>';
@@ -436,6 +492,13 @@ AN DIESER STELLE SOLLTE DER REKURSIVE AUFRUF UND ANZEIGE DER REZEPTBESTANDTEILE 
 				</div>
 			
 			</div>';
+
+  		/********************************************************************************************************
+			
+			 Beginn Tab Anlegen 
+			 :Vorspeise	
+			
+		********************************************************************************************************/
 
 
 			echo '<div class="tab3">
@@ -482,6 +545,13 @@ AN DIESER STELLE SOLLTE DER REKURSIVE AUFRUF UND ANZEIGE DER REZEPTBESTANDTEILE 
 			
 			</div>';
 
+			/********************************************************************************************************
+			
+			 Beginn Tab Anlegen 
+			 :Dessert	
+			
+			********************************************************************************************************/
+
 
 			// Dessert
 		echo '<div class="tab4">
@@ -525,7 +595,17 @@ AN DIESER STELLE SOLLTE DER REKURSIVE AUFRUF UND ANZEIGE DER REZEPTBESTANDTEILE 
 			
 			</div>';
 
-			// kleine Speisen
+			/********************************************************************************************************
+			
+			 Beginn Tab Anlegen 
+			 :kleine Speise, das soll soetwas Sülze oder Bauernfrühstück sein.
+			 Das sind nicht immer kleine Speisen, daher ist der Ausdruck nicht glücklich.
+
+			 Im Wesentlichen würde so nur ein Bestandteil auf dem Teller liegen.	
+			
+			********************************************************************************************************/
+
+
 			echo '<div class="tab5">
 				<div class="lines">
 					<h5>Speiseteil</h5>
@@ -601,7 +681,7 @@ AN DIESER STELLE SOLLTE DER REKURSIVE AUFRUF UND ANZEIGE DER REZEPTBESTANDTEILE 
     
 		 $speise        	 = $_REQUEST['speise'];
 		 $beschreibung 		 = $_REQUEST['editor'];
-		
+		 $speiseart_id 		 = $_REQUEST['speiseart'];	
  		 // exisitert dieses Rezept schon?
 
 		 if (!isSpeiseExist($speise)) {
@@ -610,7 +690,7 @@ AN DIESER STELLE SOLLTE DER REKURSIVE AUFRUF UND ANZEIGE DER REZEPTBESTANDTEILE 
 		 // wenn nicht, dann eintragen und die ID ermitteln
 		try {
 	
-		  $sql = "replace into speise set bezeichnung = '".$speise."', beschreibung = '".$beschreibung."'";
+		  $sql = "replace into speise set bezeichnung = '".$speise."', beschreibung = '".$beschreibung."', speiseart_id=".$speiseart_id." ";
 
           print $sql."<br>";
 
@@ -658,52 +738,105 @@ AN DIESER STELLE SOLLTE DER REKURSIVE AUFRUF UND ANZEIGE DER REZEPTBESTANDTEILE 
 		*****/
 
 		 
-		 $hauptbeilage		 = $_REQUEST['hauptbeilage'];			
-		 $bez_hauptbeilage = getBezeichnungSpeisekomponente($hauptbeilage);		   
-		 $saettigungsbeilage = $_REQUEST['saettigungsbeilage'];
-		 $bez_saettigungsbeilage = getBezeichnungSpeisekomponente($saettigungsbeilage);	
-		 $gemuesebeilage 	 = $_REQUEST['gemuesebeilage'];
-		 $bez_gemuesebeilage = getBezeichnungSpeisekomponente($gemuesebeilage);			
+		 /** im Moment sind die Selectfelder im Formular für Hauptspeisen 
+				zwar mehrfach(multiple) auswählbar 
+			 an dieser Stelle erfolgt aber nur eine einfache Auswertung 
+		 
+			 Es müssen daher Fälle berücksichtigt werden, bei denen
+			 2 Gemüse aber keine Sättigungsbeilage oder wie beim 
+			 Zigeuner kein Gemüse, dafür eine Sauce zur Speise gehören.
+				
+			anhand des Beispiels in speisekomponente
+			$zubereitungsart		= array();
+	 		$zubereitungsart		= $_REQUEST['zubereitungsart'];
+			// prüfen ob der Request existiert	
+			$id = isset($_GET['id'])?$_GET['id']:'';
+
+		 */
+         $hauptbeilage				= array();
+		 $hauptbeilage		 		= isset($_REQUEST['hauptbeilage']) ? $_REQUEST['hauptbeilage'] : '';
+			
+		// $bez_hauptbeilage 			= getBezeichnungSpeisekomponente($hauptbeilage);
+
+		 $saettigungsbeilage  		= array();
+		 $saettigungsbeilage 		= isset($_REQUEST['saettigungsbeilage']) ? $_REQUEST['saettigungsbeilage'] : '';
+			
+		// $bez_saettigungsbeilage 	= getBezeichnungSpeisekomponente($saettigungsbeilage);	
+
+		 $gemuesebeilage 	 		= array();
+		 $gemuesebeilage 	 		= isset($_REQUEST['gemuesebeilage'])?$_REQUEST['gemuesebeilage']:'';
+
+		// $bez_gemuesebeilage 		= getBezeichnungSpeisekomponente($gemuesebeilage);	
+
+		 $sauce   			   		= array();
+		 $sauce			     		= isset($_REQUEST['saucebeilage'])?$_REQUEST['saucebeilage']:'';
+
+		 //$bez_sauce 		 		= getBezeichnungSpeisekomponente($sauce);	
+
+		 // wäre das nicht sinnvoller, alle Requests in ein Array zu speichern?
+		 $speisebestandteil 		= array();
+
+		 // auf diese Art werden auch leere Arrays hinzugefügt, wordurch es dann zu Fehlern beim Eintrag in die Datenbank kommt. 
+		 array_push($speisebestandteil, $hauptbeilage, $saettigungsbeilage, $gemuesebeilage, $sauce);
+  		 
+		 //entfernen der leeren Elemente
+		 $speisebestandteil = array_filter($speisebestandteil);
+		 print_r ($speisebestandteil);	
+		 echo "<br><br>";echo "<br><br>";
+		 echo var_dump($_REQUEST);
+		 echo "<br><br>";
+		 echo var_dump($speisebestandteil);	
+		 echo "<br><br>";
+		 //die();
+
+		 
+		 $oLog = new Log();
+
+	 	 $oLog->writeLog('Request eingelesen.');
+	     //Log::writeLog(var_dump($_REQUEST));
   
-        /* Da es sich um 3 identische Routinen handelt, lagere ich das in eine externe Funktion aus */	   
-   
+        /* Da es sich um 3 identische Routinen handelt, lagere ich das in eine externe Funktion aus	   
+		   bisher auch relativ unsinnig.
+		   3 Mal hintereinander die identische Funktion auszuführen.	    */
 
 
 
 	    try {
 
        
-		  $sql ="replace into speisebestandteil set speisekomponente_id = '".$hauptbeilage."', speise_id = '".$speise_id."', bezeichnung = '". $bez_hauptbeilage."' ";
 		  
-
-          print $sql."<br>";
 
           $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
           $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		  
  		  $db->beginTransaction();
-  		        
+  		  $i=0;
+ 
+		  do {
+     
+			    //getBezeichnungSpeisekomponente
+				$bezeichnung 		 		= isset($speisebestandteil[$i])?getBezeichnungSpeisekomponente($speisebestandteil[$i]):'';		
+				print "<br>".$i.": ".$bezeichnung."<br><br>";
+				if ($bezeichnung!='') {
+		  			$sql ="replace into speisebestandteil set speisekomponente_id = '".$speisebestandteil[$i]."', speise_id = '".$speise_id."', bezeichnung = '". $bezeichnung."' ";
+		  			print $i.": ".$sql."<br><br>";
+					$oLog->writeSqlLog($sql);
+		  			$db->query($sql);
+		  			$sql = "update speisebestandteil set initial_id=speisebestandteil_id order by speisebestandteil_id desc Limit 1;";          
+          			$db->query($sql);		  
+		  			print $i.": ".$sql."<br><br>";
+		 
+		  			$oLog->writeSqlLog($sql);	
 
-		  $db->query($sql);
-		  $sql = "update speisebestandteil set initial_id=speisebestandteil_id order by speisebestandteil_id desc Limit 1;";          
-          $db->query($sql);		  
-		  print $sql."<br>";
-				
+		   			$db->query($sql);
+
+				}
+
+ 	     } while(++$i<count($speisebestandteil)+1);			
 
 
-		  $sql = "replace into speisebestandteil set speisekomponente_id = '".$saettigungsbeilage."', speise_id = '".$speise_id."', bezeichnung = '". $bez_saettigungsbeilage."' ";
-		  $db->query($sql);
-		  $sql = "update speisebestandteil  set initial_id=speisebestandteil_id order by speisebestandteil_id desc Limit 1;";          
-          $db->query($sql);		  
-		  print $sql."<br>";
-          
 
-		  $sql = "replace into speisebestandteil set speisekomponente_id = '".$gemuesebeilage."', speise_id = '".$speise_id."' , bezeichnung = '". $bez_gemuesebeilage."'";
-		  $db->query($sql);
-		  $sql = "update speisebestandteil  set initial_id=speisebestandteil_id order by speisebestandteil_id desc Limit 1;";          
-	      $db->query($sql);		  
-		  print $sql."<br>";
-    	
+		
 	      
 		  $db->commit();
   
@@ -711,7 +844,7 @@ AN DIESER STELLE SOLLTE DER REKURSIVE AUFRUF UND ANZEIGE DER REZEPTBESTANDTEILE 
 
           }
           catch(PDOException $e){
-			  $dbh->rollBack();
+			  $db->rollBack();
               print "<br>".$e->getMessage();
           }
 
@@ -723,6 +856,11 @@ AN DIESER STELLE SOLLTE DER REKURSIVE AUFRUF UND ANZEIGE DER REZEPTBESTANDTEILE 
         
           //die();
           
+          $oLAkt = new LetzteAktivitaet();
+		  $oLAkt -> writeLetzteAktivitaet( "wochenplan - speise eingetragen", "Es wurde der Eintrag: ".$speise." hinzugefügt.", 1, "Rainer", 1, "wochenplan");	
+
+
+
 
 			echo '<script src="window.history.back(-2);"></script>';
 			 
@@ -730,7 +868,7 @@ AN DIESER STELLE SOLLTE DER REKURSIVE AUFRUF UND ANZEIGE DER REZEPTBESTANDTEILE 
     		     window.history.back(-2)
   			 }
   */
-          //header('location:../uebersicht');
+          header('location:../uebersicht');
 
 
 

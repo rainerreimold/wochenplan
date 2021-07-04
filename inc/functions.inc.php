@@ -185,7 +185,7 @@ function getSaettigungsBeilage() {
 							`speisekomponente` sk
 					where 	sk.speisekomponente_id in 
 							(Select Max(speisekomponente_id) from `speisekomponente` group by initial_id)
-					and sk.speisekategorie_id=3
+					and sk.speisekategorie_id=1
 					order By sk.bezeichnung asc";
         
         $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
@@ -285,7 +285,7 @@ function getHauptBeilage() {
 							`speisekomponente` sk
 					where 	sk.speisekomponente_id in 
 							(Select Max(speisekomponente_id) from `speisekomponente` group by initial_id)
-					and sk.speisekategorie_id=1
+					and sk.speisekategorie_id=3
 					order By sk.bezeichnung asc";	
 
 
@@ -371,6 +371,58 @@ function getSuppen() {
     
     
 }
+
+function getSaucen() {
+
+	try {
+
+				$sql = "SELECT distinct sk.bezeichnung as skb, 
+								sk.speisekomponente_id as id,
+								sk.beschreibung as skbesch,
+								sk.speisekomponente_hash as hash,
+								sk.speisekategorie_id as kat,
+								sk.aktiv as akt,
+								sk.loeschbar as loe
+					FROM 
+							`speisekomponente` sk
+					where 	sk.speisekomponente_id in 
+							(Select Max(speisekomponente_id) from `speisekomponente` group by initial_id)
+					and sk.speisekategorie_id=9
+					order By sk.bezeichnung asc";	
+
+        $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+        $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $rueckgabe = $db->query($sql);
+        
+        $ergebnis = $rueckgabe->fetchAll(PDO::FETCH_ASSOC);
+					
+        $db=null;
+        $i=0;
+		$ret="";
+		if ($ergebnis) {
+		  foreach ( $ergebnis as $inhalt) {
+				
+			$ret=$ret."<option value=\"".$inhalt['id']."\">".$inhalt['skb']." - ".$inhalt['skbesch']."</option>\n";
+
+
+		  }
+		  return $ret;        
+        }
+        //return $ergebnis[0]['domain_name'];
+
+    }
+
+    catch(PDOException $e){
+        print $e->getMessage();
+    }
+    return "leer -1";
+    
+    
+}
+
+
+
 
 function getVorspeisen() {
 
@@ -667,6 +719,47 @@ function getMengen() {
     return "-1";
 
 }
+
+
+
+// Speisekategorie
+ function getSpeiseart() {
+
+	try {
+
+		$sql = "SELECT speiseart_id, speiseart_bezeichnung FROM speiseart WHERE 1";
+
+        $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+        $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $rueckgabe = $db->query($sql);
+        
+        $ergebnis = $rueckgabe->fetchAll(PDO::FETCH_ASSOC);
+					
+        $db=null;
+        $i=0;
+		$ret="";
+		if ($ergebnis) {
+		  foreach ( $ergebnis as $inhalt) {
+				
+			$ret=$ret."<option value=\"".$inhalt['speiseart_id']."\">".$inhalt['speiseart_bezeichnung'] ."</option>\n";
+
+
+		  }
+		  return $ret;        
+        }
+
+
+    }
+
+    catch(PDOException $e){
+        print $e->getMessage();
+    }
+    return "-1";
+
+}
+
+
 
 
 // Zubereitungsart
