@@ -153,7 +153,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
       echo "<br>";
 
 	  echo "<br>";
-	  echo "<h3>Schnittformenen</h3>";
+	  echo "<h3>Schnittformen</h3>";
       
       echo '<a href="schnittform/zeigeAlleSchnittformen">zeige alle Schnittformen</a>';
       echo "<br>";

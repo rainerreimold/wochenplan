@@ -506,6 +506,7 @@ function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {
 		   $beschreib = htmlspecialchars($string);
 
 		   $oLAkt -> writeLetzteAktivitaet( "wochenplan - Lebensmittel eingetragen", $beschreib, 1, "Rainer", 1, "wochenplan");	
+		   $oLog = new Log();	
 
           header('location:../uebersicht');
 

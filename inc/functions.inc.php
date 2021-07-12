@@ -880,7 +880,7 @@ function getAlleRezepte( ) {
 	
 		try {
 
-		$sql = "SELECT rezept_id, bezeichnung, beschreibung from rezept";
+		$sql = "SELECT speise_id, bezeichnung, beschreibung from speise";
 
         $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
         $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -895,20 +895,18 @@ function getAlleRezepte( ) {
 		if ($ergebnis) {
 		  foreach ( $ergebnis as $inhalt) {
 				
-			$ret=$ret."<option value=\"".$inhalt['rezept_id']."\">".$inhalt['beschreibung'] ."</option>\n";
+			$ret=$ret."<option value=\"".$inhalt['speise_id']."\">".$inhalt['beschreibung'] ."</option>\n";
 
 
 		  }
 		  return $ret;        
         }
-        //return $ergebnis[0]['domain_name'];
+       }
 
-    }
-
-    catch(PDOException $e){
-        print $e->getMessage();
-    }
-    return -1;
+       catch(PDOException $e){
+         print $e->getMessage();
+       }
+    	return -1;
  
 
 }
