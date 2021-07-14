@@ -1,0 +1,48 @@
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;

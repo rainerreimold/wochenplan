@@ -11,8 +11,10 @@ $_SESSION['title'] = 'Rezepte - Verwaltung von INgredenzien';
 $_SESSION['start'] = isset($_SESSION['start'])?$_SESSION['start']:false;
 
 
+//require_once './class/LetzteAktivitaet.class.php';
+
 static $db;
-require_once './class/Log.classes.php';
+//require_once './class/Log.classes.php';
 $oLog = new Log();
 
 
@@ -327,7 +329,7 @@ M&ouml;hren, dann aber auch Zwiebeln, Salz, etwas Zucker und ein wenig Pfeffer d
 
 		   // Speisekategorie
 		  echo '<h2>Speisekategorie</h2>';
-		  $SpeisekategorieSelect="\n<select class=\"produktform2\" name=\"speisekategorie\" size=\"3\" multiple>\n";
+		  $SpeisekategorieSelect="\n<select class=\"produktform2\" required=\"required\" name=\"speisekategorie\" size=\"3\" multiple>\n";
           $SpeisekategorieSelect.=getSpeisekategorie()."\n";
           $SpeisekategorieSelect.="</select>\n";
 			
@@ -590,9 +592,9 @@ M&ouml;hren, dann aber auch Zwiebeln, Salz, etwas Zucker und ein wenig Pfeffer d
 
 
 									   
-	 $bezeichnung		  	= $_REQUEST['bezeichnung'];
-	 $beschreibung		  	= $_REQUEST['editor'];						
-	 $speisekategorie		= $_REQUEST['speisekategorie'];
+	 $bezeichnung		  	= isset($_REQUEST['bezeichnung'])?$_REQUEST['bezeichnung']:'';
+	 $beschreibung		  	= isset($_REQUEST['editor'])?$_REQUEST['editor']:'';						
+	 $speisekategorie		= isset($_REQUEST['speisekategorie'])?$_REQUEST['speisekategorie']:'3';
 	
 	 $oLog = new Log();
 
@@ -613,7 +615,7 @@ M&ouml;hren, dann aber auch Zwiebeln, Salz, etwas Zucker und ein wenig Pfeffer d
                 set 
 				bezeichnung 		= '".$bezeichnung."',
 				beschreibung 		= '".$beschreibung."',
-			    speisekategorie_id     = '".$speisekategorie."'
+			    speisekategorie_id  = '".$speisekategorie."'
 ";	
 
 			$oLog->writeSqlLog("##########################\n".$sql."\n");
@@ -707,7 +709,7 @@ M&ouml;hren, dann aber auch Zwiebeln, Salz, etwas Zucker und ein wenig Pfeffer d
 						garmethode_id 			= '".$garmethode[$i]."',
 						menge 					= '".$menge[$i]."',
 						einheit					= '".$einheit[$i]."',
-						speisekomponente_id 	= '".$speisekomponente_id."',
+						speisekomponente_id 	= '".$speisekomponente_id[$i]."',
 						bezeichnung				= '',
 						beschreibung			= ''; 
 				";

@@ -22,8 +22,9 @@
 		$ergebnis = $rueckgabe->fetchAll(PDO::FETCH_ASSOC);
 	        
 	        
-	    echo "<table  style=\"background:#777;padding:4px;border:1px;\"   cellpadding=\"6\" cellspacing=\"1\">";
-	    echo '<tr style="padding:8px;"><th colspan=3 style="font-family: Fira ;color:#ddd">Wochenpl&auml;ne</th></tr>';
+	    echo "<table  style=\"background:#777;padding:8px;border:1px;\"   cellpadding=\"0\" cellspacing=\"1\">";
+		// oberste Zeile der Tabelle
+	    echo '<tr><th colspan=3 style="font-family: Fira ;color:#ddd">Wochenpl&auml;ne</th></tr>';
 		$zaehl=-1;	
 	    // Auswertung
 		foreach ($ergebnis as  $inhalt)
@@ -81,11 +82,14 @@
 				echo "</td>";
 				$wp_id=1;
 				echo "\n";
-	            echo "<tr style=\"padding:8px;border:1px dotted black;\">";
+	            echo "<tr style=\"padding:0px;border:1px dotted black;\">";
 				echo "\n";
-				echo "<td style=\"background:lightgrey;a color:orange;width:250px;padding:6px;\" class=\"odd\">";
+				echo "<td style=\"background:#a5ea1c;a color:orange;width:80px;padding:6px;\" class=\"odd\">";
 	            echo "\n";
-				echo "$wochenplan&nbsp;";
+				echo "$wt&nbsp;";
+				echo "</td>\n";
+				echo "<td style=\"background:#a5ea1c;a color:orange;width:250px;padding:6px;\" class=\"odd\">";
+	            echo "\n";
 	            echo "<a href=\"../speise/details/".$inhalt2['speise_id']."\">
 				 <small><strong style=\"color:black;\">".$inhalt2['bezeichnung']."</strong></small></td>";
 				echo "\n";
@@ -96,25 +100,27 @@
 	          //  echo "</td>";
 			    echo "\n";
 
-				echo "<td style=\"background:lightgrey;a color:orange;width:50px;padding:6px;\" class=\"odd\"> ";
-				echo "$position\t";
+				echo "<td style=\"background:#a5ea1c;a color:orange;width:50px;padding:6px;\" class=\"odd\"> ";
+				//echo "$position\t";
 				/* ******************************************* */
 
 				echo "\n";	
 				// Montags brauch ich keinen Pfeil nach oben
 	            if($zaehl%7!=0) {
-					echo "<a href=\"wechselhoch/".$wochenplanspeise_id."/".$position."\"><span class=\"glyphicon glyphicon-arrow-up\"></span></a>";
+					echo "<a href=\"wechselhoch/".$wochenplanspeise_id."/".$position."\">
+					<span class=\"glyphicon glyphicon-arrow-up\"></span></a>";
 				}
 
 				echo "\n";
 				echo "</td>\n";
 				echo "\n";
-				echo "<td style=\"background:lightgrey;a color:orange;width:50px;padding:6px;\" class=\"odd\"> ";
-				echo $spid;
+				echo "<td style=\"background:#a5ea1c;a color:orange;width:50px;padding:6px;\" class=\"odd\"> ";
+				//echo $spid;
 				// Sonntags brauch ich keinen Pfeil nach unten
 				if ($zaehl%7!=6) {
 				
-					echo "<a href=\"wechselrunter/".$wochenplanspeise_id."/".$position."\"><span class=\"glyphicon glyphicon-arrow-down\"></span></a>";
+					echo "<a href=\"wechselrunter/".$wochenplanspeise_id."/".$position."\">
+					<span class=\"glyphicon glyphicon-arrow-down\"></span></a>";
 				}
 				echo "\n";
 				echo "<br>\n</td>\n</tr>\n";
@@ -123,9 +129,7 @@
 			}
 			echo "<br></td>";
 
-			echo "<td style=\"background:lightgrey;a color:orange;width:50px;padding:6px;\" class=\"odd\"> ";
-			//echo  $inhalt['rtb'];
-			echo "</td>\n";
+		
 			
 				
 			}    

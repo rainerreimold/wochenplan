@@ -17,7 +17,7 @@
 	
 	// Im Schritt 0 sollten wohl zunächst alle bereits exitierenden Wochenpläne angezeigt werden?
 	
-	 $Wochenplaene=getAlleWochenplaene();
+	// $Wochenplaene=getAlleWochenplaene();
 	/*
      $i=0;
 	 echo '<h1 style="background: red; color:white;

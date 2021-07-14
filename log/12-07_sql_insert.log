@@ -1,0 +1,15 @@
+update speisekomponente 
+				    SET `initial_id` = 42, 
+					`speisekomponente_hash` = SHA1(42)
+					where speisekomponente_id=42;
+
+update speisekomponente 
+				    SET `initial_id` = 43, 
+					`speisekomponente_hash` = SHA1(43)
+					where speisekomponente_id=43;
+
+update speisekomponente 
+				    SET `initial_id` = 44, 
+					`speisekomponente_hash` = SHA1(44)
+					where speisekomponente_id=44;
+

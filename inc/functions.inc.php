@@ -421,18 +421,24 @@ function getSaucen() {
     
 }
 
+function liesSpeiseBestandteileAusDB( $kat ) {
 
+try {
 
+				$sql = "SELECT distinct sk.bezeichnung as skb, 
+								sk.speisekomponente_id as id,
+								sk.beschreibung as skbesch,
+								sk.speisekomponente_hash as hash,
+								sk.speisekategorie_id as kat,
+								sk.aktiv as akt,
+								sk.loeschbar as loe
+					FROM 
+							`speisekomponente` sk
+					where 	sk.speisekomponente_id in 
+							(Select Max(speisekomponente_id) from `speisekomponente` group by initial_id)
+					and sk.speisekategorie_id=".$kat."
+					order By sk.bezeichnung asc";	
 
-function getVorspeisen() {
-
-	try {
-
-		$sql = "SELECT speisekomponente_id, sk.bezeichnung as skb, m.bezeichnung as mb, m.einheit as me, 
-				z.zubereitungsart_bezeichnung as zb FROM `speisekomponente` sk, `menge` m, zubereitungsart z 
-				WHERE m.menge_id=sk.menge_id and z.zubereitungsart_id= sk.zubereitungsart_id 
-				and speisekategorie_id=5 
-				order By sk.bezeichnung asc";
         $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
         $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
@@ -446,7 +452,7 @@ function getVorspeisen() {
 		if ($ergebnis) {
 		  foreach ( $ergebnis as $inhalt) {
 				
-			$ret=$ret."<option value=\"".$inhalt['speisekomponente_id']."\">".$inhalt['skb']." - ".$inhalt['mb']." ".$inhalt['me'] ."</option>\n";
+			$ret=$ret."<option value=\"".$inhalt['id']."\">".$inhalt['skb']." - ".$inhalt['skbesch']."</option>\n";
 
 
 		  }
@@ -461,87 +467,30 @@ function getVorspeisen() {
     }
     return "leer -1";
     
+}
+
+
+
+
+
+function getVorspeisen() {
+
+	return liesSpeiseBestandteileAusDB(5);
+  
     
 }
 
 
 function getDessert() {
 
-	try {
-
-		$sql = "SELECT speisekomponente_id, sk.bezeichnung as skb, m.bezeichnung as mb, m.einheit as me, 
-				z.zubereitungsart_bezeichnung as zb FROM `speisekomponente` sk, `menge` m, zubereitungsart z 
-				WHERE m.menge_id=sk.menge_id and z.zubereitungsart_id= sk.zubereitungsart_id 
-				and speisekategorie_id=6 
-				order By sk.bezeichnung asc";
-        $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
-        $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        $rueckgabe = $db->query($sql);
-        
-        $ergebnis = $rueckgabe->fetchAll(PDO::FETCH_ASSOC);
-					
-        $db=null;
-        $i=0;
-		$ret="";
-		if ($ergebnis) {
-		  foreach ( $ergebnis as $inhalt) {
-				
-			$ret=$ret."<option value=\"".$inhalt['speisekomponente_id']."\">".$inhalt['skb']." - ".$inhalt['mb']." ".$inhalt['me'] ."</option>\n";
-
-
-		  }
-		  return $ret;        
-        }
-        //return $ergebnis[0]['domain_name'];
-
-    }
-
-    catch(PDOException $e){
-        print $e->getMessage();
-    }
-    return "leer -1";
+	return liesSpeiseBestandteileAusDB(6);
     
     
 }
 
 function getBestandteil() {
 
-	try {
-
-		$sql = "SELECT speisekomponente_id, sk.bezeichnung as skb, m.bezeichnung as mb, m.einheit as me, 
-				z.zubereitungsart_bezeichnung as zb FROM `speisekomponente` sk, `menge` m, zubereitungsart z 
-				WHERE m.menge_id=sk.menge_id and z.zubereitungsart_id= sk.zubereitungsart_id 
-				and speisekategorie_id=7 
-				order By sk.bezeichnung asc";
-        $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
-        $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        $rueckgabe = $db->query($sql);
-        
-        $ergebnis = $rueckgabe->fetchAll(PDO::FETCH_ASSOC);
-					
-        $db=null;
-        $i=0;
-		$ret="";
-		if ($ergebnis) {
-		  foreach ( $ergebnis as $inhalt) {
-				
-			$ret=$ret."<option value=\"".$inhalt['speisekomponente_id']."\">".$inhalt['skb']." - ".$inhalt['mb']." ".$inhalt['me'] ."</option>\n";
-
-
-		  }
-		  return $ret;        
-        }
-        //return $ergebnis[0]['domain_name'];
-
-    }
-
-    catch(PDOException $e){
-        print $e->getMessage();
-    }
-    return "leer -1";
-    
+	return liesSpeiseBestandteileAusDB(7);   
     
 }
 
@@ -843,25 +792,35 @@ function getMengen() {
 
 	try {
 
-		$sql = "SELECT schnittform_id, schnittform_bezeichnung FROM schnittform WHERE 1";
+		$sql = "SELECT schnittform_id, schnittform_bezeichnung, beschreibung FROM schnittform WHERE 1";
+		$dbh = new DB_Mysql_Prod;
+        $ergebnis = $dbh->fetch_assoc($sql);
+		$var = "<br>
+<br><small>Quelle:https://g-wie-gastro.de/abteilungen/kueche/fachkunde/schnittformen.html</small>";	
 
-        $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
-        $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        $rueckgabe = $db->query($sql);
-        
-        $ergebnis = $rueckgabe->fetchAll(PDO::FETCH_ASSOC);
-					
         $db=null;
         $i=0;
 		$ret="";
 		if ($ergebnis) {
 		  foreach ( $ergebnis as $inhalt) {
+				
 			
+
+				
+		$beschreibung = htmlspecialchars($inhalt['beschreibung']);
+		$laenge = strlen ($beschreibung);
+		$len_val = strlen ($var);
+	
+		$besch = substr($beschreibung, 0, $laenge-($len_val+24));	
+		$beschreibung = $besch;		
+	
+
+
+
 			if ($inhalt['schnittform_id']==13)			
-				$ret=$ret."<option value=\"13\" selected>".$inhalt['schnittform_bezeichnung'] ."</option>\n";
+				$ret=$ret."<option value=\"13\"  title=\"".$beschreibung."\" selected>".$inhalt['schnittform_bezeichnung'] ."</option>\n";
 			else	
-				$ret=$ret."<option value=\"".$inhalt['schnittform_id']."\">".$inhalt['schnittform_bezeichnung'] ."</option>\n";
+				$ret=$ret."<option value=\"".$inhalt['schnittform_id']."\" title=\"".$beschreibung."\">".$inhalt['schnittform_bezeichnung'] ."</option>\n";
 		  }
 		  return $ret;        
         }

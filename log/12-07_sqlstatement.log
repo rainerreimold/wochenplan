@@ -1,0 +1,1666 @@
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+Set @SPA := 5; # wochenplanspeise_id
+				Set @POA := 3;
+				select  @SPD := wochenplanspeise_id ,@POS :=position from wochenplanspeise 
+				where 
+				wochenplan_id=1 and 
+				position = @POA-1;
+				Update wochenplanspeise set position = @POS where wochenplanspeise_id = @SPA;
+				Update wochenplanspeise set position = @POA where wochenplanspeise_id = @SPD;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+Set @SPA := 5;
+				Set @POA := 2;
+				select  @SPD := wochenplanspeise_id ,@POS :=position from wochenplanspeise 
+				where 
+				wochenplan_id=1 
+				and position = @POA+1;
+				Update wochenplanspeise set position = @POS where wochenplanspeise_id = @SPA;
+				Update wochenplanspeise set position = @POA where wochenplanspeise_id = @SPD;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+Set @SPA := 1; # wochenplanspeise_id
+				Set @POA := 3;
+				select  @SPD := wochenplanspeise_id ,@POS :=position from wochenplanspeise 
+				where 
+				wochenplan_id=1 and 
+				position = @POA-1;
+				Update wochenplanspeise set position = @POS where wochenplanspeise_id = @SPA;
+				Update wochenplanspeise set position = @POA where wochenplanspeise_id = @SPD;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+Set @SPA := 7;
+				Set @POA := 1;
+				select  @SPD := wochenplanspeise_id ,@POS :=position from wochenplanspeise 
+				where 
+				wochenplan_id=1 
+				and position = @POA+1;
+				Update wochenplanspeise set position = @POS where wochenplanspeise_id = @SPA;
+				Update wochenplanspeise set position = @POA where wochenplanspeise_id = @SPD;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+Set @SPA := 7;
+				Set @POA := 2;
+				select  @SPD := wochenplanspeise_id ,@POS :=position from wochenplanspeise 
+				where 
+				wochenplan_id=1 
+				and position = @POA+1;
+				Update wochenplanspeise set position = @POS where wochenplanspeise_id = @SPA;
+				Update wochenplanspeise set position = @POA where wochenplanspeise_id = @SPD;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+Set @SPA := 4; # wochenplanspeise_id
+				Set @POA := 4;
+				select  @SPD := wochenplanspeise_id ,@POS :=position from wochenplanspeise 
+				where 
+				wochenplan_id=1 and 
+				position = @POA-1;
+				Update wochenplanspeise set position = @POS where wochenplanspeise_id = @SPA;
+				Update wochenplanspeise set position = @POA where wochenplanspeise_id = @SPD;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+Set @SPA := 4;
+				Set @POA := 3;
+				select  @SPD := wochenplanspeise_id ,@POS :=position from wochenplanspeise 
+				where 
+				wochenplan_id=1 
+				and position = @POA+1;
+				Update wochenplanspeise set position = @POS where wochenplanspeise_id = @SPA;
+				Update wochenplanspeise set position = @POA where wochenplanspeise_id = @SPD;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+Set @SPA := 7; # wochenplanspeise_id
+				Set @POA := 3;
+				select  @SPD := wochenplanspeise_id ,@POS :=position from wochenplanspeise 
+				where 
+				wochenplan_id=1 and 
+				position = @POA-1;
+				Update wochenplanspeise set position = @POS where wochenplanspeise_id = @SPA;
+				Update wochenplanspeise set position = @POA where wochenplanspeise_id = @SPD;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+Set @SPA := 5; # wochenplanspeise_id
+				Set @POA := 3;
+				select  @SPD := wochenplanspeise_id ,@POS :=position from wochenplanspeise 
+				where 
+				wochenplan_id=1 and 
+				position = @POA-1;
+				Update wochenplanspeise set position = @POS where wochenplanspeise_id = @SPA;
+				Update wochenplanspeise set position = @POA where wochenplanspeise_id = @SPD;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+Set @SPA := 5; # wochenplanspeise_id
+				Set @POA := 2;
+				select  @SPD := wochenplanspeise_id ,@POS :=position from wochenplanspeise 
+				where 
+				wochenplan_id=1 and 
+				position = @POA-1;
+				Update wochenplanspeise set position = @POS where wochenplanspeise_id = @SPA;
+				Update wochenplanspeise set position = @POA where wochenplanspeise_id = @SPD;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+Set @SPA := 4; # wochenplanspeise_id
+				Set @POA := 4;
+				select  @SPD := wochenplanspeise_id ,@POS :=position from wochenplanspeise 
+				where 
+				wochenplan_id=1 and 
+				position = @POA-1;
+				Update wochenplanspeise set position = @POS where wochenplanspeise_id = @SPA;
+				Update wochenplanspeise set position = @POA where wochenplanspeise_id = @SPD;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+Set @SPA := 3; # wochenplanspeise_id
+				Set @POA := 6;
+				select  @SPD := wochenplanspeise_id ,@POS :=position from wochenplanspeise 
+				where 
+				wochenplan_id=1 and 
+				position = @POA-1;
+				Update wochenplanspeise set position = @POS where wochenplanspeise_id = @SPA;
+				Update wochenplanspeise set position = @POA where wochenplanspeise_id = @SPD;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+Set @SPA := 3;
+				Set @POA := 5;
+				select  @SPD := wochenplanspeise_id ,@POS :=position from wochenplanspeise 
+				where 
+				wochenplan_id=1 
+				and position = @POA+1;
+				Update wochenplanspeise set position = @POS where wochenplanspeise_id = @SPA;
+				Update wochenplanspeise set position = @POA where wochenplanspeise_id = @SPD;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select wochenplanspeise_id as wpsid, position as pos, speise_id as spid  from wochenplanspeise where wochenplan_id=1 order by position
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=5 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=1 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=2 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=4 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=7 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=6 and  aktiv=1 and loeschbar=0;
+;
+##########################
+select speise_id, bezeichnung, aktiv, loeschbar from speise where speise_id=3 and  aktiv=1 and loeschbar=0;
+;
+##########################
+replace into speisekomponente 
+                set 
+				bezeichnung 		= 'Rotkraut',
+				beschreibung 		= '',
+			    speisekategorie_id     = ''
+
+;
+FEHLER: replace into speisekomponente 
+                set 
+				bezeichnung 		= 'Rotkraut',
+				beschreibung 		= '',
+			    speisekategorie_id     = ''
+;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '5',
+						schnittform_id			= '7',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+Fehler<br>SQLSTATE[HY000]: General error: 1366 Incorrect integer value: '' for column 'speisekomponente_id' at row 1;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '5',
+						schnittform_id			= '7',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+##########################
+replace into speisekomponente 
+                set 
+				bezeichnung 		= 'Rotkraut',
+				beschreibung 		= '<p>Rotkraut</p>
+',
+			    speisekategorie_id     = ''
+
+;
+FEHLER: replace into speisekomponente 
+                set 
+				bezeichnung 		= 'Rotkraut',
+				beschreibung 		= '<p>Rotkraut</p>
+',
+			    speisekategorie_id     = ''
+;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '5',
+						schnittform_id			= '7',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+Fehler<br>SQLSTATE[HY000]: General error: 1366 Incorrect integer value: '' for column 'speisekomponente_id' at row 1;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '5',
+						schnittform_id			= '7',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+##########################
+replace into speisekomponente 
+                set 
+				bezeichnung 		= 'Rotkraut',
+				beschreibung 		= '<p>Rotkraut</p>
+',
+			    speisekategorie_id     = ''
+
+;
+FEHLER: replace into speisekomponente 
+                set 
+				bezeichnung 		= 'Rotkraut',
+				beschreibung 		= '<p>Rotkraut</p>
+',
+			    speisekategorie_id     = ''
+;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '5',
+						schnittform_id			= '7',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+Fehler<br>SQLSTATE[HY000]: General error: 1366 Incorrect integer value: '' for column 'speisekomponente_id' at row 1;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '5',
+						schnittform_id			= '7',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+##########################
+replace into speisekomponente 
+                set 
+				bezeichnung 		= 'Rotkraut',
+				beschreibung 		= '<p>Rotkraut</p>
+',
+			    speisekategorie_id  = '2'
+
+;
+SELECT speisekomponente_id as skid
+				FROM  `speisekomponente` 
+				ORDER BY eingetragen DESC 
+				LIMIT 1;
+update speisekomponente 
+				    SET `initial_id` = 42, 
+					`speisekomponente_hash` = SHA1(42)
+					where speisekomponente_id=42;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '5',
+						schnittform_id			= '7',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '4',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+Fehler<br>SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rezept`.`lm_sk_verbindung`, CONSTRAINT `lm_sk_verbindung_ibfk_7` FOREIGN KEY (`speisekomponente_id`) REFERENCES `speisekomponente` (`speisekomponente_id`) ON DELETE NO ACTION ON UPDATE NO ACT);
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '5',
+						schnittform_id			= '7',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '4',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+##########################
+replace into speisekomponente 
+                set 
+				bezeichnung 		= 'Rotkraut',
+				beschreibung 		= '<p>Rotkraut</p>
+',
+			    speisekategorie_id  = '2'
+
+;
+SELECT speisekomponente_id as skid
+				FROM  `speisekomponente` 
+				ORDER BY eingetragen DESC 
+				LIMIT 1;
+update speisekomponente 
+				    SET `initial_id` = 43, 
+					`speisekomponente_hash` = SHA1(43)
+					where speisekomponente_id=43;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '5',
+						schnittform_id			= '7',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '4',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+Fehler<br>SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`rezept`.`lm_sk_verbindung`, CONSTRAINT `lm_sk_verbindung_ibfk_7` FOREIGN KEY (`speisekomponente_id`) REFERENCES `speisekomponente` (`speisekomponente_id`) ON DELETE NO ACTION ON UPDATE NO ACT);
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '5',
+						schnittform_id			= '7',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '4',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+##########################
+replace into speisekomponente 
+                set 
+				bezeichnung 		= 'Rotkraut',
+				beschreibung 		= '<p>Rotkraut</p>
+',
+			    speisekategorie_id  = '2'
+
+;
+SELECT speisekomponente_id as skid
+				FROM  `speisekomponente` 
+				ORDER BY eingetragen DESC 
+				LIMIT 1;
+update speisekomponente 
+				    SET `initial_id` = 44, 
+					`speisekomponente_hash` = SHA1(44)
+					where speisekomponente_id=44;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '5',
+						schnittform_id			= '7',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '4',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '5',
+						schnittform_id			= '7',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '4',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '35',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '10',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '4',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '5',
+						schnittform_id			= '7',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '4',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '35',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '10',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '4',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '41',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '5',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '5',
+						schnittform_id			= '7',
+						zubereitungsart_id 		= '2',
+						garmethode_id 			= '4',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '4',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '35',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '10',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '4',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '41',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '5',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '28',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '5',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
