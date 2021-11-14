@@ -61,5 +61,5 @@ public function __construct() {}
 	$contents = fread($handle, filesize($filename));
 	fclose($handle);
 	return (int)$contents;
-
+  }
 }

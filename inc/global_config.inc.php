@@ -1,5 +1,13 @@
 <?php
 
+ //echo "../../wochenplan/class/LetzteAktivitaet.classes.php";
+ require_once("./class/LetzteAktivitaet.classes.php");
+ require_once("./class/Log.classes.php");
+ require_once("./class/Zaehler.classes.php");
+ require_once("./class/SpeiseZaehler.classes.php");
+ require_once("./class/DatenbankZugriff.classes.php");
+ require_once("./class/DB_Mysql_Prod.classes.php");
+
 
  define ('PFAD','../../../../../..');
 

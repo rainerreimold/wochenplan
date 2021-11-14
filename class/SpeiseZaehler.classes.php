@@ -1,4 +1,6 @@
+<?php
 /*****************************************************************************************
+
 
 Datei: SpeiseZaehler.class.php
  Ziel: Zähler für die Häufigkeit des Einsatzes einer Speisekomponente in einem 
@@ -42,7 +44,7 @@ class SpeiseZaehler {
     // prüfe ob der EIntrag schon existiert und hole die Id
     // existiert der EIntrag nicht, dann -1
     // beide Parameter können nicht null sein
-  	$skz_Id = getId( $speisekomponente_id, $speise_id )
+  	$skz_Id = getId( $speisekomponente_id, $speise_id );
   	
   	try {
 		  // einfacher Switch	

@@ -1,0 +1,70 @@
+##########################
+replace into speisekomponente 
+                set 
+				bezeichnung 		= 'Spätzle',
+				beschreibung 		= '<p>Sp&auml;tzle</p>
+',
+			    speisekategorie_id  = '1'
+
+;
+SELECT speisekomponente_id as skid
+				FROM  `speisekomponente` 
+				ORDER BY eingetragen DESC 
+				LIMIT 1;
+update speisekomponente 
+				    SET `initial_id` = 46, 
+					`speisekomponente_hash` = SHA1(46)
+					where speisekomponente_id=46;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '44',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '4',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;
+replace into lebensmittel 
+					 set 
+						bezeichnung = 'Grünkohl', 
+						beschreibung = '&lt;p&gt;Gr&amp;uuml;nkohl&lt;/p&gt;
+', 
+						kategorie =	'Gemüse',
+						sorte =	'',
+						teil =	'Blatt',
+						herkunft =	'Deutschland',
+						eigenschaft =	'schmackhaft',
+						artikelnummer =	'300991';
+update lebensmittel set initial_id = lebensmittel_id, lebensmittel_hash = SHA1(lebensmittel_id) order by lebensmittel_id desc limit 1;
+##########################
+replace into speisekomponente 
+                set 
+				bezeichnung 		= 'Grünkohl',
+				beschreibung 		= '<p>Gr&uuml;nkohl</p>
+',
+			    speisekategorie_id  = '2'
+
+;
+SELECT speisekomponente_id as skid
+				FROM  `speisekomponente` 
+				ORDER BY eingetragen DESC 
+				LIMIT 1;
+update speisekomponente 
+				    SET `initial_id` = 47, 
+					`speisekomponente_hash` = SHA1(47)
+					where speisekomponente_id=47;
+replace into lm_sk_verbindung 
+               		 set 
+						lebensmittel_id 		= '75',
+						schnittform_id			= '13',
+						zubereitungsart_id 		= '10',
+						garmethode_id 			= '19',
+						menge 					= '150',
+						einheit					= 'Gramm',
+						speisekomponente_id 	= '4',
+						bezeichnung				= '',
+						beschreibung			= ''; 
+				update lm_sk_verbindung set initial_id=lm_sk_verbindung_id, lm_sk_verbindung_hash=sha1(lm_sk_verbindung_id) order by lm_sk_verbindung_id desc Limit 1;;

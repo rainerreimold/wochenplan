@@ -159,6 +159,57 @@ function getSpeiseKomponenten() {
     
     
 }
+
+
+function getSpeiseKomponenteBezeichnung( $id) {
+
+	try {
+
+		$sql = "SELECT 
+					sk.bezeichnung as skb 
+				FROM `speisekomponente` sk
+				WHERE
+					speisekomponente_id=".$id;
+        
+        $db = new PDO('mysql:host='.DB_HOST.'; dbname='.DB_NAME , DB_USER , DB_PASS );
+        $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $rueckgabe = $db->query($sql);
+        
+        $ergebnis = $rueckgabe->fetchAll(PDO::FETCH_ASSOC);
+					
+        $db=null;
+        $i=0;
+		$ret="";
+		if ($ergebnis) {
+		  foreach ( $ergebnis as $inhalt) {
+	
+	
+			++$i;
+
+			$ret=$ret.$inhalt['skb'];
+
+
+		  }
+		  return $ret;        
+        }
+        //return $ergebnis[0]['domain_name'];
+
+    }
+
+    catch(PDOException $e){
+        print $e->getMessage();
+    }
+    return -1;
+    
+    
+}
+
+
+
+
+
+
 //getSaettigungsBeilage
 
 /******
@@ -793,7 +844,7 @@ function getMengen() {
 	try {
 
 		$sql = "SELECT schnittform_id, schnittform_bezeichnung, beschreibung FROM schnittform WHERE 1";
-		$dbh = new DB_Mysql_Prod;
+		$dbh = new DB_Mysql_Prod();
         $ergebnis = $dbh->fetch_assoc($sql);
 		$var = "<br>
 <br><small>Quelle:https://g-wie-gastro.de/abteilungen/kueche/fachkunde/schnittformen.html</small>";	

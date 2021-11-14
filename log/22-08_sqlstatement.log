@@ -1,0 +1,38 @@
+replace into lebensmittel 
+					 set 
+						bezeichnung = 'Tomaten', 
+						beschreibung = '', 
+						kategorie =	'Gemüse',
+						sorte =	'HarzFeuer',
+						teil =	'Frucht',
+						herkunft =	'Deutschland',
+						eigenschaft =	'schmackhaft',
+						artikelnummer =	'700999';
+update lebensmittel set initial_id = lebensmittel_id, lebensmittel_hash = SHA1(lebensmittel_id) order by lebensmittel_id desc limit 1;
+replace into lebensmittel 
+					 set 
+						bezeichnung = 'Basilikum', 
+						beschreibung = '', 
+						kategorie =	'Gewürz',
+						sorte =	'klassisch',
+						teil =	'Blatt',
+						herkunft =	'Deutschland',
+						eigenschaft =	'intensiv',
+						artikelnummer =	'700006';
+update lebensmittel set initial_id = lebensmittel_id, lebensmittel_hash = SHA1(lebensmittel_id) order by lebensmittel_id desc limit 1;
+replace into lebensmittel 
+					 set 
+						bezeichnung = 'Jagdwurst', 
+						beschreibung = '&lt;p&gt;Jagdwurst zur Weiterverarbeitung f&amp;uuml;r&lt;/p&gt;
+
+&lt;p&gt;z.B: Spaghetti mit Tomatenso&amp;szlig;e&lt;/p&gt;
+
+&lt;p&gt;J&amp;auml;gerschnitzel Karlsbader Schnitte&lt;/p&gt;
+', 
+						kategorie =	'Fleisch',
+						sorte =	'Jagdwurst',
+						teil =	'',
+						herkunft =	'Deutschland',
+						eigenschaft =	'',
+						artikelnummer =	'300999';
+update lebensmittel set initial_id = lebensmittel_id, lebensmittel_hash = SHA1(lebensmittel_id) order by lebensmittel_id desc limit 1;

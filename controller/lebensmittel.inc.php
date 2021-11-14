@@ -49,7 +49,7 @@ $_SESSION['start'] = isset($_SESSION['start'])?$_SESSION['start']:false;
 static $db;
 
 require_once './class/Log.classes.php';
-require_once './class/LetzteAktivitaet.class.php';
+require_once './class/LetzteAktivitaet.classes.php';
 
 
 function doAction( $action = '', $id = '', $von=0, $lim=0, $order='asc' ) {

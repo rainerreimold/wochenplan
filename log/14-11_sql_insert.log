@@ -1,0 +1,12 @@
+update speisekomponente 
+				    SET `initial_id` = 46, 
+					`speisekomponente_hash` = SHA1(46)
+					where speisekomponente_id=46;
+
+update lebensmittel set initial_id = lebensmittel_id, lebensmittel_hash = SHA1(lebensmittel_id) order by lebensmittel_id desc limit 1;
+
+update speisekomponente 
+				    SET `initial_id` = 47, 
+					`speisekomponente_hash` = SHA1(47)
+					where speisekomponente_id=47;
+

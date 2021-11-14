@@ -39,6 +39,7 @@
 
 
 /** 
+
 ich würde mir hier gern einen Schritt weiter zu gehen wünschen!
 Rainer: 04.07.2021
 
@@ -49,10 +50,6 @@ Am Donnerstag eine Süßspeise Eierkuchen/Grißbrei
 Am Mittwoch etwas leichtes, wie ein gefülltes Omelette oder E
 Dienstag: Fisch oder Nuggets
 Freitag: Currywurst oder Szegediner
-
-
- 
-
 
 **/
 
@@ -67,7 +64,7 @@ Freitag: Currywurst oder Szegediner
 	// stellt die App Vorschläge, aber keine Vorschrift für die möglichen Speisenpläne der Woche dar.
 	
 		 echo '<h1 style="background: orange; color:black;
-	             padding-left:120px;">Rezepte</h1>';
+	             padding-left:120px;">Speiseplan</h1>';
          echo '<div class="form" style="width:1150px; text-align:right; padding:10px; margin:10px auto auto auto;">
 
          <form method="post" action="eintragen" style="width:1100px; padding:10px; margin:10px;" class="artikelform">
